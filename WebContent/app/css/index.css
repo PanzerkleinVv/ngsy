@@ -1,0 +1,332 @@
+@CHARSET "UTF-8";
+
+.mainContent {
+	width: 100%;
+}
+
+.toolbarBox {
+	background-color: #EEEEEE;
+	width: 100%;
+}
+
+.closeQuery {
+	height: 20px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.pageBox {
+	text-align: center;
+	bottom: 0px;
+}
+
+.navbar-brandText {
+	color: #FFFFFF;
+	font-family: 微软雅黑;
+	font-size: 22px;
+	line-height: 40px;
+	margin-left: 10px;
+}
+
+.page-title1 {
+	font-family: 微软雅黑;
+}
+
+.toolbarBox .queryLine:nth-child(even) {
+	background-color: #FFFFFF;
+}
+
+.queryLine {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.queryTitle {
+	font-family: 微软雅黑;
+}
+
+.queryLine>.queryTitle {
+	margin-left: 5%;
+	width: 90%;
+	text-align: left;
+}
+
+.form_date {
+	cursor: text !important;
+}
+
+.input-long {
+	width: 200px;
+}
+
+.input-longPlus {
+	width: 500px;
+}
+
+.middleSpan {
+	margin-left: 6px;
+	margin-right: 6px;
+}
+
+.role>span {
+	display: inline;
+	color: #000000;
+	border: 1px solid #4d90fe;
+	background-color: #FFFFFF;
+	cursor: default;
+	line-height: 24px;
+	word-break: keep-all;
+	padding: 0 2px 0 2px;
+	margin: 0 0 0 4px;
+	font-size: 13px !important;
+}
+
+.msgTable {
+	width: 100%;
+	display: table;
+}
+
+.msg {
+	font-size: 20px;
+	cursor: default;
+	display: table-row;
+	border-collapse: collapse;
+}
+
+.msgItem {
+	font-size: 12pt;
+	display: table-cell;
+	text-align: center;
+	border: 1px solid #EEEEEE;
+}
+
+.msgItem:first-child {
+	border-left: 0 !important;
+}
+
+.msgItem.content {
+	text-align: left;
+	width: 300px;
+	max-height: 150px;
+    overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.msgHeader {
+	text-align: center;
+	background-color: #1570a6 !important;
+	font-family: 微软雅黑;
+	color: #FFFFFF;
+	height: 30px !important;
+}
+
+.msgTable .msg:nth-child(odd) {
+	background-color: #EEEEEE;
+}
+
+.msgTable .msg:nth-child(even) {
+	background-color: #FFFFFF;
+}
+
+#openMsg {
+	font-size: 18px;
+}
+
+#msgBox>div:nth-child(odd) {
+	background-color: #EEEEEE;
+}
+
+#msgBox>div:nth-child(even) {
+	background-color: #FFFFFF;
+}
+
+.msgSponsorContent {
+	border: 1px solid #999999;
+}
+
+.msgSponsorContent>div:first-child {
+	background-color: #3c9dff !important;
+}
+
+.msgTitle {
+	font-family: 微软雅黑;
+	line-height: 24px;
+	margin-left: 5px;
+}
+
+.contentTitle {
+	font-family: 楷体;
+	font-size: 18px;
+}
+
+.submissionBox {
+	width: 98%;
+	border: 1px solid #EEEEEE;
+	margin-top: 10px;
+}
+
+.submissionTitle {
+	background-color: #EEEEEE !important;
+}
+
+.msgContentBox {
+	margin: 0 1% 0 1% !important;
+	border: 1px solid #EEEEEE;
+}
+
+.submissionTitle>span {
+	font-family: 黑体 !important;
+	font-size: 17px;
+}
+
+.middleTitle {
+	text-align: center;
+}
+
+.middleTitle2 {
+	padding: 0 1% 0 1% !important;
+}
+
+#goback {
+	text-align: center;
+}
+
+.uploadTitle {
+	font-family: 微软雅黑;
+	display: block;
+	background-color: #EEEEEE;
+}
+
+#uploadBox>div {
+	padding: 2px 0 2px 0;
+	background-color: #FFFFFF;
+}
+
+.uploadButton {
+	text-align: center;
+}
+
+.uploadItem {
+	width: 90%;
+	display: block;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.navigationBar {
+	font-size: 12pt;
+	font-family: '微软雅黑';
+	color: #222222;
+	padding-left: 10px;
+	background-color: #DDDDDD;
+}
+
+.navigationBar>span {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.navigationItem {
+	background-color: #FFFFFF;
+	padding: 1px 5px 1px 5px;
+}
+
+.searchUser {
+	width: 50%;
+	display: inline;
+}
+
+.searchBox {
+	width: 90%;
+	display: inline;
+}
+
+#searchBut {
+	display: inline;
+}
+
+.userTable {
+	display: table;
+	width: 100%;
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+.userRow {
+	display: table-row;
+	border-bottom: 2px solid #FFFFFF;
+	line-height: 34px;
+}
+
+.userTable .userRow:NTH-CHILD(odd) {
+	background-color: #FFFFFF;
+}
+
+.userTable .userRow:NTH-CHILD(odd) {
+	background-color: #EEEEEE;
+}
+
+.userItem {
+	display: table-cell;
+	border-left: 2px solid #FFFFFF;
+	text-align: center;
+}
+
+.userHeader {
+	background-color: #1570a6 !important;
+	font-family: 微软雅黑;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+.msgTable .msg:nth-child(odd) {
+	background-color: #EEEEEE;
+}
+
+.msgTable .msg:nth-child(even) {
+	background-color: #FFFFFF;
+}
+
+.infoMethod {
+	background-color: #1570a6;
+	font-family: 微软雅黑;
+	font-size: 24px;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+.infoMethod ~ div {
+	font-family: 微软雅黑;
+	font-size: 18px;
+	background-color: #FFFFFF;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.infoMethod ~ div>span {
+	display: block;
+	width: 100%;
+}
+
+.infoMethod ~ div>span:nth-child(1) {
+	background-color: #EEEEEE;
+}
+
+.infoMethod ~ div>span:nth-child(1) ~ span {
+	padding-left: 5%;
+	padding-right: 5%;
+	font-family: 宋体;
+	font-size: 18px;
+}
+
+.infoButton {
+	text-align: center;
+}
+
+.infoButton button {
+	display: inline;
+}
+
+.clickable {
+	cursor: pointer;
+}
