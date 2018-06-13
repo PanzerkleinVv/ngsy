@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdin.dzzwsyb.ngsy.web.dao.JobUnitMapper">
+	<resultMap id="BaseResultMap"
+		type="com.gdin.dzzwsyb.ngsy.web.model.JobUnit">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="unit_id" jdbcType="VARCHAR" property="unitId" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="rank" jdbcType="VARCHAR" property="rank" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="count" jdbcType="INTEGER" property="count" />
+		<result column="salary" jdbcType="DECIMAL" property="salary" />
+		<result column="is_used" jdbcType="VARCHAR" property="isUsed" />
+		<result column="sort" jdbcType="INTEGER" property="sort" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value"
+										item="listItem" open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value"
+										item="listItem" open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, unit_id, name, rank, type, count, salary, is_used, sort
+	</sql>
+	<select id="selectByExample"
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.JobUnitExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from job_unit
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from job_unit
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from job_unit
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample"
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.JobUnitExample">
+		delete from job_unit
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert"
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.JobUnit">
+		insert into job_unit (id, unit_id, name,
+		rank, type, count,
+		salary, is_used, sort
+		)
+		values (#{id,jdbcType=VARCHAR}, #{unitId,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{rank,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER},
+		#{salary,jdbcType=DECIMAL}, #{isUsed,jdbcType=VARCHAR},
+		#{sort,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.JobUnit">
+		insert into job_unit
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="unitId != null">
+				unit_id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="rank != null">
+				rank,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="count != null">
+				count,
+			</if>
+			<if test="salary != null">
+				salary,
+			</if>
+			<if test="isUsed != null">
+				is_used,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="unitId != null">
+				#{unitId,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="rank != null">
+				#{rank,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="count != null">
+				#{count,jdbcType=INTEGER},
+			</if>
+			<if test="salary != null">
+				#{salary,jdbcType=DECIMAL},
+			</if>
+			<if test="isUsed != null">
+				#{isUsed,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample"
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.JobUnitExample"
+		resultType="java.lang.Long">
+		select count(*) from job_unit
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update job_unit
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=VARCHAR},
+			</if>
+			<if test="record.unitId != null">
+				unit_id = #{record.unitId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.name != null">
+				name = #{record.name,jdbcType=VARCHAR},
+			</if>
+			<if test="record.rank != null">
+				rank = #{record.rank,jdbcType=VARCHAR},
+			</if>
+			<if test="record.type != null">
+				type = #{record.type,jdbcType=VARCHAR},
+			</if>
+			<if test="record.count != null">
+				count = #{record.count,jdbcType=INTEGER},
+			</if>
+			<if test="record.salary != null">
+				salary = #{record.salary,jdbcType=DECIMAL},
+			</if>
+			<if test="record.isUsed != null">
+				is_used = #{record.isUsed,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sort != null">
+				sort = #{record.sort,jdbcType=INTEGER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update job_unit
+		set id = #{record.id,jdbcType=VARCHAR},
+		unit_id = #{record.unitId,jdbcType=VARCHAR},
+		name = #{record.name,jdbcType=VARCHAR},
+		rank = #{record.rank,jdbcType=VARCHAR},
+		type = #{record.type,jdbcType=VARCHAR},
+		count = #{record.count,jdbcType=INTEGER},
+		salary = #{record.salary,jdbcType=DECIMAL},
+		is_used = #{record.isUsed,jdbcType=VARCHAR},
+		sort = #{record.sort,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.JobUnit">
+		update job_unit
+		<set>
+			<if test="unitId != null">
+				unit_id = #{unitId,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="rank != null">
+				rank = #{rank,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="count != null">
+				count = #{count,jdbcType=INTEGER},
+			</if>
+			<if test="salary != null">
+				salary = #{salary,jdbcType=DECIMAL},
+			</if>
+			<if test="isUsed != null">
+				is_used = #{isUsed,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.JobUnit">
+		update job_unit
+		set unit_id = #{unitId,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		rank = #{rank,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		count = #{count,jdbcType=INTEGER},
+		salary = #{salary,jdbcType=DECIMAL},
+		is_used = #{isUsed,jdbcType=VARCHAR},
+		sort = #{sort,jdbcType=INTEGER}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

@@ -1,12 +1,11 @@
 package com.gdin.dzzwsyb.ngsy.web.dao;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
-
 import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
 import com.gdin.dzzwsyb.ngsy.web.model.User;
 import com.gdin.dzzwsyb.ngsy.web.model.UserExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 用户表DAO接口

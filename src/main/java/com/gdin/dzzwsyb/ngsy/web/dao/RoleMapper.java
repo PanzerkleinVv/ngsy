@@ -1,11 +1,11 @@
 package com.gdin.dzzwsyb.ngsy.web.dao;
 
+import com.gdin.dzzwsyb.ngsy.web.model.Role;
+import com.gdin.dzzwsyb.ngsy.web.model.RoleExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
-import com.gdin.dzzwsyb.ngsy.web.model.Role;
-import com.gdin.dzzwsyb.ngsy.web.model.RoleExample;
 
 /**
  * 处室表DAO接口

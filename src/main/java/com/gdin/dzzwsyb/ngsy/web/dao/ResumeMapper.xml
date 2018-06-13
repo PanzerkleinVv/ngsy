@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="com.gdin.dzzwsyb.ngsy.web.dao.PermissionMapper">
+<mapper namespace="com.gdin.dzzwsyb.ngsy.web.dao.ResumeMapper">
 	<resultMap id="BaseResultMap"
-		type="com.gdin.dzzwsyb.ngsy.web.model.Permission">
-		<id column="id" jdbcType="BIGINT" property="id" />
-		<result column="permission_name" jdbcType="VARCHAR"
-			property="permissionName" />
-		<result column="permission_sign" jdbcType="VARCHAR"
-			property="permissionSign" />
-		<result column="description" jdbcType="VARCHAR"
-			property="description" />
+		type="com.gdin.dzzwsyb.ngsy.web.model.Resume">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="person_id" jdbcType="VARCHAR"
+			property="personId" />
+		<result column="begin_date" jdbcType="TIMESTAMP"
+			property="beginDate" />
+		<result column="end_date" jdbcType="TIMESTAMP"
+			property="endDate" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
 	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
@@ -27,8 +27,7 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value}
-									and
+									and ${criterion.condition} #{criterion.value} and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -60,8 +59,7 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value}
-									and
+									and ${criterion.condition} #{criterion.value} and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -79,17 +77,17 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		id, permission_name, permission_sign, description
+		id, person_id, begin_date, end_date, content
 	</sql>
 	<select id="selectByExample"
-		parameterType="com.gdin.dzzwsyb.ngsy.web.model.PermissionExample"
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.ResumeExample"
 		resultMap="BaseResultMap">
 		select
 		<if test="distinct">
 			distinct
 		</if>
 		<include refid="Base_Column_List" />
-		from permission
+		from resume
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
@@ -97,91 +95,95 @@
 			order by ${orderByClause}
 		</if>
 	</select>
-	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from permission
-		where id = #{id,jdbcType=BIGINT}
+		from resume
+		where id = #{id,jdbcType=VARCHAR}
 	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from
-		permission
-		where id = #{id,jdbcType=BIGINT}
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from resume
+		where id = #{id,jdbcType=VARCHAR}
 	</delete>
 	<delete id="deleteByExample"
-		parameterType="com.gdin.dzzwsyb.ngsy.web.model.PermissionExample">
-		delete from permission
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.ResumeExample">
+		delete from resume
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
 	</delete>
 	<insert id="insert"
-		parameterType="com.gdin.dzzwsyb.ngsy.web.model.Permission">
-		insert into permission (id, permission_name,
-		permission_sign,
-		description)
-		values (#{id,jdbcType=BIGINT},
-		#{permissionName,jdbcType=VARCHAR},
-		#{permissionSign,jdbcType=VARCHAR},
-		#{description,jdbcType=VARCHAR})
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.Resume">
+		insert into resume (id, person_id, begin_date,
+		end_date, content)
+		values (#{id,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR},
+		#{beginDate,jdbcType=TIMESTAMP},
+		#{endDate,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective"
-		parameterType="com.gdin.dzzwsyb.ngsy.web.model.Permission">
-		insert into permission
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.Resume">
+		insert into resume
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
 				id,
 			</if>
-			<if test="permissionName != null">
-				permission_name,
+			<if test="personId != null">
+				person_id,
 			</if>
-			<if test="permissionSign != null">
-				permission_sign,
+			<if test="beginDate != null">
+				begin_date,
 			</if>
-			<if test="description != null">
-				description,
+			<if test="endDate != null">
+				end_date,
+			</if>
+			<if test="content != null">
+				content,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
-				#{id,jdbcType=BIGINT},
+				#{id,jdbcType=VARCHAR},
 			</if>
-			<if test="permissionName != null">
-				#{permissionName,jdbcType=VARCHAR},
+			<if test="personId != null">
+				#{personId,jdbcType=VARCHAR},
 			</if>
-			<if test="permissionSign != null">
-				#{permissionSign,jdbcType=VARCHAR},
+			<if test="beginDate != null">
+				#{beginDate,jdbcType=TIMESTAMP},
 			</if>
-			<if test="description != null">
-				#{description,jdbcType=VARCHAR},
+			<if test="endDate != null">
+				#{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
 	<select id="countByExample"
-		parameterType="com.gdin.dzzwsyb.ngsy.web.model.PermissionExample"
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.ResumeExample"
 		resultType="java.lang.Long">
-		select count(*) from permission
+		select count(*) from resume
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
 	</select>
 	<update id="updateByExampleSelective" parameterType="map">
-		update permission
+		update resume
 		<set>
 			<if test="record.id != null">
-				id = #{record.id,jdbcType=BIGINT},
+				id = #{record.id,jdbcType=VARCHAR},
 			</if>
-			<if test="record.permissionName != null">
-				permission_name =
-				#{record.permissionName,jdbcType=VARCHAR},
+			<if test="record.personId != null">
+				person_id = #{record.personId,jdbcType=VARCHAR},
 			</if>
-			<if test="record.permissionSign != null">
-				permission_sign =
-				#{record.permissionSign,jdbcType=VARCHAR},
+			<if test="record.beginDate != null">
+				begin_date = #{record.beginDate,jdbcType=TIMESTAMP},
 			</if>
-			<if test="record.description != null">
-				description = #{record.description,jdbcType=VARCHAR},
+			<if test="record.endDate != null">
+				end_date = #{record.endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.content != null">
+				content = #{record.content,jdbcType=VARCHAR},
 			</if>
 		</set>
 		<if test="_parameter != null">
@@ -189,49 +191,42 @@
 		</if>
 	</update>
 	<update id="updateByExample" parameterType="map">
-		update permission
-		set id = #{record.id,jdbcType=BIGINT},
-		permission_name = #{record.permissionName,jdbcType=VARCHAR},
-		permission_sign = #{record.permissionSign,jdbcType=VARCHAR},
-		description = #{record.description,jdbcType=VARCHAR}
+		update resume
+		set id = #{record.id,jdbcType=VARCHAR},
+		person_id = #{record.personId,jdbcType=VARCHAR},
+		begin_date = #{record.beginDate,jdbcType=TIMESTAMP},
+		end_date = #{record.endDate,jdbcType=TIMESTAMP},
+		content = #{record.content,jdbcType=VARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
 	</update>
 	<update id="updateByPrimaryKeySelective"
-		parameterType="com.gdin.dzzwsyb.ngsy.web.model.Permission">
-		update permission
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.Resume">
+		update resume
 		<set>
-			<if test="permissionName != null">
-				permission_name = #{permissionName,jdbcType=VARCHAR},
+			<if test="personId != null">
+				person_id = #{personId,jdbcType=VARCHAR},
 			</if>
-			<if test="permissionSign != null">
-				permission_sign = #{permissionSign,jdbcType=VARCHAR},
+			<if test="beginDate != null">
+				begin_date = #{beginDate,jdbcType=TIMESTAMP},
 			</if>
-			<if test="description != null">
-				description = #{description,jdbcType=VARCHAR},
+			<if test="endDate != null">
+				end_date = #{endDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
 			</if>
 		</set>
-		where id = #{id,jdbcType=BIGINT}
+		where id = #{id,jdbcType=VARCHAR}
 	</update>
 	<update id="updateByPrimaryKey"
-		parameterType="com.gdin.dzzwsyb.ngsy.web.model.Permission">
-		update permission
-		set permission_name =
-		#{permissionName,jdbcType=VARCHAR},
-		permission_sign =
-		#{permissionSign,jdbcType=VARCHAR},
-		description =
-		#{description,jdbcType=VARCHAR}
-		where id = #{id,jdbcType=BIGINT}
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.Resume">
+		update resume
+		set person_id = #{personId,jdbcType=VARCHAR},
+		begin_date = #{beginDate,jdbcType=TIMESTAMP},
+		end_date = #{endDate,jdbcType=TIMESTAMP},
+		content = #{content,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
 	</update>
-	<!-- 通过角色id 查询角色 拥有的权限 -->
-	<select id="selectPermissionsByUserId"
-		parameterType="java.lang.Long" resultMap="BaseResultMap">
-		SELECT p.* FROM permission p
-		LEFT JOIN user u ON
-		u.permission_id = p.id
-		WHERE u.id =
-		#{id,jdbcType=BIGINT}
-	</select>
 </mapper>

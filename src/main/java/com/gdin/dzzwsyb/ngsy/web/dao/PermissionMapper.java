@@ -1,11 +1,11 @@
 package com.gdin.dzzwsyb.ngsy.web.dao;
 
+import com.gdin.dzzwsyb.ngsy.web.model.Permission;
+import com.gdin.dzzwsyb.ngsy.web.model.PermissionExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
-import com.gdin.dzzwsyb.ngsy.web.model.Permission;
-import com.gdin.dzzwsyb.ngsy.web.model.PermissionExample;
 
 /**
  * 职务表DAO接口

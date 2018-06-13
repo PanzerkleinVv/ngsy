@@ -50,6 +50,8 @@
         </table>
         <table tableName="code">
         </table>
+        <table tableName="code_type">
+        </table>
         <table tableName="duties_person">
         </table>
         <table tableName="duties_unit">
@@ -59,6 +61,7 @@
         <table tableName="job_person">
         </table>
         <table tableName="job_unit">
+        	<columnOverride column="salary" javaType="java.lang.String" jdbcType="DECIMAL" />
         </table>
         <table tableName="log">
         </table>
@@ -71,6 +74,7 @@
         <table tableName="resume">
         </table>
         <table tableName="salary_rank">
+        	<columnOverride column="standard" javaType="java.lang.String" jdbcType="DECIMAL" />
         </table>
         <table tableName="technical_title">
         </table>
