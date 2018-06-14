@@ -17,6 +17,17 @@ public class Log {
 	private String type;
 
 	private String target;
+	
+	public Log() {
+		
+	}
+	
+	public Log(Long userId, String type, String target, String content) {
+		this.userId = userId;
+		this.type = type;
+		this.target = target;
+		this.content = content;
+	}
 
 	public Long getId() {
 		return id;

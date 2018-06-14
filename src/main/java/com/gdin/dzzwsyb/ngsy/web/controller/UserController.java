@@ -277,7 +277,7 @@ public class UserController {
 	@RequestMapping(value = "/checkUsername")
 	@RequiresRoles(value = RoleSign.ADMIN)
 	@ResponseBody
-	public User checkUsername(@Valid User user, Model model) {
+	public User checkUsername(@Valid User user, Model model, HttpSession session) {
 		User user0 = null;
 		if (user == null || user.isEmpty()) {
 			user0 = new User();

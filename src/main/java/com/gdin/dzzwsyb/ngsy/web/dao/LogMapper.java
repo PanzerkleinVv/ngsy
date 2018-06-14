@@ -1,5 +1,6 @@
 package com.gdin.dzzwsyb.ngsy.web.dao;
 
+import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
 import com.gdin.dzzwsyb.ngsy.web.model.Log;
 import com.gdin.dzzwsyb.ngsy.web.model.LogExample;
@@ -28,4 +29,6 @@ public interface LogMapper extends GenericDao<Log, String> {
 	int updateByPrimaryKeySelective(Log record);
 
 	int updateByPrimaryKey(Log record);
+	
+	Page<Log> selectPage(LogExample example, Page<Log> page);
 }
