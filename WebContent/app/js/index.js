@@ -64,3 +64,17 @@ function goBack() {
 	$("#msg-content").hide();
 	$("#goBack").hide();
 }
+
+function getCodeSimple(name, target, selected) {
+	var url = 'rest/code/get';
+	$.get(url, {
+		'name' : name
+	}, function(data) {
+		if (data.length != 0) {
+			$.each(data, function(i, n) {
+				target.append('<option value="' + n.code + '">' + n.name
+						+ '</option>');
+			});
+		}
+	});
+}

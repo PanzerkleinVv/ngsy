@@ -8,10 +8,13 @@ import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericServiceImpl;
 import com.gdin.dzzwsyb.ngsy.web.dao.LogMapper;
+import com.gdin.dzzwsyb.ngsy.web.dao.VLogMapper;
 import com.gdin.dzzwsyb.ngsy.web.model.Log;
 import com.gdin.dzzwsyb.ngsy.web.model.LogExample;
-import com.gdin.dzzwsyb.ngsy.web.model.LogExample.Criteria;
+import com.gdin.dzzwsyb.ngsy.web.model.VLogExample.Criteria;
 import com.gdin.dzzwsyb.ngsy.web.model.LogQuery;
+import com.gdin.dzzwsyb.ngsy.web.model.VLog;
+import com.gdin.dzzwsyb.ngsy.web.model.VLogExample;
 import com.gdin.dzzwsyb.ngsy.web.service.LogService;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +23,12 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public class LogServiceImpl extends GenericServiceImpl<Log, String> implements LogService {
+public class LogServiceImpl extends GenericServiceImpl<Log, Long> implements LogService {
 
 	@Resource
 	private LogMapper logMapper;
+	@Resource
+	private VLogMapper vLogMapper;
 
 	@Override
 	public int insert(Log model) {
@@ -36,17 +41,17 @@ public class LogServiceImpl extends GenericServiceImpl<Log, String> implements L
 	}
 
 	@Override
-	public int delete(String id) {
+	public int delete(Long id) {
 		return logMapper.deleteByPrimaryKey(id);
 	}
 
 	@Override
-	public Log selectById(String id) {
+	public Log selectById(Long id) {
 		return logMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
-	public GenericDao<Log, String> getDao() {
+	public GenericDao<Log, Long> getDao() {
 		return logMapper;
 	}
 
@@ -59,19 +64,19 @@ public class LogServiceImpl extends GenericServiceImpl<Log, String> implements L
 	}
 
 	@Override
-	public Page<Log> selectPage(LogQuery logQuery) {
-		Page<Log> page = null;
-		LogExample example = new LogExample();
+	public Page<VLog> selectPage(LogQuery logQuery) {
+		Page<VLog> page = null;
+		VLogExample example = new VLogExample();
 		if (logQuery == null) {
-			page = new Page<Log>(1);
+			page = new Page<VLog>(1);
 			example.createCriteria().andIdIsNotNull();
 		} else {
-			page = new Page<Log>(logQuery.getPageNo());
+			page = new Page<VLog>(logQuery.getPageNo());
 			Criteria criteria = example.createCriteria();
 			logQuery.setExample(criteria);
 		}
 		example.setOrderByClause("time desc");
-		return logMapper.selectPage(example, page);
+		return vLogMapper.selectByPage(example, page);
 	}
 
 	@Override

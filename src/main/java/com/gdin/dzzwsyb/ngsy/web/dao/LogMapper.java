@@ -7,7 +7,7 @@ import com.gdin.dzzwsyb.ngsy.web.model.LogExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface LogMapper extends GenericDao<Log, String> {
+public interface LogMapper extends GenericDao<Log, Long> {
 	long countByExample(LogExample example);
 
 	int deleteByExample(LogExample example);

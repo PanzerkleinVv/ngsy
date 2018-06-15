@@ -65,6 +65,8 @@
         </table>
         <table tableName="log">
         </table>
+        <table tableName="v_log">
+        </table>
         <table tableName="ndkh">
         </table>
         <table tableName="person">

@@ -47,7 +47,7 @@ public class CodeController {
 	 */
 	@RequestMapping(value = "/admin")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String admin(CodeType codeType, @ModelAttribute ResultMessage message, Model model) {
+	public String admin(CodeType codeType, @ModelAttribute("message") ResultMessage message, Model model) {
 		List<CodeType> codeTypes = null;
 		if (codeType != null) {
 			codeTypes = codeTypeService.selectList(codeType.getName());
@@ -57,7 +57,7 @@ public class CodeController {
 		model.addAttribute("codeTypes", codeTypes);
 		model.addAttribute("message", message);
 		model.addAttribute("name", codeType.getName());
-		return "code";
+		return "codeType";
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class CodeController {
 				final Log log = new Log(userId, MODULE, codeType.getId(), METHOD + codeType.getName());
 				logService.log(log);
 				model.addFlashAttribute("message", message);
-				model.addFlashAttribute("type", codeType.getId());
+				model.addFlashAttribute("codeType", codeType);
 				return "redirect:/rest/code/codeList";
 			} else {
 				message.failure();
@@ -125,7 +125,7 @@ public class CodeController {
 			message.failure();
 		}
 		model.addFlashAttribute("message", message);
-		return "redirect:/rest/code/codeList";
+		return "redirect:/rest/code/admin";
 	}
 
 	/**
@@ -172,16 +172,18 @@ public class CodeController {
 	 */
 	@RequestMapping(value = "/codeList")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String codeList(@ModelAttribute Code code, @ModelAttribute ResultMessage message, Model model) {
+	public String codeList(@ModelAttribute("codeType") CodeType codeType, @ModelAttribute("message") ResultMessage message, Model model) {
 		List<Code> codes = null;
-		if (code != null && !"".equals(code.getType())) {
-			codes = codeService.selectList(code.getType());
+		if (codeType != null && !"".equals(codeType.getId())) {
+			codeType = codeTypeService.selectById(codeType.getId());
+			codes = codeService.selectList(codeType.getId());
 		} else {
 			message.get().failure();
 		}
+		model.addAttribute("codeType", codeType);
 		model.addAttribute("codes", codes);
 		model.addAttribute("message", message);
-		return "codeType";
+		return "code";
 	}
 
 	/**
@@ -209,7 +211,9 @@ public class CodeController {
 			} else {
 				message.failure();
 			}
-			model.addFlashAttribute("type", code.getType());
+			CodeType codeType = new CodeType();
+			codeType.setId(code.getType());
+			model.addFlashAttribute("codeType", codeType);
 		} else {
 			message.failure();
 		}
@@ -235,6 +239,7 @@ public class CodeController {
 		final Long userId = (Long) session.getAttribute("userId");
 		if (code != null) {
 			code.setId(ApplicationUtils.newUUID());
+			code.setLevel("1");
 			final int count = codeService.insert(code);
 			if (count > 0) {
 				message.success();
@@ -243,7 +248,9 @@ public class CodeController {
 			} else {
 				message.failure();
 			}
-			model.addFlashAttribute("type", code.getType());
+			CodeType codeType = new CodeType();
+			codeType.setId(code.getType());
+			model.addFlashAttribute("codeType", codeType);
 		} else {
 			message.failure();
 		}
@@ -276,7 +283,9 @@ public class CodeController {
 			} else {
 				message.failure();
 			}
-			model.addFlashAttribute("type", code.getType());
+			CodeType codeType = new CodeType();
+			codeType.setId(code.getType());
+			model.addFlashAttribute("codeType", codeType);
 		} else {
 			message.failure();
 		}
@@ -293,9 +302,10 @@ public class CodeController {
 	 */
 	@RequestMapping(value = "/get")
 	@ResponseBody
-	public List<Code> get(Code code) {
-		if (code != null) {
-			return codeService.selectList(code.getType());
+	public List<Code> get(CodeType codeType) {
+		if (codeType != null) {
+			codeType = codeTypeService.selectList(codeType.getName()).get(0);
+			return codeService.selectList(codeType.getId());
 		} else {
 			return null;
 		}

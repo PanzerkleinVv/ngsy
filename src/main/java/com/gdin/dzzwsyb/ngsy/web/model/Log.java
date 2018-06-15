@@ -18,6 +18,10 @@ public class Log {
 
 	private String target;
 	
+	private String name;
+	
+	private String userdesc;
+	
 	public Log() {
 		
 	}
@@ -75,5 +79,21 @@ public class Log {
 
 	public void setTarget(String target) {
 		this.target = target == null ? null : target.trim();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name == null ? null : name.trim();
+	}
+
+	public String getUserdesc() {
+		return userdesc;
+	}
+
+	public void setUserdesc(String userdesc) {
+		this.userdesc = userdesc == null ? null : userdesc.trim();
 	}
 }

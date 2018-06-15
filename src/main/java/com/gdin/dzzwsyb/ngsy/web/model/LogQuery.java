@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.gdin.dzzwsyb.ngsy.web.model.LogExample.Criteria;
+import com.gdin.dzzwsyb.ngsy.web.model.VLogExample.Criteria;
 
 public class LogQuery {
 	private String content;
@@ -64,7 +64,7 @@ public class LogQuery {
 			criteria.andContentLike("%" + content + "%");
 		}
 		if (type != null && !"".equals(type)) {
-			criteria.andTypeEqualTo(content);
+			criteria.andTypeEqualTo(type);
 		}
 		if (beginDate != null) {
 			criteria.andTimeGreaterThanOrEqualTo(beginDate);

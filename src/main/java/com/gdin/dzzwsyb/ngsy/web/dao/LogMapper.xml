@@ -10,6 +10,17 @@
 		<result column="type" jdbcType="VARCHAR" property="type" />
 		<result column="target" jdbcType="VARCHAR" property="target" />
 	</resultMap>
+	<resultMap id="ExtendResultMap"
+		type="com.gdin.dzzwsyb.ngsy.web.model.Log">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="time" jdbcType="TIMESTAMP" property="time" />
+		<result column="user_id" jdbcType="BIGINT" property="userId" />
+		<result column="userdesc" jdbcType="VARCHAR" property="userdesc" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="target" jdbcType="VARCHAR" property="target" />
+	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
 			<foreach collection="oredCriteria" item="criteria"
@@ -77,6 +88,9 @@
 	<sql id="Base_Column_List">
 		id, time, user_id, content, type, target
 	</sql>
+	<sql id="Extend_Column_List">
+		log.id id, time, user_id, userdesc, content, log.type type, name, target
+	</sql>
 	<select id="selectByExample"
 		parameterType="com.gdin.dzzwsyb.ngsy.web.model.LogExample"
 		resultMap="BaseResultMap">
@@ -95,13 +109,15 @@
 	</select>
 	<select id="selectPage"
 		parameterType="com.gdin.dzzwsyb.ngsy.web.model.LogExample"
-		resultMap="BaseResultMap">
+		resultMap="ExtendResultMap">
 		select
 		<if test="distinct">
 			distinct
 		</if>
-		<include refid="Base_Column_List" />
-		from log
+		<include refid="Extend_Column_List" />
+		from log 
+		left outer join user on user_id = user.id
+		left outer join code on log.type = code.code and code.type = '30ca8dc08281e4e68395afd862fc1d939d9c82c3'
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
