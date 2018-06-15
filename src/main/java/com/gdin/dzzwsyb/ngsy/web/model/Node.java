@@ -1,0 +1,124 @@
+package com.gdin.dzzwsyb.ngsy.web.model;
+
+import java.awt.List;
+import java.util.ArrayList;
+
+public class Node {
+	public Node() { 
+        this.nodes = new ArrayList<Node>();
+    }
+    public Node(String nodeId,String pId) {
+        this.nodeId = nodeId;
+        this.pid = pId;
+        this.nodes = new ArrayList<Node>();
+    }
+    /**
+     * 生成一个节点
+     * @param nodeId
+     * @param pId
+     * @param text
+     * @param icon
+     * @param href
+     */
+    public Node(String nodeId, String pId, String text) {
+        super();
+        this.nodeId = nodeId;
+        this.pid = pId;
+        this.text = text;
+        this.nodes = new ArrayList<Node>();
+    }
+
+    private String nodeId;    //树的节点Id，区别于数据库中保存的数据Id。
+    private String pid;
+    private String text;   //节点名称
+    private ArrayList<Node> nodes;    //子节点，可以用递归的方法读取
+    
+    public String getNodeId() {
+        return nodeId;
+    }
+    public void setNodeId(String nodeId) {
+        this.nodeId = nodeId;
+    }
+    
+    public String getPid() {
+        return pid;
+    }
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public String getText() {
+        return text;
+    }
+    public void setText(String text) {
+        this.text = text;
+    }
+    
+    
+    public ArrayList<Node> getNodes() {
+        return nodes;
+    }
+    public void setNodes(ArrayList<Node> nodes) {
+        this.nodes = nodes;
+    }
+    
+    /**
+     * 生成一颗多叉树，根节点为root
+     * @param Nodes 生成多叉树的节点集合
+     * @return root
+     */
+    public Node createTree(ArrayList<Node> Nodes) {
+        if (Nodes == null || Nodes.size() < 0)
+            return null;
+        Node root = new Node("root","0");//根节点自定义，但是要和pid对应好
+        // 将所有节点添加到多叉树中
+        for (Node node : Nodes) {
+            if (node.getPid().equals("0") || node.getPid().equals("root")) {//根节点自定义，但是要和pid对应好
+                // 向根添加一个节点
+                root.getNodes().add(node);
+            } else {
+                addChild(root, node);
+            }
+        }
+        return root;
+    }
+
+    /**
+     * 向指定多叉树节点添加子节点
+     * @param Node 多叉树节点
+     * @param child 节点
+     */
+    public void addChild(Node Node, Node child) {
+        for (Node item : Node.getNodes()) {
+            if (item.getNodeId().equals(child.getPid())) {
+                // 找到对应的父亲
+                item.getNodes().add(child);
+                break;
+            } else {
+                if (item.getNodes() != null && item.getNodes().size() > 0) {
+                    addChild(item, child);
+                }
+            }
+        }
+    }
+
+    /**
+     * 遍历多叉树
+     * @param Node 多叉树节点
+     * @return
+     */
+    public String iteratorTree(Node Node) {
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("\n");
+        if (Node != null) {
+            for (Node index : Node.getNodes()) {
+                buffer.append(index.getNodeId() + ",");
+                if (index.getNodes() != null && index.getNodes().size() > 0) {
+                    buffer.append(iteratorTree(index));
+                }
+            }
+        }
+        buffer.append("\n");
+        return buffer.toString();
+    }
+}
