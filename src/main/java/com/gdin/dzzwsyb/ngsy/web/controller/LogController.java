@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
+import com.gdin.dzzwsyb.ngsy.web.model.Log;
 import com.gdin.dzzwsyb.ngsy.web.model.LogQuery;
-import com.gdin.dzzwsyb.ngsy.web.model.VLog;
 import com.gdin.dzzwsyb.ngsy.web.security.RoleSign;
 import com.gdin.dzzwsyb.ngsy.web.service.LogService;
 
@@ -34,8 +34,8 @@ public class LogController {
 	@RequestMapping(value = "/admin")
 	@RequiresRoles(value = RoleSign.ADMIN)
 	public String admin(LogQuery logQuery, Model model) {
-		Page<VLog> page = logService.selectPage(logQuery);
-		List<VLog> logs = page.getResult();
+		Page<Log> page = logService.selectPage(logQuery);
+		List<Log> logs = page.getResult();
 		model.addAttribute("page", page);
 		model.addAttribute("logs", logs);
 		model.addAttribute("logQuery", logQuery);

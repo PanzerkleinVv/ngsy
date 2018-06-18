@@ -111,7 +111,7 @@ public class LogExample {
 		}
 
 		public Criteria andIdIsNotNull() {
-			addCriterion("id is not null");
+			addCriterion("log.id is not null");
 			return (Criteria) this;
 		}
 
@@ -366,7 +366,7 @@ public class LogExample {
 		}
 
 		public Criteria andTypeEqualTo(String value) {
-			addCriterion("type =", value, "type");
+			addCriterion("log.type =", value, "type");
 			return (Criteria) this;
 		}
 

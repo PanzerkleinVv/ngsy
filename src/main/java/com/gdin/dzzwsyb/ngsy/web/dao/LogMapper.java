@@ -30,5 +30,5 @@ public interface LogMapper extends GenericDao<Log, Long> {
 
 	int updateByPrimaryKey(Log record);
 	
-	Page<Log> selectPage(LogExample example, Page<Log> page);
+	List<Log> selectPage(LogExample example, Page<Log> page);
 }

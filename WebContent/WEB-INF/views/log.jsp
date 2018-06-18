@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="mainContent">
 	<div class="">
 		<form action="" method="post">
@@ -9,9 +10,11 @@
 				id="type" name="type" class="input-sm form-inline">
 				<option></option>
 			</select> <input id="typeValue" value="${logQuery.type}" /><br /> 起止时间：<input
-				size="16" type="text" id="beginDate" value="${logQuery.beginDate}"
+				size="16" type="text" id="beginDate" value="<fmt:formatDate
+				value='${logQuery.beginDate}' type='DATE' pattern='yyyy-MM-dd' />"
 				readonly class="form_date input-sm form-inline" placeholder="起始时间" />&emsp;至&emsp;<input
-				size="16" type="text" id="endDate" value="${logQuery.endDate}"
+				size="16" type="text" id="endDate" value="<fmt:formatDate
+				value='${logQuery.endDate}' type='DATE' pattern='yyyy-MM-dd' />"
 				readonly class="form_date input-sm form-inline" placeholder="终止时间" />
 			<button id="searchBut" type="button" class="btn blue form-inline" onclick="query('1')">查询</button>
 		</form>
@@ -31,7 +34,8 @@
 		</div>
 		<c:forEach var="log" items="${logs}" varStatus="status">
 			<div class="userRow">
-				<span class="userItem">${log.id}</span> <span class="userItem">${log.time}</span>
+				<span class="userItem">${log.id}</span> <span class="userItem"><fmt:setLocale value="zh_CN" />
+<fmt:formatDate type="both" dateStyle="full" timeStyle="full" value="${log.time}" /></span>
 				<span class="userItem">${log.userdesc}</span> <span class="userItem">${log.name}</span>
 				<span class="userItem">${log.content}</span>
 			</div>
@@ -198,6 +202,11 @@
 			});
 			return true;
 		}
+		
+		$(".form_date").datepicker({
+			format : 'yyyy-mm-dd',
+			language : 'zh-CN'
+		});
 
 		$(function() {
 			$("#index-page-title").html("日志管理");

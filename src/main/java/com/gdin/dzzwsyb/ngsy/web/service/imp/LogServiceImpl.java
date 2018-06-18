@@ -8,13 +8,10 @@ import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericServiceImpl;
 import com.gdin.dzzwsyb.ngsy.web.dao.LogMapper;
-import com.gdin.dzzwsyb.ngsy.web.dao.VLogMapper;
 import com.gdin.dzzwsyb.ngsy.web.model.Log;
 import com.gdin.dzzwsyb.ngsy.web.model.LogExample;
-import com.gdin.dzzwsyb.ngsy.web.model.VLogExample.Criteria;
+import com.gdin.dzzwsyb.ngsy.web.model.LogExample.Criteria;
 import com.gdin.dzzwsyb.ngsy.web.model.LogQuery;
-import com.gdin.dzzwsyb.ngsy.web.model.VLog;
-import com.gdin.dzzwsyb.ngsy.web.model.VLogExample;
 import com.gdin.dzzwsyb.ngsy.web.service.LogService;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +24,6 @@ public class LogServiceImpl extends GenericServiceImpl<Log, Long> implements Log
 
 	@Resource
 	private LogMapper logMapper;
-	@Resource
-	private VLogMapper vLogMapper;
 
 	@Override
 	public int insert(Log model) {
@@ -64,19 +59,20 @@ public class LogServiceImpl extends GenericServiceImpl<Log, Long> implements Log
 	}
 
 	@Override
-	public Page<VLog> selectPage(LogQuery logQuery) {
-		Page<VLog> page = null;
-		VLogExample example = new VLogExample();
-		if (logQuery == null) {
-			page = new Page<VLog>(1);
+	public Page<Log> selectPage(LogQuery logQuery) {
+		Page<Log> page = null;
+		LogExample example = new LogExample();
+		if (logQuery == null || logQuery.getPageNo() == 0) {
+			page = new Page<Log>(1);
 			example.createCriteria().andIdIsNotNull();
 		} else {
-			page = new Page<VLog>(logQuery.getPageNo());
+			page = new Page<Log>(logQuery.getPageNo());
 			Criteria criteria = example.createCriteria();
 			logQuery.setExample(criteria);
 		}
 		example.setOrderByClause("time desc");
-		return vLogMapper.selectByPage(example, page);
+		logMapper.selectPage(example, page);
+		return page;
 	}
 
 	@Override

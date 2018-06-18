@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.gdin.dzzwsyb.ngsy.web.model.VLogExample.Criteria;
+import com.gdin.dzzwsyb.ngsy.web.model.LogExample.Criteria;
 
 public class LogQuery {
 	private String content;
@@ -75,6 +75,6 @@ public class LogQuery {
 		if (pageNo == 0) {
 			pageNo = 1;
 		}
-		criteria.andIdIsNotNull();
+		criteria.andIdIsNotNull();;
 	}
 }
