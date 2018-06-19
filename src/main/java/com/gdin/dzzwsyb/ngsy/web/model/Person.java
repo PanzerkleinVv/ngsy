@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.gdin.dzzwsyb.ngsy.web.dao.PersonMapper;
+
 public class Person {
 	private String id;
 
@@ -219,4 +221,31 @@ public class Person {
 	public void setSalaryRankId(String salaryRankId) {
 		this.salaryRankId = salaryRankId == null ? null : salaryRankId.trim();
 	}
+	
+	public Person() {};
+
+	public Person(Person person) {
+		id = person.getId();
+		name = person.getName();
+		sex = person.getSex();
+		birthday = person.getBirthday();
+		nationality = person.getNationality();
+		nativePlace = person.getNativePlace();
+		birthplace = person.getBirthplace();
+		party = person.getParty();
+		partydate = person.getPartydate();
+		workDate = person.getWorkDate();
+		health = person.getHealth();
+		specialty = person.getSpecialty();
+		idCard = person.getIdCard();
+		xianRenZhiWu = person.getXianRenZhiWu();
+		niRenZhiWu = person.getNiRenZhiWu();
+		niMianZhiWu = person.getNiMianZhiWu();
+		state = person.getState();
+		shuangShiDate = person.getShuangShiDate();
+		enterDate = person.getEnterDate();
+		type = person.getType();
+		salaryRankId = person.getSalaryRankId();
+	}
+	
 }

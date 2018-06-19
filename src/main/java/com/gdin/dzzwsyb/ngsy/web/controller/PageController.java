@@ -17,7 +17,7 @@ public class PageController {
     public String dashboard() {
         return "dashboard";
     }
-	/**
+    /**
      * 登录页
      */
     @RequestMapping("/addPerson")
