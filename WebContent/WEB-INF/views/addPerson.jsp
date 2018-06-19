@@ -143,7 +143,7 @@ margin-top:10px,
 						<label class="control-label" for="enter_date">进入本单位工作时间</label>
 					</div>
 					<div class="col-md-4">
-						<input size="16" type="text"
+						<input size="16" type="text" style="cursor:pointer;" placeholder="点击选择日期"
 						id="enter_date"
 						class="form_date form-control placeholder-no-fix halfWidth" style="margin-top:10px;"
 						>

@@ -2,94 +2,76 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <div class="mainContent">	
-	<div id="tree" class="col-sm-2"></div>
+	<div id="treeDemo" class="ztree"></div>
 	
 </div>
-<script>
-
-$(function() {
-	$("#index-page-title").html("提醒预览");
-	$("#current-page-title").html("提醒预览");
-});
-<script>
 <script type="text/javascript">
 //选中/取消父节点时选中/取消所有子节点
-function getChildNodeIdArr(node) {
-  var ts = [];
-  if (node.nodes) {
-      for (x in node.nodes) {
-          ts.push(node.nodes[x].nodeId);
-          if (node.nodes[x].nodes) {
-              var getNodeDieDai = getChildNodeIdArr(node.nodes[x]);
-              for (j in getNodeDieDai) {
-                  ts.push(getNodeDieDai[j]);
-              }
-          }
-      }
-  } else {
-      ts.push(node.nodeId);
-  }
-  return ts;
-}
-//选中所有子节点时选中父节点
-function setParentNodeCheck(node) {
-  var parentNode = $("#tree").treeview("getNode", node.parentId);
-  if (parentNode.nodes) {
-      var checkedCount = 0;
-      for (x in parentNode.nodes) {
-          if (parentNode.nodes[x].state.checked) {
-              checkedCount ++;
-          } else {
-              break;
-          }
-      }
-      if (checkedCount === parentNode.nodes.length) {
-          $("#tree").treeview("checkNode", parentNode.nodeId);
-          setParentNodeCheck(parentNode);
-      }
-  }
-}
+	var setting = {
+		view: {
+			dblClickExpand: false,
+			selectedMulti: false
+		},
+		check: {
+			enable: true,
+			chkStyle: "radio",  //单选框
+	        radioType: "all"   //对所有节点设置单选
+		},
+		data: {
+			simpleData: {
+				enable: true
+			}
+		},
+		edit: {
+			enable: false
+		},
+		callback: {
+		    beforeCheck : function(treeId, treeNode) {
+		                        if (treeNode.isParent) {
+		                            alert("请选择子节点！")
+		                            return false;
+		                        }
+		                    },
+			onClick:function(event,treeId,treeNode){
+	             if(treeNode.ahref){
+	                 window.open(treeNode.ahref);
+	             }else{
+	                 alert("此节点没有链接！")
+	             }
+	             
+	         }
+		}
+	};
 
-$(function () {
-  $.ajax({
-      type: "Post",
-      url: 'rest/unit/menu',  
-      dataType: "json",
-      success: function (result) {
-          $('#tree').treeview({
-              data: result.list,         // 数据源
-              showCheckbox: true,   //是否显示复选框
-              highlightSelected: true,    //是否高亮选中
-              multiSelect: true,    //多选
-              levels : 2,
-              enableLinks : true,//必须在节点属性给出href属性
-              color: "#010A0E",
-              onNodeChecked : function (event,node) {
-                  var selectNodes = getChildNodeIdArr(node); //获取所有子节点
-                  if (selectNodes) { //子节点不为空，则选中所有子节点
-                      $('#tree').treeview('checkNode', [selectNodes, { silent: true }]);
-                  }
-              },
-              onNodeUnchecked : function(event, node) { //取消选中节点
-                  var selectNodes = getChildNodeIdArr(node); //获取所有子节点
-                  if (selectNodes) { //子节点不为空，则取消选中所有子节点
-                      $('#tree').treeview('uncheckNode', [selectNodes, { silent: true }]);
-                  }
-              },
-              
-              onNodeExpanded : function(event, data) {
-                      
-              },
-                  
-              onNodeSelected: function (event, data) {
-                  //alert(data.nodeId);
-              }
-                  
-          });
-      },
-      error: function () {
-          alert("菜单加载失败！")
-      }
-  });
-})
-</script>
+	$(document).ready(function(){
+		  $.ajax({
+		      type: "Post",
+		      url: 'rest/unit/menu',  
+		      dataType: "json",
+		      success: function (result) {
+		    	  console.log(result);
+		    	  $.fn.zTree.init($("#treeDemo"), setting, result);
+		      },
+		      error: function () {
+		          alert("菜单加载失败！")
+		      }
+		  });
+		})
+	/* var newCount = 1;
+	function addHoverDom(treeId, treeNode) {
+		var sObj = $("#" + treeNode.tId + "_span");
+		if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+		var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+			+ "' title='add node' onfocus='this.blur();'></span>";
+		sObj.after(addStr);
+		var btn = $("#addBtn_"+treeNode.tId);
+		if (btn) btn.bind("click", function(){
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"new node" + (newCount++)});
+			return false;
+		});
+	};
+	function removeHoverDom(treeId, treeNode) {
+		$("#addBtn_"+treeNode.tId).unbind().remove();
+	}; */
+</script> 

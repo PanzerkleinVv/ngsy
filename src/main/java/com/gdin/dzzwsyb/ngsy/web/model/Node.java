@@ -4,76 +4,53 @@ import java.awt.List;
 import java.util.ArrayList;
 
 public class Node {
-	public Node() { 
-        this.nodes = new ArrayList<Node>();
-    }
-    public Node(String nodeId,String pId) {
-        this.nodeId = nodeId;
-        this.pid = pId;
-        this.nodes = new ArrayList<Node>();
-    }
-    /**
-     * 生成一个节点
-     * @param nodeId
-     * @param pId
-     * @param text
-     * @param icon
-     * @param href
-     */
-    public Node(String nodeId, String pId, String text) {
-        super();
-        this.nodeId = nodeId;
-        this.pid = pId;
-        this.text = text;
-        this.nodes = new ArrayList<Node>();
-    }
 
-    private String nodeId;    //树的节点Id，区别于数据库中保存的数据Id。
-    private String pid;
-    private String text;   //节点名称
-    private ArrayList<Node> nodes;    //子节点，可以用递归的方法读取
-    
-    public String getNodeId() {
-        return nodeId;
-    }
-    public void setNodeId(String nodeId) {
-        this.nodeId = nodeId;
-    }
-    
-    public String getPid() {
-        return pid;
-    }
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
 
-    public String getText() {
-        return text;
-    }
-    public void setText(String text) {
-        this.text = text;
-    }
+    private String id;    //树的节点Id，区别于数据库中保存的数据Id。
+    private String pId;
+    private String name;   //节点名称
+    private boolean open;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getpId() {
+		return pId;
+	}
+	public void setpId(String pId) {
+		this.pId = pId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public boolean isOpen() {
+		return open;
+	}
+	public void setOpen(boolean open) {
+		this.open = open;
+	}
     
     
-    public ArrayList<Node> getNodes() {
-        return nodes;
-    }
-    public void setNodes(ArrayList<Node> nodes) {
-        this.nodes = nodes;
-    }
+   
+   
     
-    /**
+   /* *//**
      * 生成一颗多叉树，根节点为root
      * @param Nodes 生成多叉树的节点集合
      * @return root
-     */
+     *//*
     public Node createTree(ArrayList<Node> Nodes) {
         if (Nodes == null || Nodes.size() < 0)
             return null;
-        Node root = new Node("root","0");//根节点自定义，但是要和pid对应好
+        Node root = new Node("0","0");//根节点自定义，但是要和pid对应好
         // 将所有节点添加到多叉树中
         for (Node node : Nodes) {
-            if (node.getPid().equals("0") || node.getPid().equals("root")) {//根节点自定义，但是要和pid对应好
+            if (node.getPid().equals("0")) {//根节点自定义，但是要和pid对应好
                 // 向根添加一个节点
                 root.getNodes().add(node);
             } else {
@@ -83,11 +60,11 @@ public class Node {
         return root;
     }
 
-    /**
+    *//**
      * 向指定多叉树节点添加子节点
      * @param Node 多叉树节点
      * @param child 节点
-     */
+     *//*
     public void addChild(Node Node, Node child) {
         for (Node item : Node.getNodes()) {
             if (item.getNodeId().equals(child.getPid())) {
@@ -102,11 +79,11 @@ public class Node {
         }
     }
 
-    /**
+    *//**
      * 遍历多叉树
      * @param Node 多叉树节点
      * @return
-     */
+     *//*
     public String iteratorTree(Node Node) {
         StringBuilder buffer = new StringBuilder();
         buffer.append("\n");
@@ -120,5 +97,5 @@ public class Node {
         }
         buffer.append("\n");
         return buffer.toString();
-    }
+    }*/
 }

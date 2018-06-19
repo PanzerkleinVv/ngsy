@@ -53,11 +53,15 @@
 <link href="assets/plugins/summernote/summernote.css" rel="stylesheet" />
 <link href="assets/plugins/bootstrap/css/bootstrap-multiselect.css"
 	rel="stylesheet" type="text/css" />
+<link href="assets/plugins/bootstrap/css/bootstrap-treeview.css"
+	rel="stylesheet" type="text/css" />
 <link href="assets/css/easyui.css"
 	rel="stylesheet" type="text/css" />
 <link href="assets/css/icon.css"
 	rel="stylesheet" type="text/css" />
 </head>
+<link rel="stylesheet" href="assets/plugins/bootstrapStyle/bootstrapStyle.css" type="text/css">
+
 <!-- END HEAD -->
 
 <!-- BEGIN BODY -->
@@ -117,7 +121,7 @@
 					</a></li>
 
 					<li class=""><a href="./rest/page/addPerson"> <i class="fa fa-search"></i><span
-							class="title">干部新增 </span><span class="selected "> </span>
+							class="title"> 干部新增 </span><span class="selected "> </span>
 					</a></li>
 						
 					<shiro:hasAnyRoles name="admin,1,2">
@@ -315,7 +319,9 @@
 	<script lang="javaScript">
 		var URL = window.UEDITOR_HOME_URL || "assets/plugins/ueditor/";
 	</script>
-	<script src="assets/scripts/jquery.easyui.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="assets/scripts/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="assets/scripts/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="assets/scripts/jquery.ztree.exedit.js"></script>
 	<!-- <script data-main="app/js/main" src="app/lib/requirejs/require.js"></script> -->
 </body>
 </html>
