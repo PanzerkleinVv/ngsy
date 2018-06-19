@@ -10,7 +10,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/page")
 public class PageController {
-
+	/**
+     * 登录页
+     */
+    @RequestMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
+	/**
+     * 登录页
+     */
+    @RequestMapping("/addPerson")
+    public String addPerson() {
+        return "addPerson";
+    }
     /**
      * 登录页
      */

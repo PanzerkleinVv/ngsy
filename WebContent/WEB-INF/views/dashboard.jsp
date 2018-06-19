@@ -2,36 +2,76 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <div class="mainContent">	
-	<div class="toolbarBox">
-		<div>
-			<ul>
-			    <c:if test="${empty noticeCounts}">暂无提醒信息预览</c:if>
-					<c:forEach var="noticeCount" begin="0" items="${noticeCounts}" varStatus="state">
-								<li>类型为:<font size="5" >${noticeType[noticeCount.type]}</font>一共有<font size="6" ><a style="cursor:pointer;" onclick="notice(${noticeCount.type},0)"> ${noticeCount.oneType} </a></font>项
-								,其中未读：<font size="6" >
-								<c:if test="${empty noticeCount.unRead}">0 </c:if>
-								<a style="cursor:pointer;" onclick="notice(${noticeCount.type},1)">${noticeCount.unRead} </a></font>项</li>
-					</c:forEach>
-			</ul>
-		</div>
-	<div id="msgList"></div>
+	<div id="treeDemo" class="ztree"></div>
+	
 </div>
-<script>
-$(function() {
-	$("#index-page-title").html("提醒预览");
-	$("#current-page-title").html("提醒预览");
-});
-function notice(type,status) {
-	var url = 'rest/msg/msgListByNotice';
-	$.post(url, {
-		type:type,
-		status:status,
-		pageNo : 1
-	}, function(data) {
-		$('#msgList').html(data);
-	});
-}
+<script type="text/javascript">
+//选中/取消父节点时选中/取消所有子节点
+	var setting = {
+		view: {
+			dblClickExpand: false,
+			selectedMulti: false
+		},
+		check: {
+			enable: true,
+			chkStyle: "radio",  //单选框
+	        radioType: "all"   //对所有节点设置单选
+		},
+		data: {
+			simpleData: {
+				enable: true
+			}
+		},
+		edit: {
+			enable: false
+		},
+		callback: {
+		    beforeCheck : function(treeId, treeNode) {
+		                        if (treeNode.isParent) {
+		                            alert("请选择子节点！")
+		                            return false;
+		                        }
+		                    },
+			onClick:function(event,treeId,treeNode){
+	             if(treeNode.ahref){
+	                 window.open(treeNode.ahref);
+	             }else{
+	                 alert("此节点没有链接！")
+	             }
+	             
+	         }
+		}
+	};
 
-
-
-</script>
+	$(document).ready(function(){
+		  $.ajax({
+		      type: "Post",
+		      url: 'rest/unit/menu',  
+		      dataType: "json",
+		      success: function (result) {
+		    	  console.log(result);
+		    	  $.fn.zTree.init($("#treeDemo"), setting, result);
+		      },
+		      error: function () {
+		          alert("菜单加载失败！")
+		      }
+		  });
+		})
+	/* var newCount = 1;
+	function addHoverDom(treeId, treeNode) {
+		var sObj = $("#" + treeNode.tId + "_span");
+		if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+		var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+			+ "' title='add node' onfocus='this.blur();'></span>";
+		sObj.after(addStr);
+		var btn = $("#addBtn_"+treeNode.tId);
+		if (btn) btn.bind("click", function(){
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"new node" + (newCount++)});
+			return false;
+		});
+	};
+	function removeHoverDom(treeId, treeNode) {
+		$("#addBtn_"+treeNode.tId).unbind().remove();
+	}; */
+</script> 

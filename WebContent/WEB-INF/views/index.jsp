@@ -45,7 +45,7 @@
 	type="text/css" id="style_color" />
 <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
 <!-- END THEME STYLES -->
-
+	
 <link rel="shortcut icon" href="app/img/favicon.ico" />
 <link href="assets/plugins/bootstrap-datepicker/css/datepicker.css"
 	rel="stylesheet" type="text/css" />
@@ -53,7 +53,15 @@
 <link href="assets/plugins/summernote/summernote.css" rel="stylesheet" />
 <link href="assets/plugins/bootstrap/css/bootstrap-multiselect.css"
 	rel="stylesheet" type="text/css" />
+<link href="assets/plugins/bootstrap/css/bootstrap-treeview.css"
+	rel="stylesheet" type="text/css" />
+<link href="assets/css/easyui.css"
+	rel="stylesheet" type="text/css" />
+<link href="assets/css/icon.css"
+	rel="stylesheet" type="text/css" />
 </head>
+<link rel="stylesheet" href="assets/plugins/bootstrapStyle/bootstrapStyle.css" type="text/css">
+
 <!-- END HEAD -->
 
 <!-- BEGIN BODY -->
@@ -107,13 +115,13 @@
 						<div class="sidebar-toggler hidden-phone"></div> <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 					</li>
 
-					<li class="start active"><a href="./rest/notice/dashboard"
+					<li class="start active"><a href="./rest/page/dashboard"
 						id="btn-dashboard"> <i class="fa fa-home"></i><span
 							class="title"> 首页 </span><span class="selected"> </span>
 					</a></li>
 
-					<li class=""><a href="./rest/msg/query"> <i class="fa fa-search"></i><span
-							class="title"> 信息查询 </span><span class="selected "> </span>
+					<li class=""><a href="./rest/page/addPerson"> <i class="fa fa-search"></i><span
+							class="title"> 干部新增 </span><span class="selected "> </span>
 					</a></li>
 						
 					<shiro:hasAnyRoles name="admin">
@@ -269,7 +277,7 @@
         <script src="assets/plugins/excanvas.min.js"></script>
         <script src="assets/scripts/selectivizr.js"></script>
         <![endif]-->
-	<script src="assets/plugins/jquery-1.10.2.min.js"
+	<script src="assets/scripts/jquery.min.js"
 		type="text/javascript"></script>
 	<script src="assets/plugins/ajaxfileupload(2).js"
 		type="text/javascript"></script>
@@ -278,6 +286,8 @@
 	<script src="assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js"
 		type="text/javascript"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
+	<script src="assets/scripts/bootstrap-treeview.min.js"
 		type="text/javascript"></script>
 	<script
 		src="assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"
@@ -311,7 +321,9 @@
 	<script lang="javaScript">
 		var URL = window.UEDITOR_HOME_URL || "assets/plugins/ueditor/";
 	</script>
-	
+	<script type="text/javascript" src="assets/scripts/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="assets/scripts/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="assets/scripts/jquery.ztree.exedit.js"></script>
 	<!-- <script data-main="app/js/main" src="app/lib/requirejs/require.js"></script> -->
 </body>
 </html>
