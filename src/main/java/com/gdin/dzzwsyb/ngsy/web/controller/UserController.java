@@ -25,10 +25,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gdin.dzzwsyb.ngsy.core.util.SelectArray;
 import com.gdin.dzzwsyb.ngsy.web.enums.MessageColor;
+import com.gdin.dzzwsyb.ngsy.web.model.Log;
 import com.gdin.dzzwsyb.ngsy.web.model.Permission;
 import com.gdin.dzzwsyb.ngsy.web.model.Role;
 import com.gdin.dzzwsyb.ngsy.web.model.User;
 import com.gdin.dzzwsyb.ngsy.web.security.RoleSign;
+import com.gdin.dzzwsyb.ngsy.web.service.LogService;
 import com.gdin.dzzwsyb.ngsy.web.service.PermissionService;
 import com.gdin.dzzwsyb.ngsy.web.service.RoleService;
 import com.gdin.dzzwsyb.ngsy.web.service.UserService;
@@ -46,6 +48,10 @@ public class UserController {
 	private RoleService roleService;
 	@Resource
 	private PermissionService permissionService;
+	@Resource
+	private LogService logService;
+	
+	final static private String MODULE = "user";
 
 	/**
 	 * 用户登录
@@ -183,7 +189,8 @@ public class UserController {
 
 	@RequestMapping(value = "/modify")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String create(@Valid User user, Model model) {
+	public String create(@Valid User user, Model model, HttpSession session) {
+		final Long userId = (Long) session.getAttribute("userId");
 		if (user == null || user.isEmpty()) {
 			final User user0 = new User();
 			model.addAttribute("user", user0);
@@ -193,11 +200,15 @@ public class UserController {
 			model.addAttribute("navigationBar", "新增 用户信息");
 			return "info";
 		} else if (user.getId() == null || 0 == user.getId()) {
+			final String METHOD = "新增用户：";
 			user.setPassword(DigestUtils.sha256Hex("123456"));
 			user.setState(1);
 			user.setCreateTime(new Date());
 			final int count = userService.insert(user);
 			if (count > 0) {
+				User user0 = userService.selectByUsername(user.getUsername());
+				final Log log = new Log(userId, MODULE, user0.getId().toString(), METHOD + user0.getUsername() + "（" + user0.getUserdesc() + "）");
+				logService.log(log);
 				final List<User> users = userService.selectList();
 				model.addAttribute("users", users);
 				model.addAttribute("msg0", MessageColor.SUCCESS.getColor());
@@ -214,8 +225,11 @@ public class UserController {
 				return "info";
 			}
 		} else {
+			final String METHOD = "修改用户：";
 			final int count = userService.update(user);
 			if (count > 0) {
+				final Log log = new Log(userId, MODULE, user.getId().toString(), METHOD + user.getUsername() + "（" + user.getUserdesc() + "）");
+				logService.log(log);
 				final List<User> users = userService.selectList();
 				model.addAttribute("users", users);
 				model.addAttribute("msg0", MessageColor.SUCCESS.getColor());
@@ -236,7 +250,9 @@ public class UserController {
 
 	@RequestMapping(value = "/delete")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String delete(@Valid User user, Model model) {
+	public String delete(@Valid User user, Model model, HttpSession session) {
+		final String METHOD = "删除用户：";
+		final Long userId = (Long) session.getAttribute("userId");
 		if (user == null || user.isEmpty()) {
 			final List<User> users = userService.selectList();
 			model.addAttribute("users", users);
@@ -256,6 +272,8 @@ public class UserController {
 		} else {
 			final int count = userService.delete(user.getId());
 			if (count > 0) {
+				final Log log = new Log(userId, MODULE, user.getId().toString(), METHOD + user.getUsername() + "（" + user.getUserdesc() + "）");
+				logService.log(log);
 				final List<User> users = userService.selectList();
 				model.addAttribute("users", users);
 				model.addAttribute("msg0", MessageColor.SUCCESS.getColor());
@@ -273,6 +291,95 @@ public class UserController {
 			}
 		}
 	}
+	
+	@RequestMapping(value = "/resetPsw")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public String resetPsw(@Valid User user, Model model, HttpSession session) {
+		final String METHOD = "重置用户密码：";
+		final Long userId = (Long) session.getAttribute("userId");
+		if (user == null || user.isEmpty()) {
+			final List<User> users = userService.selectList();
+			model.addAttribute("users", users);
+			model.addAttribute("msg0", MessageColor.FAILURE.getColor());
+			model.addAttribute("msg", "重置密码失败：找不到该用户");
+			model.addAttribute("navigationBar", "所有");
+			model.addAttribute("selectId", 0);
+			return "admin";
+		} else if (user.getId() == null || 0 == user.getId()) {
+			final List<User> users = userService.selectList();
+			model.addAttribute("users", users);
+			model.addAttribute("msg0", MessageColor.FAILURE.getColor());
+			model.addAttribute("msg", "重置密码失败：用户ID不存在");
+			model.addAttribute("navigationBar", "所有");
+			model.addAttribute("selectId", 0);
+			return "admin";
+		} else {
+			final User user0 = new User();
+			user0.setId(user.getId());
+			user0.setPassword(DigestUtils.sha256Hex("123456"));
+			final int count = userService.update(user0);
+			if (count > 0) {
+				final Log log = new Log(userId, MODULE, user.getId().toString(), METHOD + user.getUsername() + "（" + user.getUserdesc() + "）");
+				logService.log(log);
+				final List<User> users = userService.selectList();
+				model.addAttribute("users", users);
+				model.addAttribute("msg0", MessageColor.SUCCESS.getColor());
+				model.addAttribute("msg", "重置密码成功");
+				model.addAttribute("navigationBar", "所有");
+				model.addAttribute("selectId", 0);
+				return "admin";
+			} else {
+				model.addAttribute("user", user);
+				model.addAttribute("method", "修改");
+				model.addAttribute("msg0", MessageColor.FAILURE.getColor());
+				model.addAttribute("msg", "重置密码失败：请确认用户信息是否正确");
+				model.addAttribute("navigationBar", user.getUserdesc() + " 用户信息");
+				return "info";
+			}
+		}
+	}
+	
+	@RequestMapping(value = "/psw")
+	public String psw(@Valid User user, Model model, HttpSession session) {
+		final String METHOD = "修改用户密码：";
+		final Long userId = (Long) session.getAttribute("userId");
+		if (user == null || user.isEmpty()) {
+			model.addAttribute("msg0", MessageColor.FAILURE.getColor());
+			model.addAttribute("msg", "修改密码失败：找不到该用户");
+			return "mine";
+		} else if (user.getId() == null || 0 == user.getId()) {
+			model.addAttribute("msg0", MessageColor.FAILURE.getColor());
+			model.addAttribute("msg", "修改密码失败：用户ID不存在");
+			return "mine";
+		} else {
+			final User user0 = new User();
+			user0.setId(user.getId());
+			user0.setPassword(user.getPassword());
+			final int count = userService.update(user0);
+			if (count > 0) {
+				final Log log = new Log(userId, MODULE, user.getId().toString(), METHOD + user.getUsername() + "（" + user.getUserdesc() + "）");
+				logService.log(log);
+				model.addAttribute("user", user);
+				model.addAttribute("msg0", MessageColor.SUCCESS.getColor());
+				model.addAttribute("msg", "修改密码成功");
+				return "mine";
+			} else {
+				model.addAttribute("user", user);
+				model.addAttribute("method", "修改");
+				model.addAttribute("msg0", MessageColor.FAILURE.getColor());
+				model.addAttribute("msg", "修改密码失败：请确认用户信息是否正确");
+				return "mine";
+			}
+		}
+	}
+	
+	@RequestMapping(value = "/mine")
+	public String mine(Model model, HttpSession session) {
+		final Long userId = (Long) session.getAttribute("userId");
+		final User user = userService.selectById(userId);
+		model.addAttribute("user", user);
+		return "mine";
+	}
 
 	@RequestMapping(value = "/checkUsername")
 	@RequiresRoles(value = RoleSign.ADMIN)
@@ -282,12 +389,12 @@ public class UserController {
 		if (user == null || user.isEmpty()) {
 			user0 = new User();
 			user0.setMsg0(MessageColor.FAILURE.getColor());
-			user0.setMsg("大组工网ID不能为空");
+			user0.setMsg("用户名不能为空");
 		} else {
 			if (!userService.checkUsername(user)) {
 				user0 = new User();
 				user0.setMsg0(MessageColor.FAILURE.getColor());
-				user0.setMsg("大组工网ID已被占用");
+				user0.setMsg("用户名已被占用");
 			} else {
 				user0 = new User();
 				user0.setMsg0(MessageColor.SUCCESS.getColor());
