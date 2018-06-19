@@ -67,7 +67,7 @@ function goBack() {
 
 function getCodeSimple(name, target, selected) {
 	var url = 'rest/code/get';
-	$.get(url, {
+	$.post(url, {
 		'name' : name
 	}, function(data) {
 		if (data.length != 0) {

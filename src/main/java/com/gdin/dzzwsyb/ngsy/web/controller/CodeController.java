@@ -1,5 +1,6 @@
 package com.gdin.dzzwsyb.ngsy.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,7 +18,9 @@ import com.gdin.dzzwsyb.ngsy.core.util.ApplicationUtils;
 import com.gdin.dzzwsyb.ngsy.web.model.Code;
 import com.gdin.dzzwsyb.ngsy.web.model.CodeType;
 import com.gdin.dzzwsyb.ngsy.web.model.Log;
+import com.gdin.dzzwsyb.ngsy.web.model.Node;
 import com.gdin.dzzwsyb.ngsy.web.model.ResultMessage;
+import com.gdin.dzzwsyb.ngsy.web.model.Unit;
 import com.gdin.dzzwsyb.ngsy.web.security.RoleSign;
 import com.gdin.dzzwsyb.ngsy.web.service.CodeService;
 import com.gdin.dzzwsyb.ngsy.web.service.CodeTypeService;
@@ -306,6 +309,38 @@ public class CodeController {
 		if (codeType != null) {
 			codeType = codeTypeService.selectList(codeType.getName()).get(0);
 			return codeService.selectList(codeType.getId());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * 获取人员籍贯字典项列表json对象封装成nodes
+	 * 
+	 * @param code
+	 *           
+	 * @return ArrayList<Node> 对象
+	 */
+	
+	@RequestMapping(value = "/getJiGuan")
+	@ResponseBody
+	public ArrayList<Node> getJiGuan(CodeType codeType) {
+		if (codeType != null) {
+			codeType = codeTypeService.selectList(codeType.getName()).get(0);
+			List<Code> codes= codeService.selectList(codeType.getId());
+			ArrayList<Node> nodes = new ArrayList<Node>();//把所有资源转换成树模型的节点集合，此容器用于保存所有节点
+	         for(Code res : codes){
+	             Node node = new Node();
+	             node.setId(res.getCode());
+	             if(res.getLevel().equals("2")||res.getCode().substring(4).equals("00"))
+	            	 node.setpId(res.getCode().substring(0,2)+"0000");
+	             else 
+	            	node.setpId(res.getCode().substring(0,4)+"00");
+	             node.setName(res.getName());
+	             node.setOpen(false);
+	             nodes.add(node);//添加到节点容器
+	         }
+	         return nodes;
 		} else {
 			return null;
 		}
