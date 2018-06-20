@@ -2,6 +2,7 @@ package com.gdin.dzzwsyb.ngsy.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gdin.dzzwsyb.ngsy.core.util.ApplicationUtils;
 import com.gdin.dzzwsyb.ngsy.web.model.Code;
+import com.gdin.dzzwsyb.ngsy.web.model.CodeExample;
 import com.gdin.dzzwsyb.ngsy.web.model.CodeType;
 import com.gdin.dzzwsyb.ngsy.web.model.Log;
 import com.gdin.dzzwsyb.ngsy.web.model.Node;
@@ -332,7 +334,9 @@ public class CodeController {
 	         for(Code res : codes){
 	             Node node = new Node();
 	             node.setId(res.getCode());
-	             if(res.getLevel().equals("2")||res.getCode().substring(4).equals("00"))
+	            /* CodeExample example = new CodeExample();
+	             example.createCriteria().andCodeEqualTo(res.getCode().substring(0,4)+"00");*/
+	             if(res.getLevel().equals("2")||(res.getLevel().equals("3")))
 	            	 node.setpId(res.getCode().substring(0,2)+"0000");
 	             else 
 	            	node.setpId(res.getCode().substring(0,4)+"00");
@@ -344,5 +348,16 @@ public class CodeController {
 		} else {
 			return null;
 		}
+	}
+	
+	@RequestMapping(value = "/getJiGuanByName")
+	@ResponseBody
+	public List<Code> getJiGuanByName(Code code){
+		if (code != null) {
+			List<Code> codes = codeService.searchCodeByName(code.getName());
+			return codes;
+		}
+		else 
+			return null;
 	}
 }

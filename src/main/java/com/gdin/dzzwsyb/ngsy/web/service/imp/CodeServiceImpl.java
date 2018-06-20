@@ -72,5 +72,20 @@ public class CodeServiceImpl extends GenericServiceImpl<Code, String> implements
 		example.createCriteria().andTypeEqualTo(type);
 		return codeMapper.deleteByExample(example);
 	}
+
+	@Override
+	public long countByExample(CodeExample example) {
+		// TODO Auto-generated method stub
+		return codeMapper.countByExample(example);
+	}
+
+	@Override
+	public List<Code> searchCodeByName(String name) {
+		// TODO Auto-generated method stub
+		Code record = new Code();
+		record.setName(name);
+		record.setId("0cbded8f58422ce1ada36a4429081cd84850bff5");
+		return codeMapper.searchCodeByName(record);
+	}
 	
 }
