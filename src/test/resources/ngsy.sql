@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-06-13 13:19:04
+Date: 2018-06-19 12:51:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -5357,6 +5357,7 @@ INSERT INTO `code` VALUES ('402f3b073551025d3b0efb31618789e404fcdec7', '5ddffbca
 INSERT INTO `code` VALUES ('40316d0d97d045eda0edef6db7183149f8945364', 'd2b321bec5ef90f65c058ee378af9f54ff0e206a', '仅有个别党员', '31', '1');
 INSERT INTO `code` VALUES ('403201911219329631f3dbdd5bf5d0f63b4f81bd', '0cbded8f58422ce1ada36a4429081cd84850bff5', '利比亚', 'B43400', '2');
 INSERT INTO `code` VALUES ('40326fbc1c996aa44e81f9ff9114982498b85355', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '人体组织胚胎学', '31024', '2');
+INSERT INTO `code` VALUES ('40372705c5da6bd2b8679d7d82e8e7d474285ba2', '30ca8dc08281e4e68395afd862fc1d939d9c82c3', '数据字典', 'code_type', '1');
 INSERT INTO `code` VALUES ('4037bd0d0bedd8a7472f76d289aabb745e7f7d57', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '生物声学与声生物物理学', '1801425', '3');
 INSERT INTO `code` VALUES ('403bd0e3c3fc0860f25fc11ae3a00cc337878f72', '20fbaaa7877cc81525bab66f74e79d4ec27142b2', '电影文学', '050437', '1');
 INSERT INTO `code` VALUES ('403bd2489151c5964916274ea4eeda59c18034bb', '15d9098278633caeddf023f6dd91dbd7bc1e8717', '森林调查设计技术六级', '9606', '2');
@@ -8778,6 +8779,7 @@ INSERT INTO `code` VALUES ('6ad3e1698f1c0d7b7dd492e18be884a41cca2959', '15d90982
 INSERT INTO `code` VALUES ('6ae20513e36d902434bc78c78cc917604a915e62', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '长白朝鲜族自治县', '220623', '3');
 INSERT INTO `code` VALUES ('6ae5e0c2ee7a7fd89cf24c8ef4ef11ec38499ecf', '3fb685e2145202228ac6624fc51b382c8f929bd7', '副专员', '257B', '2');
 INSERT INTO `code` VALUES ('6ae5f354efbca403310f9b37f7e9fbcfacf25b76', '842e996ce93aa617601d47b7fa8a51ad35cc7aa2', '考试', '2', '1');
+INSERT INTO `code` VALUES ('6ae663be5f0ec771c434d86eef113f31f13121de', '30ca8dc08281e4e68395afd862fc1d939d9c82c3', '日志', 'log', '1');
 INSERT INTO `code` VALUES ('6ae92b4440738ff12c210a17dbade644222112de', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '输配电工程', '4704051', '3');
 INSERT INTO `code` VALUES ('6ae95da0aa4acd7baf0310837cba6afda8122406', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '察隅县', '542626', '3');
 INSERT INTO `code` VALUES ('6aeb28ea78c7f098e99a151f195d9fc32eb245f5', '6f4e9a20917c15e9497d994d51d06b9cab309a02', '科摩罗', 'B17400', '2');
@@ -11489,6 +11491,7 @@ INSERT INTO `code` VALUES ('8ce08af8ec9dc765015eed9f52704378dd8d69b7', '5ddffbca
 INSERT INTO `code` VALUES ('8cecaed73f07df1a20edfa24b8944ce7e2976635', '0cbded8f58422ce1ada36a4429081cd84850bff5', '河南焦作', '410800', '2');
 INSERT INTO `code` VALUES ('8cef8a7cdd62c5589f0dcc3b7a8849cef7d70593', '5acde9f9c793656bd8d2e4ec2e33ff9cc82c9ede', '撤职', '17', '1');
 INSERT INTO `code` VALUES ('8cf222568657a6402fd04d1a55111b9c68b02390', '2fc20d198d1a3c95ac74bbd05891796123f08268', '水的生产和供应业', 'D4600', '2');
+INSERT INTO `code` VALUES ('8cf2aa7dca79ce4c9facab2d77dffb547e1173f1', '30ca8dc08281e4e68395afd862fc1d939d9c82c3', '人员', 'person', '1');
 INSERT INTO `code` VALUES ('8cf31b13bf3f6f3a745a7cfa4ba367a0e888552c', '91d1e47c21285d4fdbf5e4b3714182e4b4aa0085', '批评教育', '22', '1');
 INSERT INTO `code` VALUES ('8cf573753e49e61287685bb9fbe445b4f16aa388', '0cbded8f58422ce1ada36a4429081cd84850bff5', '广东广州市番禺区', '440113', '3');
 INSERT INTO `code` VALUES ('8cf607a583414428c4a862fa4816526649c37faa', '15d9098278633caeddf023f6dd91dbd7bc1e8717', '文化事业、企业行政二级', '8C02', '2');
@@ -20707,6 +20710,7 @@ INSERT INTO `code` VALUES ('fbf47bb36991897bfc555ea49aa3aeac2f009719', '5ddffbca
 INSERT INTO `code` VALUES ('fbf60882b8870610b1b74ed9eb5dcbd2c645d900', '20fbaaa7877cc81525bab66f74e79d4ec27142b2', '野生植物资源开发与利用', '090204', '1');
 INSERT INTO `code` VALUES ('fbfed4d73250ffc24645c586a57951e0b79cc265', 'ccefd243e588c16c26da7435d12aa9cdec79230b', '大军区正职(技术二级)五档', '8125', '1');
 INSERT INTO `code` VALUES ('fbffeba864d85207edd7218f38b37066ae41c125', '0cbded8f58422ce1ada36a4429081cd84850bff5', '陕西咸阳', '610400', '2');
+INSERT INTO `code` VALUES ('fc02165d276e501ec223c794f2452d67354ffb45', '30ca8dc08281e4e68395afd862fc1d939d9c82c3', '单位', 'unit', '1');
 INSERT INTO `code` VALUES ('fc0279231b0664e509e09a1e0a7694f7a4bd6089', '0cbded8f58422ce1ada36a4429081cd84850bff5', '山东巨野', '371724', '3');
 INSERT INTO `code` VALUES ('fc075dbdfa9dfd86e43f90e27097e0993d905424', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '义马市', '411281', '3');
 INSERT INTO `code` VALUES ('fc0cb4d74fea717ed92e65042cc3c7e83486676b', '6f4e9a20917c15e9497d994d51d06b9cab309a02', '毛里求斯', 'B48000', '2');
@@ -21114,6 +21118,7 @@ INSERT INTO `code_type` VALUES ('2c53e92c13d8731c1ea63a2d58732e8f053fe3cf', '单
 INSERT INTO `code_type` VALUES ('2d5ac1beb5aa0ee5854515d4973af348f4dd9fe1', '退出现役军人（武警）标识');
 INSERT INTO `code_type` VALUES ('2da2c2bc44da20d1d39cf32d5da5061ec9ce0a8f', '免职方式代码');
 INSERT INTO `code_type` VALUES ('2fc20d198d1a3c95ac74bbd05891796123f08268', '国民经济行业分类');
+INSERT INTO `code_type` VALUES ('30ca8dc08281e4e68395afd862fc1d939d9c82c3', '系统模块代码');
 INSERT INTO `code_type` VALUES ('30fa3769db7b88d1c687c168f3377813ed8efb33', '机构编制性质代码');
 INSERT INTO `code_type` VALUES ('33512b4ae6b34a902bf37af4f16ca9db97cbbc42', '语种熟路程度代码');
 INSERT INTO `code_type` VALUES ('337a1818421eacc5ebf24c34d8ea549bfbae54b6', '退出现役时职务（级别）');
@@ -21382,14 +21387,38 @@ CREATE TABLE `log` (
   `time` datetime DEFAULT NULL COMMENT '时间',
   `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',
   `content` varchar(255) DEFAULT NULL COMMENT '内容',
-  `type` varchar(2) DEFAULT NULL COMMENT '对象类型',
+  `type` varchar(20) DEFAULT NULL COMMENT '对象类型',
   `target` varchar(40) DEFAULT NULL COMMENT '对象id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of log
 -- ----------------------------
+INSERT INTO `log` VALUES ('1', '2018-06-15 14:10:03', '1', '新增字典项类别：测试12313', 'code_type', '2bfe08b8e8d5b184c7cdbf03c148b0ac824c4b30');
+INSERT INTO `log` VALUES ('2', '2018-06-15 14:10:17', '1', '删除字典项类别：测试12313', 'code_type', '2bfe08b8e8d5b184c7cdbf03c148b0ac824c4b30');
+INSERT INTO `log` VALUES ('3', '2018-06-15 14:14:15', '1', '新增字典项类别：测试1234564', 'code_type', '892ba7b6c1f08d22d57dc22f6f769552a9760cf7');
+INSERT INTO `log` VALUES ('4', '2018-06-15 14:14:44', '1', '修改字典项类别名称：测试123456', 'code_type', '892ba7b6c1f08d22d57dc22f6f769552a9760cf7');
+INSERT INTO `log` VALUES ('5', '2018-06-15 14:17:01', '1', '删除字典项类别：测试123456', 'code_type', '892ba7b6c1f08d22d57dc22f6f769552a9760cf7');
+INSERT INTO `log` VALUES ('6', '2018-06-15 14:46:56', '1', '新增字典项类别：测试', 'code_type', '44319c081f9eb3d5f4d2308bf2fba4dbf1882ead');
+INSERT INTO `log` VALUES ('7', '2018-06-15 14:48:03', '1', '修改字典项类别名称：测试', 'code_type', '44319c081f9eb3d5f4d2308bf2fba4dbf1882ead');
+INSERT INTO `log` VALUES ('8', '2018-06-15 15:14:45', '1', '新增字典项：测试1-1', 'code_type', '44319c081f9eb3d5f4d2308bf2fba4dbf1882ead');
+INSERT INTO `log` VALUES ('9', '2018-06-15 15:17:47', '1', '修改字典项：测试1-1', 'code_type', '44319c081f9eb3d5f4d2308bf2fba4dbf1882ead');
+INSERT INTO `log` VALUES ('10', '2018-06-15 15:26:30', '1', '新增字典项：测试2', 'code_type', '44319c081f9eb3d5f4d2308bf2fba4dbf1882ead');
+INSERT INTO `log` VALUES ('11', '2018-06-15 15:27:45', '1', '删除字典项类别：null', 'code_type', '44319c081f9eb3d5f4d2308bf2fba4dbf1882ead');
+INSERT INTO `log` VALUES ('12', '2018-06-15 15:36:25', '1', '新增字典项类别：测试12313', 'code_type', 'e975f07644fcf63f9933aacb317cb5a64203c963');
+INSERT INTO `log` VALUES ('13', '2018-06-15 15:44:54', '1', '修改字典项类别名称：测试12313241', 'code_type', 'e975f07644fcf63f9933aacb317cb5a64203c963');
+INSERT INTO `log` VALUES ('14', '2018-06-15 15:49:17', '1', '修改字典项类别名称：测试123132', 'code_type', 'e975f07644fcf63f9933aacb317cb5a64203c963');
+INSERT INTO `log` VALUES ('15', '2018-06-15 15:49:50', '1', '新增字典项：测试1', 'code_type', 'e975f07644fcf63f9933aacb317cb5a64203c963');
+INSERT INTO `log` VALUES ('16', '2018-06-15 15:57:55', '1', '新增字典项：测试2', 'code_type', 'e975f07644fcf63f9933aacb317cb5a64203c963');
+INSERT INTO `log` VALUES ('17', '2018-06-15 15:58:02', '1', '修改字典项：测试2', 'code_type', 'e975f07644fcf63f9933aacb317cb5a64203c963');
+INSERT INTO `log` VALUES ('18', '2018-06-15 15:58:04', '1', '删除字典项：null', 'code_type', 'e975f07644fcf63f9933aacb317cb5a64203c963');
+INSERT INTO `log` VALUES ('19', '2018-06-15 15:58:18', '1', '删除字典项类别：null', 'code_type', 'e975f07644fcf63f9933aacb317cb5a64203c963');
+INSERT INTO `log` VALUES ('20', '2018-06-15 15:58:41', '1', '新增字典项类别：系统模块代码', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
+INSERT INTO `log` VALUES ('21', '2018-06-15 16:00:31', '1', '新增字典项：日志', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
+INSERT INTO `log` VALUES ('22', '2018-06-15 16:00:55', '1', '新增字典项：数据字典', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
+INSERT INTO `log` VALUES ('23', '2018-06-15 16:01:03', '1', '新增字典项：人员', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
+INSERT INTO `log` VALUES ('24', '2018-06-15 16:01:15', '1', '新增字典项：单位', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
 
 -- ----------------------------
 -- Table structure for ndkh
@@ -21417,7 +21446,7 @@ CREATE TABLE `permission` (
   `permission_sign` varchar(128) DEFAULT NULL COMMENT '权限标识,程序中判断使用,如"user:create"',
   `description` varchar(256) DEFAULT NULL COMMENT '权限描述,UI界面显示使用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='权限表';
 
 -- ----------------------------
 -- Records of permission
@@ -21501,7 +21530,7 @@ CREATE TABLE `role` (
   `role_sign` varchar(128) DEFAULT NULL COMMENT '处室标识,程序中判断使用,如"admin"',
   `description` varchar(256) DEFAULT NULL COMMENT '处室描述,UI界面显示使用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='处室表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='处室表';
 
 -- ----------------------------
 -- Records of role
@@ -21573,7 +21602,7 @@ CREATE TABLE `user` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间 自动生成',
   `role_id` bigint(20) DEFAULT NULL COMMENT '处室id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
 -- ----------------------------
 -- Records of user

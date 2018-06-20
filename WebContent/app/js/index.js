@@ -65,6 +65,13 @@ function goBack() {
 	$("#goBack").hide();
 }
 
+/**
+ * 获取数据字典下拉菜单option
+ * @param name 对应code_type表的name
+ * @param target 目标select的jQuery对象（需用$()封装后传入）
+ * @param selected 传入当前选定的option的value
+ * @returns null，在目标select对象内append数据字典option
+ */
 function getCodeSimple(name, target, selected) {
 	var url = 'rest/code/get';
 	$.post(url, {
@@ -72,8 +79,13 @@ function getCodeSimple(name, target, selected) {
 	}, function(data) {
 		if (data.length != 0) {
 			$.each(data, function(i, n) {
-				target.append('<option value="' + n.code + '">' + n.name
-						+ '</option>');
+				if (selected == n.code) {
+					target.append('<option value="' + n.code + '" selected="selected">' + n.name
+							+ '</option>');
+				} else {
+					target.append('<option value="' + n.code + '">' + n.name
+							+ '</option>');
+				}
 			});
 		}
 	});
