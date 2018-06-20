@@ -343,3 +343,14 @@
 	font-family: 黑体;
 	text-align: center;
 }
+
+.unitLeft {
+	width: 300px;
+	display: inline-block;
+	overflow-y: auto; 
+}
+
+.unitRight {
+	display: inline-block;
+	overflow-y: auto;
+}

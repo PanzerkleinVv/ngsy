@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="mainContent">
-	<div class="unitLeft"></div>
+	<div class="unitLeft">机构树载入中……</div>
 	<div class="unitRight">
 		<header class="am-topbar">
 			<div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
