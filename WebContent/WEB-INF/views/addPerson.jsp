@@ -192,16 +192,15 @@ margin-top:10px,
 			<label class="control-label" for="sex">性别wwwwwww</label>
 		</div> -->
 	</div>
-	
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   			<div class="modal-dialog" style="width:400px;">
    				<div class="modal-content">
      				<div class="modal-header">
      					
 							<button type="button" class="close" data-dismiss="modal">×</button>
 							<h4 class="modal-title" id="myModalLabel">人员籍贯代码</h4>
-							<input class="input-clarge focused" name="name" type="text"  id="name" style="margin-top:7px;margin-bottom:7px;">
-						    <button type="button" class="btn btn-info" onclick="find()">查找</button>
+							<input class="input-clarge focused" name="name" type="text"  id="codeName" style="margin-top:7px;margin-bottom:7px;">
+						    <button type="button" class="btn btn-info" onclick="onClickfind()">查找</button>
 					
 					</div>
 						<div class="modal-body" id="modal_body">
@@ -209,15 +208,32 @@ margin-top:10px,
 						</div>
 						<div class="modal-footer">
 							<button href="#" class="btn" data-dismiss="modal">关闭</button>
+							<button id="okBtn" class="btn btn-primary">确定</button>
 						</div>
     				</div><!-- /.modal-content -->
   				</div><!-- /.modal-dialog -->
-			</div><!-- /.modal -->
-		</div>
-
-
-
-				
+	</div><!-- /.modal -->
+	<!-- 查找模态框 -->
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  			<div class="modal-dialog" style="width:400px;">
+   				<div class="modal-content">
+     				<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">×</button>
+							<h4 class="modal-title" id="myModalLabel">查找结果</h4>
+							<input class="input-clarge focused" name="name" type="text"  id="codeName" style="margin-top:7px;margin-bottom:7px;">
+						    <button type="button" class="btn btn-info" onclick="onClickfind()">查找</button>
+					
+					</div>
+						<div class="modal-body" id="modal_body">
+							<div class="btn-group" id="color" data-toggle="buttons"  style="height:300px;overflow:auto"></div>
+						</div>
+						<div class="modal-footer">
+							<button href="#" class="btn" data-dismiss="modal">关闭</button>
+							<button id="okBtn" class="btn btn-primary">确定</button>
+						</div>
+    				</div><!-- /.modal-content -->
+  				</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 </div>
 
 
@@ -295,6 +311,7 @@ var resumenum=<%=resumenum%>;
 		document.all.zjadd.insertAdjacentHTML("beforeBegin",html)
 		
 	}
+	//点击选择按钮的籍贯
 	function find(name){
 		$.ajax({
 		      type: "Post",
@@ -312,5 +329,29 @@ var resumenum=<%=resumenum%>;
 		  });
 		
 		
+	}
+	//模糊查找
+	function onClickfind(){
+		$.ajax({
+			  type:"Post",
+			  url :'rest/code/getJiGuanByName',
+			  data: {'name' : $("#codeName").val()},
+		      dataType: "json",
+		      success: function (result) {
+		    	  console.log(result);
+		    	  var html = "";
+		    	  for(var i=0;i<response.length;i++){
+		    		  html +='<label class="btn btn-default">'+
+		    	         '<input type="radio" class="toggle" name="codeName" id="codeName">'+result[i].name +
+		    	         '</label>'+'<br>'
+		    	  }
+		    	  $('#color').html(html);
+		    	  $('#myModal').modal('hide'); 
+		    	  $('#myModal2').modal('show'); 
+		      },
+		      error: function () {
+		          alert("菜单加载失败！")
+		      }
+		  });
 	}
 </script>

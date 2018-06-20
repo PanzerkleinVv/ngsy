@@ -226,4 +226,16 @@
 		level = #{level,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
+	
+	<select id="searchCodeByName" resultMap="BaseResultMap"
+        parameterType="com.gdin.dzzwsyb.ngsy.web.model.Code">
+        SELECT * FROM code
+        <where>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT(CONCAT('%',#{name},'%'))
+            </if>
+            AND id = #{id,jdbcType=VARCHAR}
+        </where>
+        ORDER BY id
+    </select>
 </mapper>

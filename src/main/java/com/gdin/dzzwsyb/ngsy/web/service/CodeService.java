@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericService;
 import com.gdin.dzzwsyb.ngsy.web.model.Code;
+import com.gdin.dzzwsyb.ngsy.web.model.CodeExample;
 
 /**
  * 用户 业务 接口
@@ -19,4 +20,8 @@ public interface CodeService extends GenericService<Code, String> {
 	List<Code> selectList(String type);
 	
 	int deleteByType(String type);
+	
+	long countByExample(CodeExample example);
+	
+	List<Code> searchCodeByName(String name);
 }

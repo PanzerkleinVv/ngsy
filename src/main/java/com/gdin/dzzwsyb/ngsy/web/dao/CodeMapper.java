@@ -28,4 +28,6 @@ public interface CodeMapper extends GenericDao<Code, String> {
 	int updateByPrimaryKeySelective(Code record);
 
 	int updateByPrimaryKey(Code record);
+	
+	List<Code> searchCodeByName(Code record);
 }
