@@ -11,88 +11,139 @@ margin-top:10px,
 %>
 <input type="hidden" name="resumenum" value="<%=resumenum%>">
 <div class="mainContent">	
-
+		<div class="row" style="margin-bottom:20px">
+			<form id="uploadForm" enctype="multipart/form-data" method="post">
+					<table>
+						<tr>
+							<td>请选择文件:</td>
+							<td><input style="border:1px solid black;" id="fileID" type="file" name="file" multiple /></td>
+							<td><button type="button" onclick="doUpload()">上传</button></td>
+						</tr>
+					</table>
+			</form>
+		</div>
 		<div class="row">
 			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-10">
+						<div class="row" style="border:1px solid #ccc;border-bottom:none;">
+							<div class="col-md-12">
+								<div class="col-md-1" >
+									<label class="control-label" for="name">姓名</label>
+								</div>
+								<div class="col-md-5" >
+									<input class="input-clarge focused" name="name" type="text"  id="name" style="margin-top:7px;margin-bottom:7px;">
+								</div>
+								<div class="col-md-1" >
+									<label class="control-label" for="sex">性别</label>
+								</div>
+								<div class="col-md-5">
+									<select id="sex" name="sex" style="margin-top:7px;margin-bottom:7px;">
+										<option></option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row" style="border:1px solid #ccc;border-bottom:none;">
+							<div class="col-md-12">
+								<div class="col-md-1" >
+									<label class="control-label" for="birthday">出生年月</label>
+								</div>
+								<div class="col-md-5" >
+									<input size="16" type="text" style="cursor:pointer;margin-top:7px;margin-bottom:7px;" placeholder="点击选择日期"
+								id="birthday"
+								class="form_date form-control placeholder-no-fix halfWidth"
+								>
+								</div>
+								<div class="col-md-1" >
+									<label class="control-label" for="nationality">民族</label>
+								</div>
+								<div class="col-md-5" >
+									<select id="nationality" name="nationality"style="margin-top:7px;margin-bottom:7px;">
+										<option></option>
+									</select>
+								</div>
+							</div>
+						</div>
+					   <div class="row" style="border:1px solid #ccc;border-bottom:none;">
+							<div class="col-md-12">
+								<div class="col-md-1" >
+									<label class="control-label" for="native_place">籍贯</label>
+								</div>
+								<div class="col-md-5" >
+									<input class="input-clarge focused" name="native_place" type="text"  id="native_place" style="margin-top:7px;margin-bottom:7px;">
+									<button type="button" class="btn btn-info" onclick="find('人员籍贯代码','0')">选择</button>
+								</div>
+								<div class="col-md-1" >
+									<label class="control-label" for="birthplace">出生地</label>
+								</div>
+								<div class="col-md-5" >
+									<input class="input-clarge focused" name="birthplace" type="text"  id="birthplace" style="margin-top:7px;margin-bottom:7px;">
+									<button type="button" class="btn btn-info" onclick="find('人员籍贯代码','1')">选择</button>
+								</div>
+							</div>
+						</div>
+					<div class="row" style="border:1px solid #ccc;border-bottom:none;">
+						<div class="col-md-12">
+							<div class="col-md-1" >
+								<label class="control-label" for="party">政治面貌</label>
+							</div>
+							<div class="col-md-5" >
+								<select id="party" name="party"style="margin-top:7px;margin-bottom:7px;">
+									<option></option>
+								</select>
+							</div>
+							<div class="col-md-1" >
+								<label class="control-label" for="partydate">照片</label>
+							</div>
+							<div class="col-md-5">
+								<form id="uploadForm" enctype="multipart/form-data" method="post">
+								<table>
+									<tr>
+										<td><input style="border:1px solid black;" id="fileID" type="file" name="file" multiple /></td>
+										<td><button type="button" class="btn btn-info" onclick="">浏览</button><td>
+									</tr>
+								</table>
+					            </form>
+							</div>
+						</div>
+					</div>
+			</div>
+			<!-- 照片位置 -->
+			<div class=col-md-2>
 				<div class="row" style="border:1px solid #ccc;border-bottom:none;">
-					<div class="col-md-1" >
-						<label class="control-label" for="name">姓名</label>
-					</div>
-					<div class="col-md-3" >
-						<input class="input-clarge focused" name="name" type="text"  id="name" style="margin-top:7px;margin-bottom:7px;">
-					</div>
-					<div class="col-md-1" >
-						<label class="control-label" for="sex">性别</label>
-					</div>
-					<div class="col-md-3">
-						<select id="sex" name="sex" style="margin-top:7px;margin-bottom:7px;">
-							<option></option>
-						</select>
-					</div>
-					<div class="col-md-1" >
-						<label class="control-label" for="birthday">出生年月</label>
-					</div>
-					<div class="col-md-3" >
-						<input size="16" type="text" style="cursor:pointer;margin-top:7px;margin-bottom:7px;" placeholder="点击选择日期"
-					id="birthday"
-					class="form_date form-control placeholder-no-fix halfWidth"
-					>
-					</div>
-					
-				</div>
-				<div class="row" style="border:1px solid #ccc;border-bottom:none;">
-					<div class="col-md-1" >
-						<label class="control-label" for="nationality">民族</label>
-					</div>
-					<div class="col-md-3" >
-						<select id="nationality" name="nationality"style="margin-top:7px;margin-bottom:7px;">
-							<option></option>
-						</select>
-					</div>
-					<div class="col-md-1" >
-						<label class="control-label" for="sex">籍贯</label>
-					</div>
-					<div class="col-md-3" >
-						<input class="input-clarge focused" name="native_place" type="text"  id="native_place" style="margin-top:7px;margin-bottom:7px;">
-						<button type="button" class="btn btn-info" onclick="find('人员籍贯代码')">选择</button>
-					</div>
-					<div class="col-md-1" >
-						<label class="control-label" for="birthplace">出生地</label>
-					</div>
-					<div class="col-md-3" >
-						<input class="input-clarge focused" name="birthplace" type="text"  id="birthplace" style="margin-top:7px;margin-bottom:7px;">
-						<button type="button" class="btn btn-info" onclick="find('人员籍贯代码')">选择</button>
+					<div class="col-md-12" >
+						
 					</div>
 				</div>
+		    </div>
+		</div>
 			
+	</div>
+</div>
+		<div class="row">
+		<div class="col-md-12">
 			<div class="row" style="border:1px solid #ccc;border-bottom:none;">
-					<div class="col-md-1" >
-						<label class="control-label" for="party">政治面貌</label>
-					</div>
-					<div class="col-md-3" >
-						<select id="party" name="party"style="margin-top:7px;margin-bottom:7px;">
-							<option></option>
-						</select>
-					</div>
 					<div class="col-md-1" >
 						<label class="control-label" for="partydate">入党时间</label>
 					</div>
 					<div class="col-md-3">
-						<input size="16" type="text"  style="cursor:pointer;" placeholder="点击选择日期"
+						<input size="16" type="text"  style="cursor:pointer;margin-top:7px; margin-bottom:7px;" placeholder="点击选择日期"
 						id="partydate"
-						class="form_date form-control placeholder-no-fix halfWidth" style="margin-top:7px margin-bottom:7px;"
+						class="form_date form-control placeholder-no-fix halfWidth" 
 						>
 					</div>
 					<div class="col-md-1" >
 						<label class="control-label" for="work_date">参加工作时间</label>
 					</div>
 					<div class="col-md-3">
-						<input size="16" type="text"  style="cursor:pointer;" placeholder="点击选择日期"
+						<input size="16" type="text"  style="cursor:pointer;margin-top:7px; margin-bottom:7px;" placeholder="点击选择日期"
 						id="work_date"
-						class="form_date form-control placeholder-no-fix halfWidth" style="margin-top:7px margin-bottom:7px;"
+						class="form_date form-control placeholder-no-fix halfWidth" 
 						>
 					</div>
 			</div>
+			
 			<div class="row" style="border:1px solid #ccc;border-bottom:none;">
 					<div class="col-md-1" >
 						<label style="" class="control-label" for="salary_rank_id">考勤课酬</label>
@@ -121,18 +172,18 @@ margin-top:10px,
 						<label class="control-label" for="shuang_shi_date">双师认定时间</label>
 					</div>
 					<div class="col-md-4">
-						<input size="10" type="text"  style="cursor:pointer;" placeholder="点击选择日期"
+						<input size="10" type="text"  style="cursor:pointer;margin-top:7px; margin-bottom:7px;" placeholder="点击选择日期"
 						id="shuang_shi_date"
-						class="form_date form-control placeholder-no-fix halfWidth" style="margin-top:7px margin-bottom:7px;"
+						class="form_date form-control placeholder-no-fix halfWidth" 
 						>
 					</div>
 					<div class="col-md-2" >
 						<label class="control-label" for="enter_date">进入本单位工作时间</label>
 					</div>
 					<div class="col-md-4">
-						<input size="16" type="text" style="cursor:pointer;" placeholder="点击选择日期"
+						<input size="16" type="text" style="cursor:pointer;margin-top:7px; margin-bottom:7px;" placeholder="点击选择日期"
 						id="enter_date"
-						class="form_date form-control placeholder-no-fix halfWidth" style="margin-top:7px margin-bottom:7px;"
+						class="form_date form-control placeholder-no-fix halfWidth" 
 						>
 					</div>
 			</div>
@@ -185,7 +236,7 @@ margin-top:10px,
 				</div>
 				
 	</div>
-	
+	</div>
 </div>	
 		
 		<!-- <div class="col-md-3" style="height: 200px;">
@@ -205,6 +256,7 @@ margin-top:10px,
 					</div>
 						<div class="modal-body" id="modal_body">
 							<div id="treeDemo" class="ztree" style="height:300px;overflow:auto"></div>
+							<div  id="color"  style="width:360px;height:300px;overflow:auto"></div>
 						</div>
 						<div class="modal-footer">
 							<button href="#" class="btn" data-dismiss="modal">关闭</button>
@@ -213,27 +265,12 @@ margin-top:10px,
     				</div><!-- /.modal-content -->
   				</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-	<!-- 查找模态框 -->
-	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  			<div class="modal-dialog" style="width:400px;">
-   				<div class="modal-content">
-     				<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">×</button>
-							<h4 class="modal-title" id="myModalLabel">查找结果</h4>
-							<input class="input-clarge focused" name="name" type="text"  id="codeName" style="margin-top:7px;margin-bottom:7px;">
-						    <button type="button" class="btn btn-info" onclick="onClickfind()">查找</button>
-					
-					</div>
-						<div class="modal-body" id="modal_body">
-							<div class="btn-group" id="color" data-toggle="buttons"  style="height:300px;overflow:auto"></div>
-						</div>
-						<div class="modal-footer">
-							<button href="#" class="btn" data-dismiss="modal">关闭</button>
-							<button id="okBtn" class="btn btn-primary">确定</button>
-						</div>
-    				</div><!-- /.modal-content -->
-  				</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+	<div style="display:none">
+		<input id="tag1" type="text">
+	</div>
+	<div style="display:none">
+		<input id="tag2" type="text">
+	</div>
 </div>
 
 
@@ -257,7 +294,7 @@ var setting = {
 			enable: false
 		},
 		callback: {
-		    beforeCheck : function(treeId, treeNode) {
+		    /* beforeCheck : function(treeId, treeNode) {
 		                        if (treeNode.isParent) {
 		                            alert("请选择子节点！")
 		                            return false;
@@ -270,7 +307,7 @@ var setting = {
 	                 alert("此节点没有链接！")
 	             }
 	             
-	         }
+	         } */
 		}
 	};
 var resumenum=<%=resumenum%>;
@@ -281,6 +318,10 @@ var resumenum=<%=resumenum%>;
 		});
 		
 		
+	});
+	$(function() {
+		$("#index-page-title").html("干部新增");
+		$("#current-page-title").html("干部新增");
 	});
 	$(function() {
 		getCodeSimple('人的性别代码', $('#sex'), "");
@@ -312,15 +353,18 @@ var resumenum=<%=resumenum%>;
 		
 	}
 	//点击选择按钮的籍贯
-	function find(name){
+	function find(name,tag){
 		$.ajax({
 		      type: "Post",
 		      url: 'rest/code/getJiGuan',  
 		      data: {'name' : name},
 		      dataType: "json",
 		      success: function (result) {
-		    	  console.log(result);
 		    	  $.fn.zTree.init($("#treeDemo"), setting, result);
+		    	  document.getElementById("color").style.display="none";
+		    	  document.getElementById("treeDemo").style.display="";
+		    	  $("#tag1").val("");
+		    	  $("#tag1").val(tag);
 		    	  $('#myModal').modal('show'); 
 		      },
 		      error: function () {
@@ -338,20 +382,58 @@ var resumenum=<%=resumenum%>;
 			  data: {'name' : $("#codeName").val()},
 		      dataType: "json",
 		      success: function (result) {
-		    	  console.log(result);
 		    	  var html = "";
-		    	  for(var i=0;i<response.length;i++){
-		    		  html +='<label class="btn btn-default">'+
-		    	         '<input type="radio" class="toggle" name="codeName" id="codeName">'+result[i].name +
-		    	         '</label>'+'<br>'
+		    	  if(result.length >0){
+			    	  for(var i=0;i<result.length;i++){
+			    		  html += '<span class="radio_box" style="margin-right:30px">'+
+		                   		'<input type="radio"  name="radio"  value="' +result[i].name+'"style="cursor:pointer;">'+
+		                        '<label for=""></label>'+
+		                        '<em>'+result[i].name+'</em>'+'</span><br>'
+			    	  }
 		    	  }
+		    	  else{
+		    		  var html = '<label style="text-align:center;"class="control-label" for="name">'+"查询不到数据"+'</label>';
+		    	  }
+		    	  $("#codeName").val("");
 		    	  $('#color').html(html);
-		    	  $('#myModal').modal('hide'); 
-		    	  $('#myModal2').modal('show'); 
+		    	  document.getElementById("color").style.display="";
+		    	  document.getElementById("treeDemo").style.display="none";
+		    	  $("#tag2").val("");
+		    	  $("#tag2").val("0");
+		    	  $('#myModal').modal('show'); 
 		      },
 		      error: function () {
 		          alert("菜单加载失败！")
 		      }
 		  });
 	}
+	$("#okBtn").click(function(){
+		var tag1 = $("#tag1").val();
+		var tag2 = $("#tag2").val();
+		//籍贯
+		if(tag2=="0"){
+			var selectedName=$('input[name="radio"]:checked').val();
+			if(tag1=="0"){
+				$("#native_place").val(selectedName);
+			}
+			else{
+				$("#birthplace").val(selectedName);
+			}
+		}
+		else{
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			checkCount = zTree.getCheckedNodes(true);
+			var classpurview = checkCount[0].name;
+			if(tag1=="0"){
+				$("#native_place").val(classpurview);
+			}
+			else{
+				$("#birthplace").val(classpurview);
+			}
+		}
+		$("#tag1").val("")
+		$("#tag2").val("")
+		$('#myModal').modal('hide'); 
+		
+	})
 </script>

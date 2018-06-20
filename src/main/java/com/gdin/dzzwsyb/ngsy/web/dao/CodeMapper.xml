@@ -234,8 +234,8 @@
             <if test="name != null and name != ''">
                 AND name LIKE CONCAT(CONCAT('%',#{name},'%'))
             </if>
-            AND id = #{id,jdbcType=VARCHAR}
+            AND type = #{type,jdbcType=VARCHAR}
         </where>
-        ORDER BY id
+        ORDER BY code
     </select>
 </mapper>
