@@ -7,7 +7,7 @@
 			style="color:${msg0};">${msg}</span>
 	</div>
 	<div>
-		<span>大组工网ID：</span> <span><input name="id" id="id"
+		<span>用户名：&emsp;</span> <span><input name="id" id="id"
 			type="hidden" value="<c:if test='${user != null}'>${user.id}</c:if>" /><input
 			name="username" id="username" type="text" onblur="check(0)"
 			value="<c:if test='${user != null}'>${user.username}</c:if>"
@@ -19,6 +19,11 @@
 			value="<c:if test='${user != null}'>${user.userdesc}</c:if>"
 			class="form-control placeholder-no-fix" /></span><span id='msg1'></span>
 	</div>
+	<c:if test="${method == '新增'}">
+	<div>
+		<span>用户密码：</span> <span>初始密码：123456</span>
+	</div>
+	</c:if>
 	<div>
 		<span>所属处室：</span> <span><select id="roleId" name="roleId"
 			onblur="check(2)" class="form-control placeholder-no-fix">
@@ -63,7 +68,8 @@
 	</c:if>
 	<div class="infoButton">
 		<button id="saveBut" type="button" class="btn blue">保存</button>
-		<c:if test='${user != null && user.id != null}'>
+		<c:if test="${method == '修改'}">
+			<button id="resetPsw" type="button" class="btn blue">重置密码：123456</button>
 			<button id="delete" type="button" class="btn blue">删除</button>
 		</c:if>
 	</div>
@@ -81,12 +87,12 @@
 				value = $('#username').val();
 				msg = $('#msg0');
 				if (value == null || value.length < 1) {
-					msg.html("大组工网ID不能为空");
+					msg.html("用户名不能为空");
 					msg.css('color', '#FF0000');
 					return false;
-				} else if (value.search('[^\\w\\d]+') > 0) {
+				} else if (value.search('[^\\w\\d]+') > -1) {
 					msg.css('color', '#FF0000');
-					msg.html('系统名只能是英文或数字');
+					msg.html('用户名只能是英文或数字');
 					return false;
 				} else {
 					var url = "rest/user/checkUsername";
@@ -172,7 +178,19 @@
 		$('#delete').click(function() {
 			var url = 'rest/user/delete';
 			$.post(url, {
-				id : $('#id').val()
+				id : $('#id').val(),
+				username : $('#username').val(),
+				userdesc : $('#userdesc').val()
+			}, function(data) {
+				showData("#main-content", data);
+			});
+		});
+		$('#resetPsw').click(function() {
+			var url = 'rest/user/resetPsw';
+			$.post(url, {
+				id : $('#id').val(),
+				username : $('#username').val(),
+				userdesc : $('#userdesc').val()
 			}, function(data) {
 				showData("#main-content", data);
 			});

@@ -17,7 +17,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta charset="utf-8" />
-<title>督查事项管理系统</title>
+<title>干部人事管理系统</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content="" name="description" />
@@ -45,7 +45,7 @@
 	type="text/css" id="style_color" />
 <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
 <!-- END THEME STYLES -->
-	
+
 <link rel="shortcut icon" href="app/img/favicon.ico" />
 <link href="assets/plugins/bootstrap-datepicker/css/datepicker.css"
 	rel="stylesheet" type="text/css" />
@@ -55,12 +55,14 @@
 	rel="stylesheet" type="text/css" />
 <link href="assets/plugins/bootstrap/css/bootstrap-treeview.css"
 	rel="stylesheet" type="text/css" />
-<link href="assets/css/easyui.css"
-	rel="stylesheet" type="text/css" />
-<link href="assets/css/icon.css"
-	rel="stylesheet" type="text/css" />
+<link href="assets/css/easyui.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/icon.css" rel="stylesheet" type="text/css" />
 </head>
-<link rel="stylesheet" href="assets/plugins/bootstrapStyle/bootstrapStyle.css" type="text/css">
+<link rel="stylesheet"
+	href="assets/plugins/bootstrapStyle/bootstrapStyle.css" type="text/css">
+<link rel="alternate icon" type="image/png"
+	href="assets/i/favicon.png">
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
 
 <!-- END HEAD -->
 
@@ -71,8 +73,7 @@
 		<!-- BEGIN TOP NAVIGATION BAR -->
 		<div class="header-inner">
 			<!-- BEGIN LOGO -->
-			<span class="navbar-brandText">督查事项管理系统
-			</span>
+			<span class="navbar-brandText">广东省农工商职业技术学院干部人事管理系统 </span>
 			<!-- END LOGO -->
 			<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 			<a href="javascript:;" class="navbar-toggle" data-toggle="collapse"
@@ -120,39 +121,40 @@
 							class="title"> 首页 </span><span class="selected"> </span>
 					</a></li>
 
-					<li class=""><a href="./rest/page/addPerson"> <i class="fa fa-search"></i><span
-							class="title"> 干部新增 </span><span class="selected "> </span>
+					<li class=""><a href="./rest/page/addPerson"> <i
+							class="fa fa-plus"></i><span class="title"> 干部新增 </span><span
+							class="selected "> </span>
 					</a></li>
-						
+
 					<shiro:hasAnyRoles name="admin">
-					<li class=""><a href="./rest/msg/upload"
-						id="btn-dashboard"> <i class="fa fa-upload"></i><span
-							class="title"> 督查上传 </span><span class="selected"> </span>
-					</a></li>
-					
-					<li class=""><a href="./rest/msg/msgList?status=0&pageNo=1"
-						id="btn-dashboard"> <i class="fa fa-recycle"></i><span
-							class="title"> 督查草稿 </span><span class="selected"> </span>
-					</a></li>
+						<li class=""><a href="./rest/unit/index" id="btn-dashboard">
+								<i class="fa fa-sitemap"></i><span class="title"> 单位机构 </span><span
+								class="selected"> </span>
+						</a></li>
+
+						<li class=""><a href="./rest/msg/msgList?status=0&pageNo=1"
+							id="btn-dashboard"> <i class="fa fa-recycle"></i><span
+								class="title"> 督查草稿 </span><span class="selected"> </span>
+						</a></li>
 					</shiro:hasAnyRoles>
-					
-					<li class=""><a href="./rest/msg/msgList?submissionStatus=0&pageNo=1"
-						id="btn-dashboard"> <i class="fa fa-recycle"></i><span
-							class="title"> 提请草稿 </span><span class="selected"> </span>
+
+					<li class=""><a href="./rest/user/mine" id="btn-dashboard">
+							<i class="fa fa-user"></i><span class="title"> 个人信息 </span><span
+							class="selected"> </span>
 					</a></li>
-						
-					<shiro:hasRole  name="admin">
-					<li class=""><a href="javascript:;"> <i
-							class="fa fa-gears"></i><span class="title"> 系统管理 </span><span
-							class="arrow "> </span>
-					</a>
-						<ul class="sub-menu">
-							<li><a href="./rest/user/admin"> 用户管理 </a></li>
-							<li><a href="./rest/user/info"> 用户新增 </a></li>
-							<li><a href="./rest/code/admin"> 字典管理 </a></li>
-							<li><a href="./rest/log/admin"> 日志管理 </a></li>
-						</ul></li>
-					</shiro:hasRole >
+
+					<shiro:hasRole name="admin">
+						<li class=""><a href="javascript:;"> <i
+								class="fa fa-gears"></i><span class="title"> 系统管理 </span><span
+								class="arrow "> </span>
+						</a>
+							<ul class="sub-menu">
+								<li><a href="./rest/user/admin"> 用户管理 </a></li>
+								<li><a href="./rest/user/info"> 用户新增 </a></li>
+								<li><a href="./rest/code/admin"> 字典管理 </a></li>
+								<li><a href="./rest/log/admin"> 日志管理 </a></li>
+							</ul></li>
+					</shiro:hasRole>
 				</ul>
 				<!-- END SIDEBAR MENU -->
 			</div>
@@ -246,10 +248,12 @@
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 						<h3 class="page-title page-title1" id="index-page-title">提醒预览</h3>
 						<ul class="page-breadcrumb breadcrumb">
-							<li><i class="fa fa-home"></i> 
-									首页 <i class="fa fa-angle-right"></i></li>
-							<li id="current-page-title"> 提醒预览 </li>
-							<li id="goBack" style="display: none;color: blue;" onclick="goBack()" class="clickable"> &emsp;&emsp;&emsp;&emsp;返回 </li>
+							<li><i class="fa fa-home"></i> 首页 <i
+								class="fa fa-angle-right"></i></li>
+							<li id="current-page-title">提醒预览</li>
+							<li id="goBack" style="display: none; color: blue;"
+								onclick="goBack()" class="clickable">
+								&emsp;&emsp;&emsp;&emsp;返回</li>
 						</ul>
 						<!-- END PAGE TITLE & BREADCRUMB-->
 					</div>
@@ -277,8 +281,7 @@
         <script src="assets/plugins/excanvas.min.js"></script>
         <script src="assets/scripts/selectivizr.js"></script>
         <![endif]-->
-	<script src="assets/scripts/jquery.min.js"
-		type="text/javascript"></script>
+	<script src="assets/scripts/jquery.min.js" type="text/javascript"></script>
 	<script src="assets/plugins/ajaxfileupload(2).js"
 		type="text/javascript"></script>
 	<script src="assets/plugins/jquery-migrate-1.2.1.min.js"
@@ -321,9 +324,13 @@
 	<script lang="javaScript">
 		var URL = window.UEDITOR_HOME_URL || "assets/plugins/ueditor/";
 	</script>
-	<script type="text/javascript" src="assets/scripts/jquery.ztree.core.js"></script>
-<script type="text/javascript" src="assets/scripts/jquery.ztree.excheck.js"></script>
-<script type="text/javascript" src="assets/scripts/jquery.ztree.exedit.js"></script>
+	<script type="text/javascript"
+		src="assets/scripts/jquery.ztree.core.js"></script>
+	<script type="text/javascript"
+		src="assets/scripts/jquery.ztree.excheck.js"></script>
+	<script type="text/javascript"
+		src="assets/scripts/jquery.ztree.exedit.js"></script>
 	<!-- <script data-main="app/js/main" src="app/lib/requirejs/require.js"></script> -->
+	<script src="assets/js/amazeui.min.js"></script>
 </body>
 </html>

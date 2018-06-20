@@ -1,22 +1,30 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="mainContent">
-	<div class="">
+	<div>
 		<form action="" method="post">
-			内容：<input name="content" id="content" size="50"
-				value="${logQuery.content}" class="input-sm form-inline" type="text"
-				autocomplete="off" placeholder="查找日志内容" />|&emsp;&emsp;模块：<select
-				id="type" name="type" class="input-sm form-inline">
-				<option></option>
-			</select> <input id="typeValue" value="${logQuery.type}" /><br /> 起止时间：<input
-				size="16" type="text" id="beginDate" value="<fmt:formatDate
+			<div>
+				内容：<input name="content" id="content" size="50"
+					value="${logQuery.content}" class="input-sm form-inline"
+					type="text" autocomplete="off" placeholder="查找日志内容" />&emsp;&emsp;模块：<select
+					id="type" name="type" class="input-sm form-inline">
+					<option></option>
+				</select> <input id="typeValue" type="hidden" value="${logQuery.type}" />&emsp;&emsp;
+				起止时间：<input size="16" type="text" id="beginDate"
+					value="<fmt:formatDate
 				value='${logQuery.beginDate}' type='DATE' pattern='yyyy-MM-dd' />"
-				readonly class="form_date input-sm form-inline" placeholder="起始时间" />&emsp;至&emsp;<input
-				size="16" type="text" id="endDate" value="<fmt:formatDate
+					readonly class="form_date input-sm form-inline" placeholder="起始时间" />&emsp;至&emsp;<input
+					size="16" type="text" id="endDate"
+					value="<fmt:formatDate
 				value='${logQuery.endDate}' type='DATE' pattern='yyyy-MM-dd' />"
-				readonly class="form_date input-sm form-inline" placeholder="终止时间" />
-			<button id="searchBut" type="button" class="btn blue form-inline" onclick="query('1')">查询</button>
+					readonly class="form_date input-sm form-inline" placeholder="终止时间" />
+			</div>
+			<div style="text-align: center;">
+				<button id="searchBut" type="button" class="btn blue form-inline"
+					onclick="query('1')">查询</button>
+				<button type="reset" class="btn blue form-inline">重置</button>
+			</div>
 		</form>
 	</div>
 	<div class="navigationBar">
@@ -34,10 +42,10 @@
 		</div>
 		<c:forEach var="log" items="${logs}" varStatus="status">
 			<div class="userRow">
-				<span class="userItem">${log.id}</span> <span class="userItem"><fmt:setLocale value="zh_CN" />
-<fmt:formatDate type="both" dateStyle="full" timeStyle="full" value="${log.time}" /></span>
-				<span class="userItem">${log.userdesc}</span> <span class="userItem">${log.name}</span>
-				<span class="userItem">${log.content}</span>
+				<span class="userItem">${log.id}</span> <span class="userItem"><fmt:setLocale
+						value="zh_CN" /> <fmt:formatDate type="both" dateStyle="full"
+						timeStyle="full" value="${log.time}" /></span> <span class="userItem">${log.userdesc}</span>
+				<span class="userItem">${log.name}</span> <span class="userItem">${log.content}</span>
 			</div>
 		</c:forEach>
 	</div>
