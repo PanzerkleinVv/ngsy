@@ -13,6 +13,8 @@ public class Unit {
 
 	private String superiorId;
 
+	private String superiorName;
+
 	private Integer isUsed;
 
 	public String getId() {
@@ -61,6 +63,14 @@ public class Unit {
 
 	public void setSuperiorId(String superiorId) {
 		this.superiorId = superiorId == null ? null : superiorId.trim();
+	}
+
+	public String getSuperiorName() {
+		return superiorName;
+	}
+
+	public void setSuperiorName(String superiorName) {
+		this.superiorName = superiorName;
 	}
 
 	public Integer getIsUsed() {

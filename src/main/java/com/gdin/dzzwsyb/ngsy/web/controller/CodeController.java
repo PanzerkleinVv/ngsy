@@ -2,8 +2,6 @@ package com.gdin.dzzwsyb.ngsy.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -17,12 +15,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gdin.dzzwsyb.ngsy.core.util.ApplicationUtils;
 import com.gdin.dzzwsyb.ngsy.web.model.Code;
-import com.gdin.dzzwsyb.ngsy.web.model.CodeExample;
 import com.gdin.dzzwsyb.ngsy.web.model.CodeType;
 import com.gdin.dzzwsyb.ngsy.web.model.Log;
 import com.gdin.dzzwsyb.ngsy.web.model.Node;
 import com.gdin.dzzwsyb.ngsy.web.model.ResultMessage;
-import com.gdin.dzzwsyb.ngsy.web.model.Unit;
 import com.gdin.dzzwsyb.ngsy.web.security.RoleSign;
 import com.gdin.dzzwsyb.ngsy.web.service.CodeService;
 import com.gdin.dzzwsyb.ngsy.web.service.CodeTypeService;
