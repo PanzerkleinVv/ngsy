@@ -4,8 +4,6 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.gdin.dzzwsyb.ngsy.web.dao.PersonMapper;
-
 public class Person {
 	private String id;
 
