@@ -64,14 +64,7 @@
 		                            return false;
 		                        }
 		                    },
-			onClick:function(event,treeId,treeNode){
-	             if(treeNode.ahref){
-	                 window.open(treeNode.ahref);
-	             }else{
-	                 alert("此节点没有链接！")
-	             }
-	             
-	         }
+			onClick:function (e, treeId, treeNode, clickFlag) { zTree.checkNode(treeNode, !treeNode.checked, true); } 
 		}
 	};
 
@@ -82,7 +75,7 @@
 		      dataType: "json",
 		      success: function (result) {
 		    	  console.log(result);
-		    	  $.fn.zTree.init($("#treeDemo"), setting, result);
+		    	  zTree = $.fn.zTree.init($("#treeDemo"), setting, result);
 		      },
 		      error: function () {
 		          alert("菜单加载失败！")
