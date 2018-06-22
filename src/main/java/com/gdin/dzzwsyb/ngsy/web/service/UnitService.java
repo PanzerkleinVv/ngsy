@@ -9,4 +9,10 @@ public interface UnitService extends GenericService<Unit, String> {
 	List<Unit> findIsUsed();
 
 	Unit selectWithSuperiorNameById(String id);
+	
+	int getMaxSort(String superiorId);
+	
+	List<Unit> getSortList(String superiorId);
+	
+	int updateSort(String[] ids) throws Exception;
 }
