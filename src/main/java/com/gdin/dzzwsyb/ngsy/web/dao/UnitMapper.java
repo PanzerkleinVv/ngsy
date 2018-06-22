@@ -30,4 +30,6 @@ public interface UnitMapper extends GenericDao<Unit, String> {
 	int updateByPrimaryKeySelective(Unit record);
 
 	int updateByPrimaryKey(Unit record);
+	
+	Integer selectMaxSortBySuperiorId(String superiorId);
 }

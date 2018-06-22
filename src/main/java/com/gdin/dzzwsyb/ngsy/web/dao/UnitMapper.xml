@@ -101,7 +101,7 @@
 	</sql>
 	<sql id="Extend_Column_List">
 		t.id, t.name, t.simple_name, t.sort, t.tree_level, t.superior_id,
-		s.name, t.is_used
+		s.name superior_name, t.is_used
 	</sql>
 	<select id="selectByExample"
 		parameterType="com.gdin.dzzwsyb.ngsy.web.model.UnitExample"
@@ -300,5 +300,11 @@
 		<include refid="Extend_Column_List" />
 		from unit t left outer join unit s on t.superior_id = s.id 
 		where t.id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectMaxSortBySuperiorId" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select max(sort)
+		from unit 
+		where superior_id = #{superiorId,jdbcType=VARCHAR}
 	</select>
 </mapper>

@@ -51,12 +51,14 @@ a:hover {
 			} else {
 				var zTree = $.fn.zTree.getZTreeObj("treeDemo");
 				checkCount = zTree.getCheckedNodes(true);
-				var unitId = checkCount[0].id;
-				$.post(url, {
-					"id" : unitId
-				}, function(data) {
-					$("#unitContent").html(data);
-				});
+				if (checkCount.length > 0) {
+					var unitId = checkCount[0].id;
+					$.post(url, {
+						"id" : unitId
+					}, function(data) {
+						$("#unitContent").html(data);
+					});
+				}
 			}
 			return false;
 		});

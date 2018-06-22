@@ -3,7 +3,7 @@
 <div class="mainContent">
 	<div class="navigationBar">
 		<c:choose>
-			<c:when test="${unit != null}">
+			<c:when test="${unit != null && unit.id != null && unit.id ne ''}">
 				<span class="navigationItem">${unit.simpleName} 机构设置</span>
 			</c:when>
 			<c:otherwise>
@@ -16,7 +16,7 @@
 	</div>
 	<div class="singleFormGroup">
 		<input type="hidden" id="id"
-			value="<c:if test='${unit != null}'>${unit.id}</c:if>" />
+			value="<c:if test='${unit != null && unit.id != null && unit.id ne ""}'>${unit.id}</c:if>" />
 		<div>
 			<span>机构名：</span>
 		</div>
@@ -29,7 +29,7 @@
 			<span>机构简称：</span>
 		</div>
 		<div>
-			<input type="text" id="name" class="form-control"
+			<input type="text" id="simpleName" class="form-control"
 				value="<c:if test='${unit != null}'>${unit.simpleName}</c:if>"
 				onblur="check(this)" /><span></span>
 		</div>
@@ -43,7 +43,7 @@
 				id="superiorId"
 				value="<c:if test='${unit != null}'>${unit.superiorId}</c:if>" />
 		</div>
-		<c:if test="${unit != null}">
+		<c:if test="${unit != null && unit.id != null && unit.id ne ''}">
 			<div>
 				<span>状态：</span>
 			</div>
@@ -106,6 +106,7 @@
 			var id = $("#id").val();
 			$.post(url, {
 				'id' : id,
+				'name' : name,
 				'isUsed' : isUsed
 			}, function(data) {
 				$("#unitContent").html(data);

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-06-19 12:51:22
+Date: 2018-06-22 18:06:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -9873,6 +9873,7 @@ INSERT INTO `code` VALUES ('781ce85f7284471154d99e72c29e40a459557bad', '20fbaaa7
 INSERT INTO `code` VALUES ('781e5f7f2be8f89f0643a4da1959b64847980931', '0cbded8f58422ce1ada36a4429081cd84850bff5', '辽宁本溪市溪湖区', '210503', '3');
 INSERT INTO `code` VALUES ('781f8fb0150dbb5380893adc93b20593bd42eb03', '3fb685e2145202228ac6624fc51b382c8f929bd7', '司务长', '859A', '2');
 INSERT INTO `code` VALUES ('782234c09abbc6605ec8ff059e4868c8278a3c2d', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '植物化学', '1805110', '3');
+INSERT INTO `code` VALUES ('7824c5b8c2efe9bf35d73b1e11893a85c447f082', '30ca8dc08281e4e68395afd862fc1d939d9c82c3', '用户', 'user', '1');
 INSERT INTO `code` VALUES ('7827d5f4cf841e8e427de4c99ac4e2dbaba07410', 'a431864a19fcba22bf20f425958d011a10122db3', '企业职工记过', '22', '1');
 INSERT INTO `code` VALUES ('782c15a00c0616fbab94e9c24e316fee0efe11e1', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '市辖区', '231001', '3');
 INSERT INTO `code` VALUES ('7830842af6a995a78df1a0d6e2a96b634d0023b2', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '厄立特里亚', 'B23200', '2');
@@ -21390,7 +21391,7 @@ CREATE TABLE `log` (
   `type` varchar(20) DEFAULT NULL COMMENT '对象类型',
   `target` varchar(40) DEFAULT NULL COMMENT '对象id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of log
@@ -21419,6 +21420,43 @@ INSERT INTO `log` VALUES ('21', '2018-06-15 16:00:31', '1', '新增字典项：�
 INSERT INTO `log` VALUES ('22', '2018-06-15 16:00:55', '1', '新增字典项：数据字典', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
 INSERT INTO `log` VALUES ('23', '2018-06-15 16:01:03', '1', '新增字典项：人员', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
 INSERT INTO `log` VALUES ('24', '2018-06-15 16:01:15', '1', '新增字典项：单位', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
+INSERT INTO `log` VALUES ('25', '2018-06-19 13:17:27', '1', '新增字典项：用户', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
+INSERT INTO `log` VALUES ('26', '2018-06-19 13:17:34', '1', '修改字典项：用户', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
+INSERT INTO `log` VALUES ('27', '2018-06-19 14:02:09', '1', '新增用户：test（测试）', 'user', '3');
+INSERT INTO `log` VALUES ('28', '2018-06-19 14:02:24', '1', '重置用户密码：null（null）', 'user', '3');
+INSERT INTO `log` VALUES ('29', '2018-06-19 14:03:42', '1', '重置用户密码：test（测试）', 'user', '3');
+INSERT INTO `log` VALUES ('30', '2018-06-19 14:04:07', '1', '修改用户：test（测试1）', 'user', '3');
+INSERT INTO `log` VALUES ('31', '2018-06-19 14:04:29', '1', '删除用户：test（测试1）', 'user', '3');
+INSERT INTO `log` VALUES ('32', '2018-06-19 15:53:51', '1', '新增用户：test（测试）', 'user', '4');
+INSERT INTO `log` VALUES ('33', '2018-06-19 16:10:06', '4', '修改用户密码：test（测试）', 'user', '4');
+INSERT INTO `log` VALUES ('34', '2018-06-22 11:05:12', '1', '新增字典项类别：测试', 'code_type', 'd0304141ac5a3d7de318b7f920f7fec274b8bfb2');
+INSERT INTO `log` VALUES ('35', '2018-06-22 11:05:49', '1', '删除字典项类别：测试', 'code_type', 'd0304141ac5a3d7de318b7f920f7fec274b8bfb2');
+INSERT INTO `log` VALUES ('36', '2018-06-22 11:05:55', '1', '新增字典项类别：测试', 'code_type', '1cc950482b72997167e81b2fc4033eb9c0645575');
+INSERT INTO `log` VALUES ('37', '2018-06-22 11:06:05', '1', '删除字典项类别：测试', 'code_type', '1cc950482b72997167e81b2fc4033eb9c0645575');
+INSERT INTO `log` VALUES ('38', '2018-06-22 14:01:12', '1', '修改机构：第二个一级菜单', 'unit', '1002');
+INSERT INTO `log` VALUES ('39', '2018-06-22 14:01:26', '1', '修改机构：第二个一级字菜单A', 'unit', '1006');
+INSERT INTO `log` VALUES ('40', '2018-06-22 14:02:36', '1', '修改机构：第二个一级字菜单A', 'unit', '1006');
+INSERT INTO `log` VALUES ('41', '2018-06-22 14:05:16', '1', '修改机构：第二个一级字菜单A', 'unit', '1006');
+INSERT INTO `log` VALUES ('42', '2018-06-22 14:13:42', '1', '新增机构：审计科', 'unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('43', '2018-06-22 14:14:06', '1', '修改机构：马克思主义学院', 'unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('44', '2018-06-22 14:14:22', '1', '修改机构：学院办公室', 'unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('45', '2018-06-22 14:15:08', '1', '新增机构：审计科', 'unit', '0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6');
+INSERT INTO `log` VALUES ('46', '2018-06-22 14:15:20', '1', '新增机构：马克思主义学院', 'unit', '1536d284de253087b938b85fd749ae26f1970b64');
+INSERT INTO `log` VALUES ('47', '2018-06-22 14:20:57', '1', '新增机构：车队', 'unit', '4eb2eeb94e688cf19c8eb7e2fcea274498d212b4');
+INSERT INTO `log` VALUES ('48', '2018-06-22 14:21:19', '1', '新增机构：档案科', 'unit', '0371073bc2f4cd76200ce1da0dcd090129c4642e');
+INSERT INTO `log` VALUES ('49', '2018-06-22 14:21:44', '1', '新增机构：继续教育中心', 'unit', '78179f33cef61518a783377f3c81a019076d0c8e');
+INSERT INTO `log` VALUES ('50', '2018-06-22 14:22:39', '1', '新增机构：教学部', 'unit', '31beb2aa7bfe6d4c7daf2adbd53e8b10942a86cc');
+INSERT INTO `log` VALUES ('51', '2018-06-22 14:22:54', '1', '新增机构：行政部', 'unit', '29097e8ba3c1c99658b0130d02f32c582f1217e5');
+INSERT INTO `log` VALUES ('52', '2018-06-22 15:12:12', '1', '停用机构：', 'unit', '29097e8ba3c1c99658b0130d02f32c582f1217e5');
+INSERT INTO `log` VALUES ('53', '2018-06-22 15:15:27', '1', '停用机构：null', 'unit', '29097e8ba3c1c99658b0130d02f32c582f1217e5');
+INSERT INTO `log` VALUES ('54', '2018-06-22 15:15:34', '1', '启用机构：null', 'unit', '29097e8ba3c1c99658b0130d02f32c582f1217e5');
+INSERT INTO `log` VALUES ('55', '2018-06-22 16:49:37', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
+INSERT INTO `log` VALUES ('56', '2018-06-22 16:59:23', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
+INSERT INTO `log` VALUES ('57', '2018-06-22 16:59:27', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
+INSERT INTO `log` VALUES ('58', '2018-06-22 17:08:09', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
+INSERT INTO `log` VALUES ('59', '2018-06-22 17:08:24', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
+INSERT INTO `log` VALUES ('60', '2018-06-22 17:08:45', '1', '机构排序：31beb2aa7bfe6d4c7daf2adbd53e8b10942a86cc', 'unit', null);
+INSERT INTO `log` VALUES ('61', '2018-06-22 17:12:14', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
 
 -- ----------------------------
 -- Table structure for ndkh
@@ -21587,6 +21625,14 @@ CREATE TABLE `unit` (
 -- ----------------------------
 -- Records of unit
 -- ----------------------------
+INSERT INTO `unit` VALUES ('0371073bc2f4cd76200ce1da0dcd090129c4642e', '档案科', '档案科', '2', null, 'fccfcad598229852bc359c8d96c2d57f33449297', '1');
+INSERT INTO `unit` VALUES ('0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', '审计科', '审计科', '0', null, '0', '1');
+INSERT INTO `unit` VALUES ('1536d284de253087b938b85fd749ae26f1970b64', '马克思主义学院', '马克思主义学院', '1', null, '0', '1');
+INSERT INTO `unit` VALUES ('29097e8ba3c1c99658b0130d02f32c582f1217e5', '行政部', '行政部', '1', null, '78179f33cef61518a783377f3c81a019076d0c8e', '1');
+INSERT INTO `unit` VALUES ('31beb2aa7bfe6d4c7daf2adbd53e8b10942a86cc', '教学部', '教学部', '0', null, '78179f33cef61518a783377f3c81a019076d0c8e', '1');
+INSERT INTO `unit` VALUES ('4eb2eeb94e688cf19c8eb7e2fcea274498d212b4', '车队', '车队', '1', null, 'fccfcad598229852bc359c8d96c2d57f33449297', '1');
+INSERT INTO `unit` VALUES ('78179f33cef61518a783377f3c81a019076d0c8e', '继续教育中心', '继续教育中心', '3', null, '0', '1');
+INSERT INTO `unit` VALUES ('fccfcad598229852bc359c8d96c2d57f33449297', '学院办公室', '学院办公室', '2', null, '0', '1');
 
 -- ----------------------------
 -- Table structure for user
@@ -21602,9 +21648,10 @@ CREATE TABLE `user` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间 自动生成',
   `role_id` bigint(20) DEFAULT NULL COMMENT '处室id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'admin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '管理员', '1', '1', '2014-07-17 12:59:08', '1');
+INSERT INTO `user` VALUES ('4', 'test', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a', '测试', '1', '1', '2018-06-19 15:53:51', '1');
