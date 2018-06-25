@@ -20,6 +20,7 @@ a:hover {
 								id="bs-example-navbar-collapse-1">
 								<ul class="nav navbar-nav">
 									<li class="active"><a href="rest/unit/people">机构成员</a></li>
+									<li><a href="rest/unit/renmian">人员调整</a></li>
 									<li><a href="rest/unit/setUnit">机构设置</a></li>
 									<li><a href="rest/unit/sortUnit">机构排序</a></li>
 									<li><a href="rest/unit/newUnit">新增机构</a></li>

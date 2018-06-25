@@ -398,3 +398,7 @@
 .multipleList-row-but {
 	text-align: center;
 }
+
+.alertBorder {
+	border-color: red;
+}
