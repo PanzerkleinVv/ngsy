@@ -40,19 +40,29 @@ public class DutiesUnitServiceImpl extends GenericServiceImpl<DutiesUnit, String
 		int flag;
 		for (int i = 0; i < duties.size(); i++) {
 			duty = duties.get(i);
-			if (duty.getId() == null || "".equals(duty.getId())) {
-				duty.setId(ApplicationUtils.newUUID());
-				duty.setSort(i);
-				flag = dutiesUnitMapper.insertSelective(duty);
+			if (duty == null || duty.isEmpty()) {
+				continue;
 			} else {
-				duty.setSort(i);
-				flag = dutiesUnitMapper.updateByPrimaryKeySelective(duty);
-			}
-			if (flag < 1) {
-				throw new Exception("更新出错");
+				duty.setUnitId(unitId);
+				if (duty.getId() == null || "".equals(duty.getId())) {
+					duty.setId(ApplicationUtils.newUUID());
+					flag = dutiesUnitMapper.insertSelective(duty);
+				} else {
+					flag = dutiesUnitMapper.updateByPrimaryKeySelective(duty);
+				}
+				if (flag < 1) {
+					throw new Exception("更新出错");
+				}
 			}
 		}
 		return true;
+	}
+	
+	@Override
+	public long countUsedByUnitId(String unitId) {
+		DutiesUnitExample example = new DutiesUnitExample();
+		example.createCriteria().andUnitIdEqualTo(unitId).andIsUsedEqualTo("1");
+		return dutiesUnitMapper.countByExample(example);
 	}
 
 }

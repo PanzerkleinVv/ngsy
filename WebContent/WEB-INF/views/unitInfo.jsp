@@ -55,7 +55,7 @@
 					</c:when>
 					<c:otherwise>
 						<span>停用</span>
-						<button type="button" class="btn red" onclick="used(1)">启用</button>
+						<button type="button" class="btn green" onclick="used(1)">启用</button>
 					</c:otherwise>
 				</c:choose>
 			</div>

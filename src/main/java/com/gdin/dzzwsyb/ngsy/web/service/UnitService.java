@@ -15,4 +15,5 @@ public interface UnitService extends GenericService<Unit, String> {
 	List<Unit> getSortList(String superiorId);
 	
 	int updateSort(String[] ids) throws Exception;
+
 }

@@ -70,4 +70,12 @@ public class DutiesUnit {
 	public void setSort(Integer sort) {
 		this.sort = sort;
 	}
+	
+	public boolean isEmpty() {
+		if (id == null && name == null && unitId == null && rank == null && count == null && isUsed == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

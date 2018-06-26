@@ -10,4 +10,6 @@ public interface DutiesUnitService extends GenericService<DutiesUnit, String> {
 	List<DutiesUnit> selectList(String unitId);
 	
 	boolean modify(List<DutiesUnit> duties, String unitId) throws Exception;
+	
+	long countUsedByUnitId(String unitId);
 }

@@ -7,7 +7,7 @@
 	<c:otherwise>
 		<c:set var="i" value="0" />
 		<div class="mainContent">
-			<form id="dutiesForm">
+			<form id="jobForm">
 				<div class="navigationBar">
 					<span class="navigationItem">${unit.simpleName} 行政职务设置</span>
 					<c:if test="${message != null && message.msg ne 'nullnull'}">
@@ -17,31 +17,39 @@
 				</div>
 				<div class="multipleFormTable sortable">
 					<div class="multipleFormHeader col-md-12">
-						<span class="col-md-4">行政职务名称</span> <span class="col-md-4">院内行政职级</span>
-						<span class="col-md-2">应有职数</span> <span class="col-md-2">状态</span>
+						<span class="col-md-3">岗位名称</span> <span class="col-md-2">岗位级别</span>
+						<span class="col-md-2">院内岗位分类</span> <span class="col-md-2">应有岗数</span>
+						<span class="col-md-2">岗位工资</span> <span class="col-md-1">状态</span>
 					</div>
-					<c:forEach var="duty" items="${duties}" varStatus="status">
+					<c:forEach var="job" items="${jobs}" varStatus="status">
 						<c:set var="i" value="${status.index}" />
 						<div class="multipleFormRow col-md-12">
-							<input type="hidden" name="dutieUnits[${status.index}].id"
-								class="dutyId" value="${duty.id}" /> <span class="col-md-4"><input
-								type="text" name="dutieUnits[${status.index}].name"
-								value="${duty.name}" class="form-control" onblur="check(this)" /></span><input
-								type="hidden" name="rankValue" value="${duty.rank}"
-								disabled="disabled" /> <span class="col-md-4"><select
-								name="dutieUnits[${status.index}].rank"
-								class="form-control rankSelect" onblur="check(this)"><option></option></select></span><span
-								class="col-md-2"><input type="text"
-								name="dutieUnits[${status.index}].count" value="${duty.count}"
-								class="form-control" onblur="check(this)" /></span><input
-								type="hidden" name="isUsedValue" value="${duty.isUsed}"
+							<input type="hidden" name="jobUnits[${status.index}].id"
+								class="jobId" value="${job.id}" /> <span class="col-md-3"><input
+								type="text" name="jobUnits[${status.index}].name"
+								value="${job.name}" class="form-control" onblur="check(this)" /></span><input
+								type="hidden" name="rankValue" value="${job.rank}"
 								disabled="disabled" /> <span class="col-md-2"><select
-								name="dutieUnits[${status.index}].isUsed"
+								name="jobUnits[${status.index}].rank"
+								class="form-control rankSelect" onblur="check(this)"><option></option></select></span><input
+								type="hidden" name="typeValue" value="${job.type}"
+								disabled="disabled" /> <span class="col-md-2"><select
+								name="jobUnits[${status.index}].type"
+								class="form-control typeSelect" onblur="check(this)"><option></option></select></span><span
+								class="col-md-2"><input type="text"
+								name="jobUnits[${status.index}].count" value="${job.count}"
+								class="form-control" onblur="check(this)" /></span><span
+								class="col-md-2"><input type="text"
+								name="jobUnits[${status.index}].salary" value="${job.salary}"
+								class="form-control" onblur="check(this)" /></span><input
+								type="hidden" name="isUsedValue" value="${job.isUsed}"
+								disabled="disabled" /> <span class="col-md-1"><select
+								name="jobUnits[${status.index}].isUsed"
 								class="form-control isUsedSelect" onblur="check(this)"><option
 										value="1">启用</option>
 									<option value="0">停用</option></select></span><input type="hidden"
-								name="dutieUnits[${status.index}].sort" class="dutySort"
-								value="${duty.sort}" />
+								name="dutieUnits[${status.index}].sort" class="jobSort"
+								value="${job.sort}" />
 						</div>
 					</c:forEach>
 					<div class="multipleFormAdd">
@@ -60,24 +68,29 @@
 			<input type="hidden" id="flag" value="${i == null ? 0 : i}" />
 			<script type="text/javascript">
 				$(function() {
-					$(".rankSelect")
+					$(".rankSelect").each(
+							function(i, n) {
+								getCodeSimple('岗位级别', $(n), $(n).parent().prev(
+										"input[name='rankValue']").val());
+							});
+					$(".typeSelect")
 							.each(
 									function(i, n) {
 										getCodeSimple(
-												'院内行政职级',
+												'院内岗位分类',
 												$(n),
 												$(n)
 														.parent()
 														.prev(
-																"input[name='rankValue']")
+																"input[name='typeValue']")
 														.val());
 									});
 					var options = {
 						target : "#unitContent",
-						url : "rest/dutiesUnit/save",
+						url : "rest/jobUnit/save",
 						type : 'POST'
 					};
-					$('#dutiesForm').ajaxForm(options);
+					$('#jobForm').ajaxForm(options);
 					$(".isUsedSelect").each(
 							function(i, n) {
 								$(n).val(
@@ -92,7 +105,7 @@
 						placeholder : "multipleFormRow"
 					});
 					$(".sortable").bind('sortupdate', function(event, ui) {
-						$(".dutySort").each(function(i, n) {
+						$(".jobSort").each(function(i, n) {
 							$(n).val(i);
 						});
 					});
@@ -104,7 +117,7 @@
 					var msg = $(".multipleFormMsg>span:last");
 					if (type.search("name") > -1) {
 						if (value == null || value.length < 1) {
-							msg.html("行政职务名称 不能为空！");
+							msg.html("岗位名称 不能为空！");
 							msg.css('color', '#FF0000');
 							$(target).addClass("alertBorder");
 							return false;
@@ -115,12 +128,12 @@
 						}
 					} else if (type.search("count") > -1) {
 						if (value == null || value.length < 1) {
-							msg.html("应有职数 不能为空！");
+							msg.html("应有岗数 不能为空！");
 							msg.css('color', '#FF0000');
 							$(target).addClass("alertBorder");
 							return false;
 						} else if (value.search(/\D/) != -1) {
-							msg.html("应有职数 只能为阿拉伯数字！");
+							msg.html("应有岗数 只能为阿拉伯数字！");
 							msg.css('color', '#FF0000');
 							$(target).addClass("alertBorder");
 							return false;
@@ -131,7 +144,18 @@
 						}
 					} else if (type.search("rank") > -1) {
 						if (value == null || value.length < 1) {
-							msg.html("院内行政职级 不能为空！");
+							msg.html("岗位级别 不能为空！");
+							msg.css('color', '#FF0000');
+							$(target).addClass("alertBorder");
+							return false;
+						} else {
+							msg.html("");
+							$(target).removeClass("alertBorder");
+							return true;
+						}
+					} else if (type.search("type") > -1) {
+						if (value == null || value.length < 1) {
+							msg.html("院内岗位分类 不能为空！");
 							msg.css('color', '#FF0000');
 							$(target).addClass("alertBorder");
 							return false;
@@ -148,9 +172,9 @@
 							return false;
 						} else if (value == 0
 								&& checkUsed($(target).parents(
-										".multipleFormRow").find(".dutyId")
+										".multipleFormRow").find(".jobId")
 										.val())) {
-							msg.html("该职务有在任人员，无法停用！");
+							msg.html("该岗位有在岗人员，无法停用！");
 							msg.css('color', '#FF0000');
 							$(target).addClass("alertBorder");
 							return false;
@@ -169,7 +193,7 @@
 						data : {
 							id : value
 						},
-						url : 'rest/dutiesUnit/checkUsed',
+						url : 'rest/jobUnit/checkUsed',
 						dataType : "json",
 						async : false,
 						success : function(result) {
@@ -209,15 +233,20 @@
 
 				function add() {
 					var flag = parseInt($("#flag").val()) + 1;
-					var innerHtml = '<div class="multipleFormRow col-md-12"><input type="hidden" name="dutieUnits[' + flag + '].id" /> <span class="col-md-4"><input type="text" name="dutieUnits['
+					var innerHtml = '<div class="multipleFormRow col-md-12"><input type="hidden" name="jobUnits[' + flag + '].id" /> <span class="col-md-3"><input type="text" name="jobUnits['
 							+ flag
-							+ '].name" class="form-control" onblur="check(this)" /></span> <span class="col-md-4"><select name="dutieUnits['
+							+ '].name" class="form-control" onblur="check(this)" /></span> <span class="col-md-2"><select name="jobUnits['
 							+ flag
-							+ '].rank" class="form-control rankSelect" onblur="check(this)"><option></option></select></span><span class="col-md-2"><input type="text" name="dutieUnits['
+							+ '].rank" class="form-control rankSelect" onblur="check(this)"><option></option></select></span><span class="col-md-2"><select name="jobUnits['
 							+ flag
-							+ '].count" class="form-control" onblur="check(this)" /></span><input type="hidden" name="dutieUnits[' + flag + '].isUsed" value="1" /> <span class="col-md-2"><a onclick="del(this)" style="cursor: pointer;"><i class="fa fa-trash-o"></i></a></span></div><input type="hidden" name="dutieUnits[' + flag + '].sort" class="dutySort" value="' + flag + '" />';
+							+ '].type" class="form-control typeSelect" onblur="check(this)"><option></option></select></span><span class="col-md-2"><input type="text" name="jobUnits['
+							+ flag
+							+ '].count" class="form-control" onblur="check(this)" /></span><span class="col-md-2"><input type="text" name="jobUnits['
+							+ flag
+							+ '].salary" class="form-control" onblur="check(this)" /></span><input type="hidden" name="jobUnits[' + flag + '].isUsed" value="1" /> <span class="col-md-1"><a onclick="del(this)" style="cursor: pointer;"><i class="fa fa-trash-o"></i></a></span></div><input type="hidden" name="jobUnits[' + flag + '].sort" class="dutySort" value="' + flag + '" />';
 					$(".multipleFormAdd").before(innerHtml);
-					getCodeSimple('院内行政职级', $(".rankSelect:last"), "");
+					getCodeSimple('岗位级别', $(".rankSelect:last"), "");
+					getCodeSimple('院内岗位分类', $(".typeSelect:last"), "");
 					$("#flag").val(flag);
 					return false;
 				}

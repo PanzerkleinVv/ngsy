@@ -9,10 +9,10 @@ a:hover {
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-3 ">
+				<div class="col-md-2 ">
 					<div id="treeDemo" class="ztree"></div>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-10">
 					<nav id="unitNav" class="navbar navbar-default"
 						style="height: 20px">
 						<div class="container-fluid">
@@ -36,9 +36,6 @@ a:hover {
 			</div>
 		</div>
 	</div>
-
-
-
 
 	<script type="text/javascript">
 		$("#unitNav a").click(function() {

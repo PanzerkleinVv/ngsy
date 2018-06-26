@@ -22,10 +22,10 @@
 			<div class="userRow">
 				<span class="userItem">${status.count}<input name="id"
 					type="hidden" value="${code.id}" /></span> <span
-					class="userItem codeForm codeName"> ${code.name} </span> <span
+					class="userItem codeForm codeName">${code.name}</span> <span
 					class="userItem codeForm codeHide"><input name="name"
 					size="50" class="input-sm form-inline" value="${codeType.name}" />
-				</span><span class="userItem codeForm codeCode"> ${code.code} </span> <span
+				</span><span class="userItem codeForm codeCode">${code.code}</span> <span
 					class="userItem codeForm codeHide"><input name="code"
 					size="50" class="input-sm form-inline" value="${code.code}" /> </span><span
 					class="userItem resultMsg"></span> <span class="userItem">
