@@ -90,4 +90,12 @@ public class JobUnit {
 	public void setSort(Integer sort) {
 		this.sort = sort;
 	}
+	
+	public boolean isEmpty() {
+		if(id == null && unitId == null && name == null && rank == null && type == null && count == null && salary == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

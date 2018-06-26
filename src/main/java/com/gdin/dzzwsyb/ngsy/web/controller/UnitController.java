@@ -23,6 +23,8 @@ import com.gdin.dzzwsyb.ngsy.web.model.Node;
 import com.gdin.dzzwsyb.ngsy.web.model.ResultMessage;
 import com.gdin.dzzwsyb.ngsy.web.model.Unit;
 import com.gdin.dzzwsyb.ngsy.web.security.RoleSign;
+import com.gdin.dzzwsyb.ngsy.web.service.DutiesUnitService;
+import com.gdin.dzzwsyb.ngsy.web.service.JobUnitService;
 import com.gdin.dzzwsyb.ngsy.web.service.LogService;
 import com.gdin.dzzwsyb.ngsy.web.service.UnitService;
 
@@ -32,6 +34,10 @@ public class UnitController {
 
 	@Resource
 	private UnitService unitService;
+	@Resource
+	private DutiesUnitService dutiesUnitService;
+	@Resource
+	private JobUnitService jobUnitService;
 	@Resource
 	private LogService logService;
 
@@ -141,12 +147,16 @@ public class UnitController {
 				METHOD = "启用机构：";
 				message.start();
 			} else {
-				/*
-				 * 未加入机构现任人员检测
-				 */
-				int count;
-				METHOD = "停用机构：";
+				long count = dutiesUnitService.countUsedByUnitId(unit.getId());
+				count += jobUnitService.countUsedByUnitId(unit.getId());
 				message.stop();
+				if (count > 0L) {
+					message.failure().addMsg("该机构含有未停用的行政职务或岗位，无法停用。");
+					model.addFlashAttribute("message", message);
+					model.addFlashAttribute("unit", unit);
+					return "redirect:/rest/unit/setUnit";
+				}
+				METHOD = "停用机构：";
 			}
 			final int flag = unitService.update(unit);
 			if (flag > 0) {
@@ -197,9 +207,16 @@ public class UnitController {
 	
 	@RequestMapping("/duties")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String sortUnit(Unit unit, RedirectAttributes model) {
+	public String duties(Unit unit, RedirectAttributes model) {
 		model.addFlashAttribute("unit", unit);
 		return "redirect:/rest/dutiesUnit/list";
+	}
+	
+	@RequestMapping("/job")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public String job(Unit unit, RedirectAttributes model) {
+		model.addFlashAttribute("unit", unit);
+		return "redirect:/rest/jobUnit/list";
 	}
 
 }

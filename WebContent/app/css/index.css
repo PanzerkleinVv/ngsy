@@ -398,3 +398,43 @@
 .multipleList-row-but {
 	text-align: center;
 }
+
+.alertBorder {
+	border-color: red;
+}
+
+.multipleFormTable {
+	text-align: center;
+	font-size: 17px;
+	font-family: 微软雅黑;
+}
+
+.multipleFormAdd {
+	text-align: center;
+	font-size: 13px;
+}
+
+.multipleFormFooter {
+	text-align: center;
+}
+
+.multipleFormMsg {
+	font-size: 13px;
+	text-align: left;
+}
+
+.multipleFormHeader {
+	text-align: center;
+	background-color: #1570a6;
+	color: #EEEEEE;
+}
+
+.multipleFormRow {
+	margin-top: 4px;
+	margin-bottom: 4px;
+	border: 2px solid #EEEEEE;
+	border-radius: 5px !important;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #e7e7e7;
+}

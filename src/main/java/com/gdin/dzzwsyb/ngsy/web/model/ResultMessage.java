@@ -91,5 +91,10 @@ public class ResultMessage {
 		this.color = MessageColor.FAILURE.getColor();
 		return this;
 	}
+	
+	public ResultMessage addMsg(String msg) {
+		this.resultInfo += "：" + msg;
+		return this;
+	}
 
 }

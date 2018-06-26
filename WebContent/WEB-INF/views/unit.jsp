@@ -9,10 +9,10 @@ a:hover {
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-3 ">
+				<div class="col-md-2 ">
 					<div id="treeDemo" class="ztree"></div>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-10">
 					<nav id="unitNav" class="navbar navbar-default"
 						style="height: 20px">
 						<div class="container-fluid">
@@ -20,6 +20,7 @@ a:hover {
 								id="bs-example-navbar-collapse-1">
 								<ul class="nav navbar-nav">
 									<li class="active"><a href="rest/unit/people">机构成员</a></li>
+									<li><a href="rest/unit/renmian">人员调整</a></li>
 									<li><a href="rest/unit/setUnit">机构设置</a></li>
 									<li><a href="rest/unit/sortUnit">机构排序</a></li>
 									<li><a href="rest/unit/newUnit">新增机构</a></li>
@@ -35,9 +36,6 @@ a:hover {
 			</div>
 		</div>
 	</div>
-
-
-
 
 	<script type="text/javascript">
 		$("#unitNav a").click(function() {
