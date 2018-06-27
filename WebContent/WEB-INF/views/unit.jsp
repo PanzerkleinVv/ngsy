@@ -9,10 +9,10 @@ a:hover {
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-2 ">
+				<div class="col-md-3 ">
 					<div id="treeDemo" class="ztree"></div>
 				</div>
-				<div class="col-md-10">
+				<div class="col-md-9">
 					<nav id="unitNav" class="navbar navbar-default"
 						style="height: 20px">
 						<div class="container-fluid">
@@ -68,8 +68,8 @@ a:hover {
 		//选中/取消父节点时选中/取消所有子节点
 		var setting = {
 			view : {
-				dblClickExpand : false,
-				selectedMulti : false
+				selectedMulti : false,
+				addDiyDom: addDiyDom
 			},
 			check : {
 				enable : true,
@@ -101,6 +101,42 @@ a:hover {
 					}
 				}
 			}
+<<<<<<< HEAD
+		};
+		//节点数太长省略号
+		function addDiyDom(treeId, treeNode) {
+            var spaceWidth = 5;
+            var switchObj = $("#" + treeNode.tId + "_switch"),
+            checkObj = $("#" + treeNode.tId + "_check"),
+            icoObj = $("#" + treeNode.tId + "_ico");
+            switchObj.remove();
+            checkObj.remove();
+            icoObj.parent().before(switchObj);
+            icoObj.parent().before(checkObj);
+
+            var spantxt = $("#" + treeNode.tId + "_span").html();
+            if (spantxt.length > 8) {
+                spantxt = spantxt.substring(0, 6) + "...";
+                $("#" + treeNode.tId + "_span").html(spantxt);
+            }
+        
+  }
+		
+		
+		$(document).ready(function() {
+			$.ajax({
+				type : "Post",
+				url : 'rest/unit/menu',
+				dataType : "json",
+				success : function(result) {
+					console.log(result);
+					zTree = $.fn.zTree.init($("#treeDemo"), setting, result);
+				},
+				error : function() {
+					alert("菜单加载失败！")
+				}
+			});
+=======
 		},
 		edit: {
 			enable: false
@@ -129,6 +165,7 @@ a:hover {
 		          alert("菜单加载失败！")
 		      }
 		  });
+>>>>>>> origin/master
 		})
 		/* var newCount = 1;
 		function addHoverDom(treeId, treeNode) {

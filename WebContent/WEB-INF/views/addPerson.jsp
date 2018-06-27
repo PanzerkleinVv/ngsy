@@ -262,7 +262,9 @@ div {
 					<input style="width: 500px; margin-top: 7px; margin-bottom: 7px;"
 						class="input-clarge focused" name="resume" type="text" id="resume">
 					<button type="button" class="btn btn-info" onclick="addResume()">增加</button>
-					<span id="zjadd"></span>
+					<div id="zjadd">
+					</div>
+					
 				</div>
 
 			</div>
@@ -385,8 +387,8 @@ div {
 		var html = "<div name="+'resume1'+resumenum+">"
 				+ "<input style="+'width:500px;margin-top:10px;'+" class="+'input-clarge focused'+" name="+'resume'+resumenum+" type="+'text'+"  id="+'resume'+resumenum+">"
 				+ "<input type=hidden name=xlavail"+resumenum+" value=1>"
-				+ "<a href=\"javascript:deleteitem(document.all.xlavail"
-				+ resumenum + ",'resume1" + resumenum + "')\">×</a></div>"
+				+ "&nbsp;&nbsp;&nbsp;&nbsp;<a style="+'cursor: pointer;'+" href=\"javascript:deleteitem(document.all.xlavail"
+				+ resumenum + ",'resume1" + resumenum + "')\"><i class='fa fa-trash-o'></i></a></div>"
 		document.all.zjadd.insertAdjacentHTML("beforeBegin", html)
 
 	}
