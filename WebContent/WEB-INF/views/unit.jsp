@@ -101,6 +101,7 @@ a:hover {
 					}
 				}
 			}
+<<<<<<< HEAD
 		};
 		//节点数太长省略号
 		function addDiyDom(treeId, treeNode) {
@@ -135,6 +136,36 @@ a:hover {
 					alert("菜单加载失败！")
 				}
 			});
+=======
+		},
+		edit: {
+			enable: false
+		},
+		callback: {
+		    beforeCheck : function(treeId, treeNode) {
+		                        if (treeNode.isParent) {
+		                            alert("请选择子节点！")
+		                            return false;
+		                        }
+		                    },
+			onClick:function (e, treeId, treeNode, clickFlag) { zTree.checkNode(treeNode, !treeNode.checked, true); } 
+		}
+	};
+
+	$(document).ready(function(){
+		  $.ajax({
+		      type: "Post",
+		      url: 'rest/unit/menu',  
+		      dataType: "json",
+		      success: function (result) {
+		    	  console.log(result);
+		    	  zTree = $.fn.zTree.init($("#treeDemo"), setting, result);
+		      },
+		      error: function () {
+		          alert("菜单加载失败！")
+		      }
+		  });
+>>>>>>> origin/master
 		})
 		/* var newCount = 1;
 		function addHoverDom(treeId, treeNode) {
