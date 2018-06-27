@@ -101,21 +101,34 @@ a:hover {
 					}
 				}
 			}
-		};
+		},
+		edit: {
+			enable: false
+		},
+		callback: {
+		    beforeCheck : function(treeId, treeNode) {
+		                        if (treeNode.isParent) {
+		                            alert("请选择子节点！")
+		                            return false;
+		                        }
+		                    },
+			onClick:function (e, treeId, treeNode, clickFlag) { zTree.checkNode(treeNode, !treeNode.checked, true); } 
+		}
+	};
 
-		$(document).ready(function() {
-			$.ajax({
-				type : "Post",
-				url : 'rest/unit/menu',
-				dataType : "json",
-				success : function(result) {
-					console.log(result);
-					zTree = $.fn.zTree.init($("#treeDemo"), setting, result);
-				},
-				error : function() {
-					alert("菜单加载失败！")
-				}
-			});
+	$(document).ready(function(){
+		  $.ajax({
+		      type: "Post",
+		      url: 'rest/unit/menu',  
+		      dataType: "json",
+		      success: function (result) {
+		    	  console.log(result);
+		    	  zTree = $.fn.zTree.init($("#treeDemo"), setting, result);
+		      },
+		      error: function () {
+		          alert("菜单加载失败！")
+		      }
+		  });
 		})
 		/* var newCount = 1;
 		function addHoverDom(treeId, treeNode) {
