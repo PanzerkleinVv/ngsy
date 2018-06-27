@@ -9,10 +9,10 @@ a:hover {
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-3 ">
+				<div class="col-md-2-3 ">
 					<div id="treeDemo" class="ztree"></div>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-9-10">
 					<nav id="unitNav" class="navbar navbar-default"
 						style="height: 20px">
 						<div class="container-fluid">
@@ -60,7 +60,6 @@ a:hover {
 			}
 			return false;
 		});
-
 		$(function() {
 			$("#index-page-title").html("机构管理");
 			$("#current-page-title").html("机构管理");
@@ -101,7 +100,6 @@ a:hover {
 					}
 				}
 			}
-<<<<<<< HEAD
 		};
 		//节点数太长省略号
 		function addDiyDom(treeId, treeNode) {
@@ -121,8 +119,6 @@ a:hover {
             }
         
   }
-		
-		
 		$(document).ready(function() {
 			$.ajax({
 				type : "Post",
@@ -136,36 +132,6 @@ a:hover {
 					alert("菜单加载失败！")
 				}
 			});
-=======
-		},
-		edit: {
-			enable: false
-		},
-		callback: {
-		    beforeCheck : function(treeId, treeNode) {
-		                        if (treeNode.isParent) {
-		                            alert("请选择子节点！")
-		                            return false;
-		                        }
-		                    },
-			onClick:function (e, treeId, treeNode, clickFlag) { zTree.checkNode(treeNode, !treeNode.checked, true); } 
-		}
-	};
-
-	$(document).ready(function(){
-		  $.ajax({
-		      type: "Post",
-		      url: 'rest/unit/menu',  
-		      dataType: "json",
-		      success: function (result) {
-		    	  console.log(result);
-		    	  zTree = $.fn.zTree.init($("#treeDemo"), setting, result);
-		      },
-		      error: function () {
-		          alert("菜单加载失败！")
-		      }
-		  });
->>>>>>> origin/master
 		})
 		/* var newCount = 1;
 		function addHoverDom(treeId, treeNode) {
