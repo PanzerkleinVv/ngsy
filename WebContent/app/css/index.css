@@ -28,6 +28,10 @@
 	margin-left: 10px;
 }
 
+.sortableLine {
+	cursor: move;
+}
+
 .page-title1 {
 	font-family: 微软雅黑;
 }
@@ -343,13 +347,94 @@
 	font-family: 黑体;
 	text-align: center;
 }
-.unitLeft {
-	width: 300px;
-	display: inline-block;
-	overflow-y: auto; 
+
+.singleFormGroup {
+	font-size: 18px !important;
+	font-family: 微软雅黑;
+	width: 100%;
 }
 
-.unitRight {
-	display: inline-block;
-	overflow-y: auto;
+.singleFormGroup>div:nth-child(even) {
+	background-color: #EEEEEE;
+}
+
+.singleFormGroup>div:nth-child(odd) {
+	background-color: #FFFFFF;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.singleFormGroup>div:last-child {
+	background-color: #FFFFFF !important;
+	text-align: center;
+}
+
+.multipleList {
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.multipleList-row {
+	margin-top: 4px;
+	margin-bottom: 4px;
+	border: 2px solid #EEEEEE;
+	border-radius: 5px !important;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 18px;
+	font-family: 微软雅黑;
+	color: #EEEEEE;
+	background-color: #1570a6;
+}
+
+.multipleList-row-ps {
+	padding-left: 5%;
+	padding-right: 5%;
+	background-color: #EEEEEE
+}
+
+.multipleList-row-but {
+	text-align: center;
+}
+
+.alertBorder {
+	border-color: red;
+}
+
+.multipleFormTable {
+	text-align: center;
+	font-size: 17px;
+	font-family: 微软雅黑;
+}
+
+.multipleFormAdd {
+	text-align: center;
+	font-size: 13px;
+}
+
+.multipleFormFooter {
+	text-align: center;
+}
+
+.multipleFormMsg {
+	font-size: 13px;
+	text-align: left;
+}
+
+.multipleFormHeader {
+	text-align: center;
+	background-color: #1570a6;
+	color: #EEEEEE;
+}
+
+.multipleFormRow {
+	margin-top: 4px;
+	margin-bottom: 4px;
+	border: 2px solid #EEEEEE;
+	border-radius: 5px !important;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #e7e7e7;
 }

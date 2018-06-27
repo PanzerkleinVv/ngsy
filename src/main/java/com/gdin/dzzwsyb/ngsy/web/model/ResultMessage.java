@@ -65,6 +65,21 @@ public class ResultMessage {
 		return this;
 	}
 	
+	public ResultMessage start() {
+		this.methodInfo = "启用";
+		return this;
+	}
+	
+	public ResultMessage stop() {
+		this.methodInfo = "停用";
+		return this;
+	}
+	
+	public ResultMessage sort() {
+		this.methodInfo = "排序";
+		return this;
+	}
+	
 	public ResultMessage success() {
 		this.resultInfo = "成功！";
 		this.color = MessageColor.SUCCESS.getColor();
@@ -74,6 +89,11 @@ public class ResultMessage {
 	public ResultMessage failure() {
 		this.resultInfo = "失败！";
 		this.color = MessageColor.FAILURE.getColor();
+		return this;
+	}
+	
+	public ResultMessage addMsg(String msg) {
+		this.resultInfo += "：" + msg;
 		return this;
 	}
 

@@ -330,6 +330,8 @@
 		src="assets/scripts/jquery.ztree.excheck.js"></script>
 	<script type="text/javascript"
 		src="assets/scripts/jquery.ztree.exedit.js"></script>
+	<script type="text/javascript"
+		src="assets/scripts/jquery.form.js"></script>
 	<!-- <script data-main="app/js/main" src="app/lib/requirejs/require.js"></script> -->
 	<!-- <script src="assets/js/amazeui.min.js"></script> -->
 </body>

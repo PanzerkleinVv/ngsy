@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-06-19 12:51:22
+Date: 2018-06-26 18:12:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3788,6 +3788,7 @@ INSERT INTO `code` VALUES ('2da619963589e0af592263ea24bfac7990a99d69', 'ccefd243
 INSERT INTO `code` VALUES ('2da79c36349f3f41b8e5c288102dde2319839d5a', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '罗城仫佬族自治县', '451225', '3');
 INSERT INTO `code` VALUES ('2dade02e88ab05cd81d0593840025e86f6cdc208', 'ccefd243e588c16c26da7435d12aa9cdec79230b', '国家级教练九档', '2B19', '1');
 INSERT INTO `code` VALUES ('2dae1176a399d15b2a4f7138d48d54993e852f75', '0cbded8f58422ce1ada36a4429081cd84850bff5', '江西吉安', '360800', '2');
+INSERT INTO `code` VALUES ('2dae1fa909a57932dfc937186223e79bb02cf6b7', 'a7e0360ddf7304135168c889c647f50e8d27a7a9', '岗位级别2', '2', '1');
 INSERT INTO `code` VALUES ('2db058e742073815ec1a4b9c1112ca768de5a2c9', '20fbaaa7877cc81525bab66f74e79d4ec27142b2', '警察管理', '030401', '1');
 INSERT INTO `code` VALUES ('2db2a6e73db593da27b26ccf15a5c6a72ecd0425', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '中国少数民族哲学思想', '7202080', '3');
 INSERT INTO `code` VALUES ('2db5679665bac79b01b870c88f21b2796004108f', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '放射性地球化学', '1703020', '3');
@@ -4775,6 +4776,7 @@ INSERT INTO `code` VALUES ('3930341bef0fec4ee82e20454a66f42d2573f2aa', '9e9dcdc7
 INSERT INTO `code` VALUES ('39329e1dd94456585cd340d2c06ffa01225a2825', '20fbaaa7877cc81525bab66f74e79d4ec27142b2', '电影电视美术设计', '050440', '1');
 INSERT INTO `code` VALUES ('39331f2e277e40239b339269ddeee4266b785d19', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '新巴尔虎左旗', '150726', '3');
 INSERT INTO `code` VALUES ('3936b41e769e4546c3bb3ef4e976ba9eb814d934', '0cbded8f58422ce1ada36a4429081cd84850bff5', '湖北武汉市江岸区', '420102', '3');
+INSERT INTO `code` VALUES ('3937c51195cb6e82adc6a32baaf639104fbdca61', '8146b3b18096917d49c4103b20e6f764197d0188', '院内岗位分类3', '3', '1');
 INSERT INTO `code` VALUES ('393d0fd7f4dc40a14c6de5ef023ef50c8d9f734c', '20fbaaa7877cc81525bab66f74e79d4ec27142b2', '核化工工艺', '081256', '1');
 INSERT INTO `code` VALUES ('394079336ce637c0627056d128f2382621aac4cb', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '塞舌尔', 'B69000', '2');
 INSERT INTO `code` VALUES ('3940becf839d5ae41917ae668902390daa4aa00d', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '市辖区', '341201', '3');
@@ -8418,6 +8420,7 @@ INSERT INTO `code` VALUES ('663f3c48e899e2a7deb3de49a217ee5d71d8545e', '0cbded8f
 INSERT INTO `code` VALUES ('664849f0ae9c9bb1d946e2a28e313132f66b51fb', '2fc20d198d1a3c95ac74bbd05891796123f08268', '航空运输业', 'F5500', '2');
 INSERT INTO `code` VALUES ('664967a5c97591db00301569ff0f79d0e4e2f692', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '蓬溪县', '510921', '3');
 INSERT INTO `code` VALUES ('664a634468d8b5b6f6db38fe8d7fb0e19c8a8be1', '0cbded8f58422ce1ada36a4429081cd84850bff5', '甘肃玉门', '620981', '3');
+INSERT INTO `code` VALUES ('664b1cd4e3745142ddb2ea9670d0d7381d426444', '21e997b31cb9a1550cd1474ca91c08d7d44e4552', '院内行政职级一', '001', '1');
 INSERT INTO `code` VALUES ('664d88b1d4cdaf6f58707b41b1b9046725a021f6', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '天祝藏族自治县', '620623', '3');
 INSERT INTO `code` VALUES ('6651737d15901ce0aeb7a9189198d04cb627ab62', '0cbded8f58422ce1ada36a4429081cd84850bff5', '云南昆明市东川区', '530113', '3');
 INSERT INTO `code` VALUES ('66530dc3da218f6a296d51bf88bc44629a970ebd', '0cbded8f58422ce1ada36a4429081cd84850bff5', '广西临桂', '450322', '3');
@@ -9222,6 +9225,7 @@ INSERT INTO `code` VALUES ('703c5d81338e6668a0fa568247492cdc0ec8afd9', '15d90982
 INSERT INTO `code` VALUES ('703cbb54b8178509b0a41195a5c438dff9748528', '0cbded8f58422ce1ada36a4429081cd84850bff5', '云南水富', '530630', '3');
 INSERT INTO `code` VALUES ('7041bf1915cbf77960a747998e939689cdbc4a3d', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '镇雄县', '530627', '3');
 INSERT INTO `code` VALUES ('70473716e4d9a7cb3d9faed70a523e3454c48291', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '柳河县', '220524', '3');
+INSERT INTO `code` VALUES ('704b38614da85a9608e8ee1cc0994b3302dba497', '21e997b31cb9a1550cd1474ca91c08d7d44e4552', '院内行政职级二', '002', '1');
 INSERT INTO `code` VALUES ('704ec2d4f8dea6411279d074b6dae0668e70dd38', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '档案学史', '8704010', '3');
 INSERT INTO `code` VALUES ('7052291871fb1df2688d0e93bd57a605a587cf2e', '0cbded8f58422ce1ada36a4429081cd84850bff5', '江苏南京市江宁区', '320115', '3');
 INSERT INTO `code` VALUES ('70567e81aa094f02b2416e4d9b0e5c629c7af78d', '2fc20d198d1a3c95ac74bbd05891796123f08268', '缫丝加工', 'C1741', '4');
@@ -9873,6 +9877,7 @@ INSERT INTO `code` VALUES ('781ce85f7284471154d99e72c29e40a459557bad', '20fbaaa7
 INSERT INTO `code` VALUES ('781e5f7f2be8f89f0643a4da1959b64847980931', '0cbded8f58422ce1ada36a4429081cd84850bff5', '辽宁本溪市溪湖区', '210503', '3');
 INSERT INTO `code` VALUES ('781f8fb0150dbb5380893adc93b20593bd42eb03', '3fb685e2145202228ac6624fc51b382c8f929bd7', '司务长', '859A', '2');
 INSERT INTO `code` VALUES ('782234c09abbc6605ec8ff059e4868c8278a3c2d', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '植物化学', '1805110', '3');
+INSERT INTO `code` VALUES ('7824c5b8c2efe9bf35d73b1e11893a85c447f082', '30ca8dc08281e4e68395afd862fc1d939d9c82c3', '用户', 'user', '1');
 INSERT INTO `code` VALUES ('7827d5f4cf841e8e427de4c99ac4e2dbaba07410', 'a431864a19fcba22bf20f425958d011a10122db3', '企业职工记过', '22', '1');
 INSERT INTO `code` VALUES ('782c15a00c0616fbab94e9c24e316fee0efe11e1', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '市辖区', '231001', '3');
 INSERT INTO `code` VALUES ('7830842af6a995a78df1a0d6e2a96b634d0023b2', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '厄立特里亚', 'B23200', '2');
@@ -10306,6 +10311,7 @@ INSERT INTO `code` VALUES ('7de861af4bc6c42627e218ad7a68c24526b6e8ac', '55f72c7f
 INSERT INTO `code` VALUES ('7debd3cff1e5e0d784b247e104b8c59552e4a81d', '3fb685e2145202228ac6624fc51b382c8f929bd7', '监察专员', 'T79A', '1');
 INSERT INTO `code` VALUES ('7df46e6b89b5fde714fbfcaaeb05af5c6836d27e', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '环境与生态统计学其他学科', '9105099', '3');
 INSERT INTO `code` VALUES ('7df5759c0c739c4a9855842152c23fbb549d308b', '15d9098278633caeddf023f6dd91dbd7bc1e8717', '小学教员十二级', '8N12', '2');
+INSERT INTO `code` VALUES ('7df71cd58e07e04a0c0286d6f5284b8f0e0e3ea0', '8146b3b18096917d49c4103b20e6f764197d0188', '院内岗位分类2', '2', '1');
 INSERT INTO `code` VALUES ('7df8ff106b5bb6c447a64eee5ee81920069ba6e5', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '控制系统仿真技术', '5108020', '3');
 INSERT INTO `code` VALUES ('7dfb9479a0d416de51c1207e9aa33b2c3877fd2e', 'ccefd243e588c16c26da7435d12aa9cdec79230b', '工人技师二档', '1A22', '1');
 INSERT INTO `code` VALUES ('7dff6110e3b981084eaad65b460bd5bc8ea8f841', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '萃取', '5302130', '3');
@@ -10584,6 +10590,7 @@ INSERT INTO `code` VALUES ('81919f851be4c851c9b03a26dbc668fb5e73c705', '3fb685e2
 INSERT INTO `code` VALUES ('819565f4134ff55a9a582f8bfa7f88319499937f', 'ee7f783612e0bc95803c3fbac5475857d01d0a72', '安全事故', '10801', '1');
 INSERT INTO `code` VALUES ('8195a618eadacbb50260f0154fb690971375540c', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '林业机械化与电气化', '2205530', '3');
 INSERT INTO `code` VALUES ('819a187b229e3ce959c7e098b78d90c7c10af163', '0cbded8f58422ce1ada36a4429081cd84850bff5', '贵州普定', '520422', '3');
+INSERT INTO `code` VALUES ('819b2a6f5303b3934e10d7618e4a0e813b535788', 'a7e0360ddf7304135168c889c647f50e8d27a7a9', '岗位级别3', '3', '1');
 INSERT INTO `code` VALUES ('819fbe44f34bc9c58ecb244b3cbca8609705faef', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '元宝山区', '150403', '3');
 INSERT INTO `code` VALUES ('81a0f7a7c45fd08358f658fc192c6bdd82591548', '9677be30fef33951071bb77ed347230bf462a5c1', '野生动植物保护及自然保护区人员', '5-23', '3');
 INSERT INTO `code` VALUES ('81a412fa5c754198f3b890723ccd4fb65e991a60', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '市辖区', '130101', '3');
@@ -11050,6 +11057,7 @@ INSERT INTO `code` VALUES ('875e8fb48749a84fd162829fe9378dfc5974ddf9', 'ccefd243
 INSERT INTO `code` VALUES ('876324f8900f0400fe22842d6af015c446605ad8', '69a2b0193affeca38eb34a219c80c31274eb7f46', '省一级', '2', '1');
 INSERT INTO `code` VALUES ('8764697ad64dacb34e4114fd6740e13868f0691e', '15d9098278633caeddf023f6dd91dbd7bc1e8717', '气象行政二级', '9802', '2');
 INSERT INTO `code` VALUES ('87679f357e418afcbf03a6f46f9ec2dd38012ebd', '2c53e92c13d8731c1ea63a2d58732e8f053fe3cf', '人民团体部门', '162', '3');
+INSERT INTO `code` VALUES ('8767f09245dc8b8289775625beb73e36b22476a3', '21e997b31cb9a1550cd1474ca91c08d7d44e4552', '院内行政职级三', '003', '1');
 INSERT INTO `code` VALUES ('8767f69788cf4fed5b30ae1a3fb9ded7aa39f752', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '工艺美术其他学科', '7605099', '3');
 INSERT INTO `code` VALUES ('8768790095b88537b2007d433b4bd7c0860ace75', '5ddffbca68048afe279c9e53538863dfd3ae9f4b', '中国无神论', '7301420', '3');
 INSERT INTO `code` VALUES ('8769980adc14e65de5a44e5d09d60e9f8114d66d', '0cbded8f58422ce1ada36a4429081cd84850bff5', '云南凤庆', '530921', '3');
@@ -11830,6 +11838,7 @@ INSERT INTO `code` VALUES ('9117e656bebd477eea5505c64490aa42ecaa0e8e', '4d5acd19
 INSERT INTO `code` VALUES ('91199af11a2220bcdb5eb4471f548e8c53be4607', '3f1cab67c542132afb280cdbad506edc45466ecb', '姑妈', '9B', '2');
 INSERT INTO `code` VALUES ('911f8d2422bef3383a8bf4ec30945530c36e1529', '2fc20d198d1a3c95ac74bbd05891796123f08268', '糖果、巧克力制造', 'C1421', '4');
 INSERT INTO `code` VALUES ('911f9b4bdf6c6cf627a4f498125a49936d02087a', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '屏山县', '511529', '3');
+INSERT INTO `code` VALUES ('91230ca9e230a00e191ede3aa8d3508c9a6260cc', '8146b3b18096917d49c4103b20e6f764197d0188', '院内岗位分类1', '1', '1');
 INSERT INTO `code` VALUES ('9126aba49b1efe34a5bcf4849674816235ec252d', '0cbded8f58422ce1ada36a4429081cd84850bff5', '内蒙古土默特右旗', '150221', '3');
 INSERT INTO `code` VALUES ('912844e7e11fbe151d1ff2c7d02d3838b705c25b', '0cbded8f58422ce1ada36a4429081cd84850bff5', '安徽蚌埠市龙子湖区', '340302', '3');
 INSERT INTO `code` VALUES ('91288ac9115db973f3a83548a5199ff0a67ac69a', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '南宁市', '450100', '2');
@@ -14460,6 +14469,7 @@ INSERT INTO `code` VALUES ('b12b21dd6c63c64b3d40a3d6d3c61caf1c52637b', '0d479e99
 INSERT INTO `code` VALUES ('b12b5b068b78ae0cb6f8927283b7b1fe59878888', '2fc20d198d1a3c95ac74bbd05891796123f08268', '医院', 'Q8510', '3');
 INSERT INTO `code` VALUES ('b12c65e1bd7f23dd5a0c00f8e088203b8f40aed6', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '乍得', 'B14800', '2');
 INSERT INTO `code` VALUES ('b13233d8b2a196d5cf2743267c32bcb7b5238192', '20fbaaa7877cc81525bab66f74e79d4ec27142b2', '食品工艺教育', '040420', '1');
+INSERT INTO `code` VALUES ('b134c4266cebf5721a68bd8c97e6f4f90a7e0254', '30ca8dc08281e4e68395afd862fc1d939d9c82c3', '单位行政职务', 'duties_unit', '1');
 INSERT INTO `code` VALUES ('b134d97c9ccb4f1a06f0e118e93f27d0b733be16', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '静安区', '310106', '3');
 INSERT INTO `code` VALUES ('b135aa32adc2daeac2494f241ef906d4d5490cf7', '20fbaaa7877cc81525bab66f74e79d4ec27142b2', '日用陶瓷设计', '050461', '1');
 INSERT INTO `code` VALUES ('b136d3cc3d670b03a165b3f599269a5dbf1e5588', '9677be30fef33951071bb77ed347230bf462a5c1', '邮政和电信业务人员', '3-3', '2');
@@ -15442,6 +15452,7 @@ INSERT INTO `code` VALUES ('bcb204d124b904ed1ffa4557f27a827b7d3fcb18', 'ccefd243
 INSERT INTO `code` VALUES ('bcb23b2ba1bf0efaa000a3c2ec34e61fcdc4dabe', '0cbded8f58422ce1ada36a4429081cd84850bff5', '山西潞城', '140481', '3');
 INSERT INTO `code` VALUES ('bcb277a1ea515b90cdbb331d47b4a4c0e7fad928', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '元江哈尼族彝族傣族自治县', '530428', '3');
 INSERT INTO `code` VALUES ('bcb417f877ae25946e3ae837ca5b91640c18dab8', '20fbaaa7877cc81525bab66f74e79d4ec27142b2', '高分子材料加工机械制造与维修', '080364', '1');
+INSERT INTO `code` VALUES ('bcb8ae2a213b801021219f36aaa4591f2dc7e590', 'a7e0360ddf7304135168c889c647f50e8d27a7a9', '岗位级别1', '1', '1');
 INSERT INTO `code` VALUES ('bcbc6613d754256795a566123ac15681c0ec91cf', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '嘉峪关市', '620200', '2');
 INSERT INTO `code` VALUES ('bcbe3c49d4b866c3ec45db119a23b552c54bcd25', '15d9098278633caeddf023f6dd91dbd7bc1e8717', '初级', '4030', '2');
 INSERT INTO `code` VALUES ('bcbffda0798f1a9455e47e7542f5179cc70508cc', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '连云港市', '320700', '2');
@@ -21109,6 +21120,7 @@ INSERT INTO `code_type` VALUES ('1f5580a883ca9f89c135f5b52941ac85b20d9efc', '公
 INSERT INTO `code_type` VALUES ('2031078041b26b5a65eec41100bb2beb258ecf74', '企业规模代码');
 INSERT INTO `code_type` VALUES ('20bdcdd8fcbe0b04e106671a5081ea0eb4c98395', '人事档案材料类别代码');
 INSERT INTO `code_type` VALUES ('20fbaaa7877cc81525bab66f74e79d4ec27142b2', '高等院校本科、专科名称代码');
+INSERT INTO `code_type` VALUES ('21e997b31cb9a1550cd1474ca91c08d7d44e4552', '院内行政职级');
 INSERT INTO `code_type` VALUES ('220c354fcfe2c0a6df7ab86612b7fb9bfb90e055', '正兼职情况');
 INSERT INTO `code_type` VALUES ('26119ba8ace2da8880561424acc0ff9f964d4165', '中共组织受奖惩名称代码');
 INSERT INTO `code_type` VALUES ('26b53e13b1533e092d4fa8386df2776b109e06ca', '举报方式代码');
@@ -21187,6 +21199,7 @@ INSERT INTO `code_type` VALUES ('7d64da586b6069ffe19e3fe740da46137d419619', '单
 INSERT INTO `code_type` VALUES ('7e33f8d2f08cf8fbf7c6d165d6b64c03b4bc2c6e', '人事档案版本类型代码');
 INSERT INTO `code_type` VALUES ('7ed8d45935c8e2311fc14e1afdefd4afb49d4eb3', '考察类别代码');
 INSERT INTO `code_type` VALUES ('80ba6ae33baf926057eb2649e5b4a89f82f53a24', '离退休干部现享受待遇类别代码');
+INSERT INTO `code_type` VALUES ('8146b3b18096917d49c4103b20e6f764197d0188', '院内岗位分类');
 INSERT INTO `code_type` VALUES ('842e996ce93aa617601d47b7fa8a51ad35cc7aa2', '获得专业技术职务任职资格途径代码');
 INSERT INTO `code_type` VALUES ('893b59de67e54caeafc99fa4a839040e1d7efbec', '单位增员类别代码');
 INSERT INTO `code_type` VALUES ('8a4baf23af1cbf3af011091dee682bec203a3649', '培养措施类别代码');
@@ -21221,6 +21234,7 @@ INSERT INTO `code_type` VALUES ('a17067d3ddf5611be8471728997569acf7b0244c', '单
 INSERT INTO `code_type` VALUES ('a1e067e31008ca498fc8936e220136206e955e63', '调动原因代码');
 INSERT INTO `code_type` VALUES ('a431864a19fcba22bf20f425958d011a10122db3', '奖惩代码');
 INSERT INTO `code_type` VALUES ('a77175a46ab04b9edcf800ab46c1765772fe81c2', '提名方式代码');
+INSERT INTO `code_type` VALUES ('a7e0360ddf7304135168c889c647f50e8d27a7a9', '岗位级别');
 INSERT INTO `code_type` VALUES ('a7e98d2ceb345c292e237b7478519c4fb6014b0c', '单位归口代码');
 INSERT INTO `code_type` VALUES ('a8afa84d969c9a1665d9c69aa33f30186713fce8', '反映情况信息类别代码');
 INSERT INTO `code_type` VALUES ('a9a30608527ab8d5b7bc8c8a531ada0cc329a446', '专业技术职务变动类别代码');
@@ -21313,6 +21327,8 @@ CREATE TABLE `duties_unit` (
 -- ----------------------------
 -- Records of duties_unit
 -- ----------------------------
+INSERT INTO `duties_unit` VALUES ('2014dc70583fa7c90185328ef2aea9c9b4571e7d', 'fccfcad598229852bc359c8d96c2d57f33449297', '主任', '001', '1', '1', '0');
+INSERT INTO `duties_unit` VALUES ('8491aae4965cd9b176653bf0e9090e37c23544ef', 'fccfcad598229852bc359c8d96c2d57f33449297', '副主任', '001', '2', '1', '1');
 
 -- ----------------------------
 -- Table structure for education
@@ -21390,7 +21406,7 @@ CREATE TABLE `log` (
   `type` varchar(20) DEFAULT NULL COMMENT '对象类型',
   `target` varchar(40) DEFAULT NULL COMMENT '对象id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of log
@@ -21419,6 +21435,79 @@ INSERT INTO `log` VALUES ('21', '2018-06-15 16:00:31', '1', '新增字典项：�
 INSERT INTO `log` VALUES ('22', '2018-06-15 16:00:55', '1', '新增字典项：数据字典', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
 INSERT INTO `log` VALUES ('23', '2018-06-15 16:01:03', '1', '新增字典项：人员', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
 INSERT INTO `log` VALUES ('24', '2018-06-15 16:01:15', '1', '新增字典项：单位', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
+INSERT INTO `log` VALUES ('25', '2018-06-19 13:17:27', '1', '新增字典项：用户', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
+INSERT INTO `log` VALUES ('26', '2018-06-19 13:17:34', '1', '修改字典项：用户', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
+INSERT INTO `log` VALUES ('27', '2018-06-19 14:02:09', '1', '新增用户：test（测试）', 'user', '3');
+INSERT INTO `log` VALUES ('28', '2018-06-19 14:02:24', '1', '重置用户密码：null（null）', 'user', '3');
+INSERT INTO `log` VALUES ('29', '2018-06-19 14:03:42', '1', '重置用户密码：test（测试）', 'user', '3');
+INSERT INTO `log` VALUES ('30', '2018-06-19 14:04:07', '1', '修改用户：test（测试1）', 'user', '3');
+INSERT INTO `log` VALUES ('31', '2018-06-19 14:04:29', '1', '删除用户：test（测试1）', 'user', '3');
+INSERT INTO `log` VALUES ('32', '2018-06-19 15:53:51', '1', '新增用户：test（测试）', 'user', '4');
+INSERT INTO `log` VALUES ('33', '2018-06-19 16:10:06', '4', '修改用户密码：test（测试）', 'user', '4');
+INSERT INTO `log` VALUES ('34', '2018-06-22 11:05:12', '1', '新增字典项类别：测试', 'code_type', 'd0304141ac5a3d7de318b7f920f7fec274b8bfb2');
+INSERT INTO `log` VALUES ('35', '2018-06-22 11:05:49', '1', '删除字典项类别：测试', 'code_type', 'd0304141ac5a3d7de318b7f920f7fec274b8bfb2');
+INSERT INTO `log` VALUES ('36', '2018-06-22 11:05:55', '1', '新增字典项类别：测试', 'code_type', '1cc950482b72997167e81b2fc4033eb9c0645575');
+INSERT INTO `log` VALUES ('37', '2018-06-22 11:06:05', '1', '删除字典项类别：测试', 'code_type', '1cc950482b72997167e81b2fc4033eb9c0645575');
+INSERT INTO `log` VALUES ('38', '2018-06-22 14:01:12', '1', '修改机构：第二个一级菜单', 'unit', '1002');
+INSERT INTO `log` VALUES ('39', '2018-06-22 14:01:26', '1', '修改机构：第二个一级字菜单A', 'unit', '1006');
+INSERT INTO `log` VALUES ('40', '2018-06-22 14:02:36', '1', '修改机构：第二个一级字菜单A', 'unit', '1006');
+INSERT INTO `log` VALUES ('41', '2018-06-22 14:05:16', '1', '修改机构：第二个一级字菜单A', 'unit', '1006');
+INSERT INTO `log` VALUES ('42', '2018-06-22 14:13:42', '1', '新增机构：审计科', 'unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('43', '2018-06-22 14:14:06', '1', '修改机构：马克思主义学院', 'unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('44', '2018-06-22 14:14:22', '1', '修改机构：学院办公室', 'unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('45', '2018-06-22 14:15:08', '1', '新增机构：审计科', 'unit', '0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6');
+INSERT INTO `log` VALUES ('46', '2018-06-22 14:15:20', '1', '新增机构：马克思主义学院', 'unit', '1536d284de253087b938b85fd749ae26f1970b64');
+INSERT INTO `log` VALUES ('47', '2018-06-22 14:20:57', '1', '新增机构：车队', 'unit', '4eb2eeb94e688cf19c8eb7e2fcea274498d212b4');
+INSERT INTO `log` VALUES ('48', '2018-06-22 14:21:19', '1', '新增机构：档案科', 'unit', '0371073bc2f4cd76200ce1da0dcd090129c4642e');
+INSERT INTO `log` VALUES ('49', '2018-06-22 14:21:44', '1', '新增机构：继续教育中心', 'unit', '78179f33cef61518a783377f3c81a019076d0c8e');
+INSERT INTO `log` VALUES ('50', '2018-06-22 14:22:39', '1', '新增机构：教学部', 'unit', '31beb2aa7bfe6d4c7daf2adbd53e8b10942a86cc');
+INSERT INTO `log` VALUES ('51', '2018-06-22 14:22:54', '1', '新增机构：行政部', 'unit', '29097e8ba3c1c99658b0130d02f32c582f1217e5');
+INSERT INTO `log` VALUES ('52', '2018-06-22 15:12:12', '1', '停用机构：', 'unit', '29097e8ba3c1c99658b0130d02f32c582f1217e5');
+INSERT INTO `log` VALUES ('53', '2018-06-22 15:15:27', '1', '停用机构：null', 'unit', '29097e8ba3c1c99658b0130d02f32c582f1217e5');
+INSERT INTO `log` VALUES ('54', '2018-06-22 15:15:34', '1', '启用机构：null', 'unit', '29097e8ba3c1c99658b0130d02f32c582f1217e5');
+INSERT INTO `log` VALUES ('55', '2018-06-22 16:49:37', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
+INSERT INTO `log` VALUES ('56', '2018-06-22 16:59:23', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
+INSERT INTO `log` VALUES ('57', '2018-06-22 16:59:27', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
+INSERT INTO `log` VALUES ('58', '2018-06-22 17:08:09', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
+INSERT INTO `log` VALUES ('59', '2018-06-22 17:08:24', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
+INSERT INTO `log` VALUES ('60', '2018-06-22 17:08:45', '1', '机构排序：31beb2aa7bfe6d4c7daf2adbd53e8b10942a86cc', 'unit', null);
+INSERT INTO `log` VALUES ('61', '2018-06-22 17:12:14', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
+INSERT INTO `log` VALUES ('62', '2018-06-25 10:07:18', '1', '新增字典项：单位行政职务', 'code_type', '30ca8dc08281e4e68395afd862fc1d939d9c82c3');
+INSERT INTO `log` VALUES ('63', '2018-06-25 10:09:02', '1', '新增字典项类别：院内行政职级', 'code_type', '21e997b31cb9a1550cd1474ca91c08d7d44e4552');
+INSERT INTO `log` VALUES ('64', '2018-06-25 10:09:14', '1', '新增字典项：院内行政职级一', 'code_type', '21e997b31cb9a1550cd1474ca91c08d7d44e4552');
+INSERT INTO `log` VALUES ('65', '2018-06-25 10:09:22', '1', '新增字典项：院内行政职级二', 'code_type', '21e997b31cb9a1550cd1474ca91c08d7d44e4552');
+INSERT INTO `log` VALUES ('66', '2018-06-25 10:09:29', '1', '新增字典项：院内行政职级三', 'code_type', '21e997b31cb9a1550cd1474ca91c08d7d44e4552');
+INSERT INTO `log` VALUES ('67', '2018-06-26 12:37:05', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('68', '2018-06-26 13:14:44', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('69', '2018-06-26 13:30:12', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('70', '2018-06-26 13:30:39', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('71', '2018-06-26 13:34:52', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('72', '2018-06-26 13:36:04', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('73', '2018-06-26 13:36:09', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('74', '2018-06-26 15:46:50', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('75', '2018-06-26 15:49:29', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('76', '2018-06-26 15:49:40', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('77', '2018-06-26 15:50:06', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('78', '2018-06-26 15:58:12', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('79', '2018-06-26 15:59:35', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('80', '2018-06-26 15:59:47', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('81', '2018-06-26 16:11:52', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('82', '2018-06-26 16:43:16', '1', '停用机构：null', 'unit', '78179f33cef61518a783377f3c81a019076d0c8e');
+INSERT INTO `log` VALUES ('83', '2018-06-26 16:43:19', '1', '启用机构：null', 'unit', '78179f33cef61518a783377f3c81a019076d0c8e');
+INSERT INTO `log` VALUES ('84', '2018-06-26 17:40:01', '1', '新增字典项类别：岗位级别', 'code_type', 'a7e0360ddf7304135168c889c647f50e8d27a7a9');
+INSERT INTO `log` VALUES ('85', '2018-06-26 17:40:06', '1', '新增字典项：岗位级别1', 'code_type', 'a7e0360ddf7304135168c889c647f50e8d27a7a9');
+INSERT INTO `log` VALUES ('86', '2018-06-26 17:40:09', '1', '新增字典项：岗位级别2', 'code_type', 'a7e0360ddf7304135168c889c647f50e8d27a7a9');
+INSERT INTO `log` VALUES ('87', '2018-06-26 17:40:13', '1', '新增字典项：岗位级别3', 'code_type', 'a7e0360ddf7304135168c889c647f50e8d27a7a9');
+INSERT INTO `log` VALUES ('88', '2018-06-26 17:40:50', '1', '新增字典项类别：院内岗位分类', 'code_type', '8146b3b18096917d49c4103b20e6f764197d0188');
+INSERT INTO `log` VALUES ('89', '2018-06-26 17:40:53', '1', '新增字典项：院内岗位分类1', 'code_type', '8146b3b18096917d49c4103b20e6f764197d0188');
+INSERT INTO `log` VALUES ('90', '2018-06-26 17:40:55', '1', '新增字典项：院内岗位分类', 'code_type', '8146b3b18096917d49c4103b20e6f764197d0188');
+INSERT INTO `log` VALUES ('91', '2018-06-26 17:41:00', '1', '修改字典项：院内岗位分类 2', 'code_type', '8146b3b18096917d49c4103b20e6f764197d0188');
+INSERT INTO `log` VALUES ('92', '2018-06-26 17:41:08', '1', '修改字典项：院内岗位分类2', 'code_type', '8146b3b18096917d49c4103b20e6f764197d0188');
+INSERT INTO `log` VALUES ('93', '2018-06-26 17:41:12', '1', '新增字典项：院内岗位分类3', 'code_type', '8146b3b18096917d49c4103b20e6f764197d0188');
+INSERT INTO `log` VALUES ('94', '2018-06-26 17:43:32', '1', '修改字典项：院内岗位分类2', 'code_type', '8146b3b18096917d49c4103b20e6f764197d0188');
+INSERT INTO `log` VALUES ('95', '2018-06-26 17:43:38', '1', '修改字典项：院内岗位分类3', 'code_type', '8146b3b18096917d49c4103b20e6f764197d0188');
+INSERT INTO `log` VALUES ('96', '2018-06-26 18:06:40', '1', '新增机构：规划与质量管理处（职业技术教育研究所）', 'unit', '6cb893ffe3adfb4b3a87b38eeac0737367da421d');
+INSERT INTO `log` VALUES ('97', '2018-06-26 18:06:54', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
 
 -- ----------------------------
 -- Table structure for ndkh
@@ -21587,6 +21676,15 @@ CREATE TABLE `unit` (
 -- ----------------------------
 -- Records of unit
 -- ----------------------------
+INSERT INTO `unit` VALUES ('0371073bc2f4cd76200ce1da0dcd090129c4642e', '档案科', '档案科', '2', null, 'fccfcad598229852bc359c8d96c2d57f33449297', '1');
+INSERT INTO `unit` VALUES ('0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', '审计科', '审计科', '0', null, '0', '1');
+INSERT INTO `unit` VALUES ('1536d284de253087b938b85fd749ae26f1970b64', '马克思主义学院', '马克思主义学院', '1', null, '0', '1');
+INSERT INTO `unit` VALUES ('29097e8ba3c1c99658b0130d02f32c582f1217e5', '行政部', '行政部', '1', null, '78179f33cef61518a783377f3c81a019076d0c8e', '1');
+INSERT INTO `unit` VALUES ('31beb2aa7bfe6d4c7daf2adbd53e8b10942a86cc', '教学部', '教学部', '0', null, '78179f33cef61518a783377f3c81a019076d0c8e', '1');
+INSERT INTO `unit` VALUES ('4eb2eeb94e688cf19c8eb7e2fcea274498d212b4', '车队', '车队', '1', null, 'fccfcad598229852bc359c8d96c2d57f33449297', '1');
+INSERT INTO `unit` VALUES ('6cb893ffe3adfb4b3a87b38eeac0737367da421d', '规划与质量管理处（职业技术教育研究所）', '规划与质量管理处（职业技术教育研究所）', '3', null, '0', '1');
+INSERT INTO `unit` VALUES ('78179f33cef61518a783377f3c81a019076d0c8e', '继续教育中心', '继续教育中心', '4', null, '0', '1');
+INSERT INTO `unit` VALUES ('fccfcad598229852bc359c8d96c2d57f33449297', '学院办公室', '学院办公室', '2', null, '0', '1');
 
 -- ----------------------------
 -- Table structure for user
@@ -21602,9 +21700,10 @@ CREATE TABLE `user` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间 自动生成',
   `role_id` bigint(20) DEFAULT NULL COMMENT '处室id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'admin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '管理员', '1', '1', '2014-07-17 12:59:08', '1');
+INSERT INTO `user` VALUES ('4', 'test', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a', '测试', '1', '1', '2018-06-19 15:53:51', '1');

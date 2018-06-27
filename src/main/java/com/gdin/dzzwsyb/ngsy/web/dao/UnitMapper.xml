@@ -14,6 +14,21 @@
 			property="superiorId" />
 		<result column="is_used" jdbcType="INTEGER" property="isUsed" />
 	</resultMap>
+	<resultMap id="ExtendResultMap"
+		type="com.gdin.dzzwsyb.ngsy.web.model.Unit">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="simple_name" jdbcType="VARCHAR"
+			property="simpleName" />
+		<result column="sort" jdbcType="INTEGER" property="sort" />
+		<result column="tree_level" jdbcType="INTEGER"
+			property="treeLevel" />
+		<result column="superior_id" jdbcType="VARCHAR"
+			property="superiorId" />
+		<result column="superior_name" jdbcType="VARCHAR"
+			property="superiorName" />
+		<result column="is_used" jdbcType="INTEGER" property="isUsed" />
+	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
 			<foreach collection="oredCriteria" item="criteria"
@@ -29,7 +44,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -61,7 +77,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -79,7 +96,12 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		id, name, simple_name, sort, tree_level, superior_id, is_used
+		id, name, simple_name, sort, tree_level, superior_id,
+		is_used
+	</sql>
+	<sql id="Extend_Column_List">
+		t.id, t.name, t.simple_name, t.sort, t.tree_level, t.superior_id,
+		s.name superior_name, t.is_used
 	</sql>
 	<select id="selectByExample"
 		parameterType="com.gdin.dzzwsyb.ngsy.web.model.UnitExample"
@@ -118,11 +140,14 @@
 	<insert id="insert"
 		parameterType="com.gdin.dzzwsyb.ngsy.web.model.Unit">
 		insert into unit (id, name, simple_name,
-		sort, tree_level, superior_id,
+		sort,
+		tree_level, superior_id,
 		is_used)
-		values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		values (#{id,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
 		#{simpleName,jdbcType=VARCHAR},
-		#{sort,jdbcType=INTEGER}, #{treeLevel,jdbcType=INTEGER}, #{superiorId,jdbcType=VARCHAR},
+		#{sort,jdbcType=INTEGER}, #{treeLevel,jdbcType=INTEGER},
+		#{superiorId,jdbcType=VARCHAR},
 		#{isUsed,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective"
@@ -215,12 +240,18 @@
 	<update id="updateByExample" parameterType="map">
 		update unit
 		set id = #{record.id,jdbcType=VARCHAR},
-		name = #{record.name,jdbcType=VARCHAR},
-		simple_name = #{record.simpleName,jdbcType=VARCHAR},
-		sort = #{record.sort,jdbcType=INTEGER},
-		tree_level = #{record.treeLevel,jdbcType=INTEGER},
-		superior_id = #{record.superiorId,jdbcType=VARCHAR},
-		is_used = #{record.isUsed,jdbcType=INTEGER}
+		name =
+		#{record.name,jdbcType=VARCHAR},
+		simple_name =
+		#{record.simpleName,jdbcType=VARCHAR},
+		sort =
+		#{record.sort,jdbcType=INTEGER},
+		tree_level =
+		#{record.treeLevel,jdbcType=INTEGER},
+		superior_id =
+		#{record.superiorId,jdbcType=VARCHAR},
+		is_used =
+		#{record.isUsed,jdbcType=INTEGER}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -255,10 +286,25 @@
 		update unit
 		set name = #{name,jdbcType=VARCHAR},
 		simple_name = #{simpleName,jdbcType=VARCHAR},
-		sort = #{sort,jdbcType=INTEGER},
+		sort =
+		#{sort,jdbcType=INTEGER},
 		tree_level = #{treeLevel,jdbcType=INTEGER},
 		superior_id = #{superiorId,jdbcType=VARCHAR},
-		is_used = #{isUsed,jdbcType=INTEGER}
+		is_used =
+		#{isUsed,jdbcType=INTEGER}
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
+	<select id="selectExtendByPrimaryKey" parameterType="java.lang.String"
+		resultMap="ExtendResultMap">
+		select
+		<include refid="Extend_Column_List" />
+		from unit t left outer join unit s on t.superior_id = s.id 
+		where t.id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectMaxSortBySuperiorId" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select max(sort)
+		from unit 
+		where superior_id = #{superiorId,jdbcType=VARCHAR}
+	</select>
 </mapper>

@@ -20,6 +20,8 @@ public interface UnitMapper extends GenericDao<Unit, String> {
 	List<Unit> selectByExample(UnitExample example);
 
 	Unit selectByPrimaryKey(String id);
+	
+	Unit selectExtendByPrimaryKey(String id);
 
 	int updateByExampleSelective(@Param("record") Unit record, @Param("example") UnitExample example);
 
@@ -28,4 +30,6 @@ public interface UnitMapper extends GenericDao<Unit, String> {
 	int updateByPrimaryKeySelective(Unit record);
 
 	int updateByPrimaryKey(Unit record);
+	
+	Integer selectMaxSortBySuperiorId(String superiorId);
 }
