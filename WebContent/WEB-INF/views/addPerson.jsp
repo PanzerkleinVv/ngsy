@@ -1,296 +1,287 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
-<style type="text/css">
-div {
-	margin-top: 10px,
-}
-</style>
-<%
-	int resumenum = 0;
-%>
-<input type="hidden" name="resumenum" value="<%=resumenum%>">
-<div class="mainContent">
-	<div class="row" style="margin-bottom: 20px">
-		<form id="uploadForm" enctype="multipart/form-data" method="post">
-			<table>
-				<tr>
-					<td>请选择文件:</td>
-					<td><input style="border: 1px solid black;" id="fileID"
-						type="file" name="file" multiple /></td>
-					<td><button type="button" onclick="doUpload()">上传</button></td>
-				</tr>
-			</table>
-		</form>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="row">
-				<div class="col-md-10">
-					<div class="row"
-						style="border: 1px solid #ccc; border-bottom: none;">
-						<div class="col-md-12">
-							<div class="col-md-1">
-								<label class="control-label" for="name">姓名</label>
-							</div>
-							<div class="col-md-5">
-								<input class="input-clarge focused" name="name" type="text"
-									id="name" style="margin-top: 7px; margin-bottom: 7px;">
-							</div>
-							<div class="col-md-1">
-								<label class="control-label" for="sex">性别</label>
-							</div>
-							<div class="col-md-5">
-								<select id="sex" name="sex"
-									style="margin-top: 7px; margin-bottom: 7px;">
-									<option></option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="row"
-						style="border: 1px solid #ccc; border-bottom: none;">
-						<div class="col-md-12">
-							<div class="col-md-1">
-								<label class="control-label" for="birthday">出生年月</label>
-							</div>
-							<div class="col-md-5">
-								<input size="16" type="text"
-									style="cursor: pointer; margin-top: 7px; margin-bottom: 7px;"
-									placeholder="点击选择日期" id="birthday"
-									class="form_date form-control placeholder-no-fix halfWidth">
-							</div>
-							<div class="col-md-1">
-								<label class="control-label" for="nationality">民族</label>
-							</div>
-							<div class="col-md-5">
-								<select id="nationality" name="nationality"
-									style="margin-top: 7px; margin-bottom: 7px;">
-									<option></option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="row"
-						style="border: 1px solid #ccc; border-bottom: none;">
-						<div class="col-md-12">
-							<div class="col-md-1">
-								<label class="control-label" for="native_place">籍贯</label>
-							</div>
-							<div class="col-md-5">
-								<input class="input-clarge focused" name="native_place"
-									type="text" id="native_place"
-									style="margin-top: 7px; margin-bottom: 7px;">
-								<button type="button" class="btn btn-info"
-									onclick="find('人员籍贯代码','0')">选择</button>
-							</div>
-							<div class="col-md-1">
-								<label class="control-label" for="birthplace">出生地</label>
-							</div>
-							<div class="col-md-5">
-								<input class="input-clarge focused" name="birthplace"
-									type="text" id="birthplace"
-									style="margin-top: 7px; margin-bottom: 7px;">
-								<button type="button" class="btn btn-info"
-									onclick="find('人员籍贯代码','1')">选择</button>
-							</div>
-						</div>
-					</div>
-					<div class="row"
-						style="border: 1px solid #ccc; border-bottom: none;">
-						<div class="col-md-12">
-							<div class="col-md-1">
-								<label class="control-label" for="party">政治面貌</label>
-							</div>
-							<div class="col-md-5">
-								<select id="party" name="party"
-									style="margin-top: 7px; margin-bottom: 7px;">
-									<option></option>
-								</select>
-							</div>
-							<div class="col-md-1">
-								<label class="control-label" for="partydate">照片</label>
-							</div>
-							<div class="col-md-5">
-								<form id="uploadForm" enctype="multipart/form-data"
-									method="post">
-									<table>
-										<tr>
-											<td><input style="border: 1px solid black;" id="fileID"
-												type="file" name="file" multiple /></td>
-											<td><button type="button" class="btn btn-info"
-													onclick="">浏览</button>
-											<td>
-										</tr>
-									</table>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- 照片位置 -->
-				<div class=col-md-2>
-					<div class="row"
-						style="border: 1px solid #ccc; border-bottom: none;">
-						<div class="col-md-12"></div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="row" style="border: 1px solid #ccc; border-bottom: none;">
-				<div class="col-md-1">
-					<label class="control-label" for="partydate">入党时间</label>
-				</div>
+<div class="mainContent row0 row">
+	<form role="form" class="form-horizontal">
+		<div class="col-md-9 tableRow">
+			<div class="form-group tableRow">
+				<label class="col-md-1 control-label" for="name">姓名</label>
 				<div class="col-md-3">
-					<input size="16" type="text"
-						style="cursor: pointer; margin-top: 7px; margin-bottom: 7px;"
-						placeholder="点击选择日期" id="partydate"
-						class="form_date form-control placeholder-no-fix halfWidth">
+					<input class="form-control" name="name" type="text" id="name" placeholder="姓名" />
+					<p class="help-block"></p>
 				</div>
-				<div class="col-md-1">
-					<label class="control-label" for="work_date">参加工作时间</label>
-				</div>
+				<label class="col-md-1 control-label" for="sex">性别</label>
 				<div class="col-md-3">
-					<input size="16" type="text"
-						style="cursor: pointer; margin-top: 7px; margin-bottom: 7px;"
-						placeholder="点击选择日期" id="work_date"
-						class="form_date form-control placeholder-no-fix halfWidth">
-				</div>
-			</div>
-
-			<div class="row" style="border: 1px solid #ccc; border-bottom: none;">
-				<div class="col-md-1">
-					<label style="" class="control-label" for="salary_rank_id">考勤课酬</label>
-				</div>
-				<div class="col-md-3">
-					<input class="input-clarge focused" name="salary_rank_id"
-						type="text" id="salary_rank_id"
-						style="margin-top: 7px; margin-bottom: 7px;">
-
-				</div>
-				<div class="col-md-1">
-					<label class="control-label" for="id_card">身份证号</label>
-				</div>
-				<div class="col-md-3">
-					<input class="input-clarge focused" name="id_card" type="text"
-						id="id_card" style="margin-top: 7px; margin-bottom: 7px;">
-				</div>
-				<div class="col-md-1">
-					<label class="control-label" for="health">健康状况</label>
-				</div>
-				<div class="col-md-3">
-					<select id="health" name="health"
-						style="margin-top: 7px; margin-bottom: 7px;">
-						<option></option>
+					<select id="sex" name="sex" class="form-control">
+						<option>选择性别</option>
 					</select>
+					<p class="help-block"></p>
+				</div>
+				<label class="col-md-1 control-label" for="birthday">出生年月</label>
+				<div class="col-md-3">
+					<input type="text" placeholder="点击选择日期" id="birthday" name="birthday" class="form-control tableDate" />
+					<p class="help-block"></p>
 				</div>
 			</div>
-			<div class="row" style="border: 1px solid #ccc; border-bottom: none;">
-				<div class="col-md-2">
-					<label class="control-label" for="shuang_shi_date">双师认定时间</label>
+			<div class="form-group tableRow">
+				<label class="col-md-1 control-label" for="nationality">民族</label>
+				<div class="col-md-3">
+					<select id="nationality" name="nationality" class="form-control">
+						<option>选择民族</option>
+					</select>
+					<p class="help-block"></p>
 				</div>
-				<div class="col-md-4">
-					<input size="10" type="text"
-						style="cursor: pointer; margin-top: 7px; margin-bottom: 7px;"
-						placeholder="点击选择日期" id="shuang_shi_date"
-						class="form_date form-control placeholder-no-fix halfWidth">
+				<label class="col-md-1 control-label" for="nativePlace">籍贯</label>
+				<div class="col-md-3">
+					<input class="form-control" name="nativePlace" type="text" id="nativePlace" onclick="find('人员籍贯代码','0')" placeholder="点击选择" />
+					<p class="help-block"></p>
 				</div>
-				<div class="col-md-2">
-					<label class="control-label" for="enter_date">进入本单位工作时间</label>
-				</div>
-				<div class="col-md-4">
-					<input size="16" type="text"
-						style="cursor: pointer; margin-top: 7px; margin-bottom: 7px;"
-						placeholder="点击选择日期" id="enter_date"
-						class="form_date form-control placeholder-no-fix halfWidth">
-				</div>
-			</div>
-			<div class="row" style="border: 1px solid #ccc; border-bottom: none;">
-				<div class="col-md-2">
-					<label class="control-label" for="technical_title">专业技术职称</label>
-				</div>
-				<div class="col-md-4">
-					<input class="input-clarge focused" name="name" type="text"
-						id="name" style="margin-top: 7px; margin-bottom: 7px;">
-				</div>
-				<div class="col-md-2">
-					<label class="control-label" for="specialty">熟悉专业有何专长</label>
-				</div>
-				<div class="col-md-4">
-					<input class="input-clarge focused" name="specialty" type="text"
-						id="specialty" style="margin-top: 7px; margin-bottom: 7px;">
+				<label class="col-md-1 control-label" for="birthplace">出生地</label>
+				<div class="col-md-3">
+					<input class="form-control" name="birthplace" type="text" id="birthplace" onclick="find('人员籍贯代码','1')" placeholder="点击选择" />
+					<p class="help-block"></p>
 				</div>
 			</div>
-			<div class="row" style="border: 1px solid #ccc; border-bottom: none;">
-				<div class="col-md-2">
-					<label class="control-label" for="xian_ren_zhi_wu">现任职务</label>
+			<div class="form-group tableRow">
+				<label class="col-md-1 control-label" for="party">政治面貌</label>
+				<div class="col-md-3">
+					<select id="party" name="party" class="form-control">
+						<option>政治面貌</option>
+					</select>
+					<p class="help-block"></p>
 				</div>
-				<div class="col-md-10">
-					<input style="width: 500px; margin-top: 7px; margin-bottom: 7px;"
-						class="input-clarge focused" name="xian_ren_zhi_wu" type="text"
-						id="xian_ren_zhi_wu">
+				<label class="col-md-1 control-label" for="partydate">入党时间</label>
+				<div class="col-md-3">
+					<input type="text" placeholder="点击选择日期" id="partydate" name="partydate" class="form-control tableDate" />
+					<p class="help-block"></p>
 				</div>
-			</div>
-			<div class="row" style="border: 1px solid #ccc; border-bottom: none;">
-				<div class="col-md-2">
-					<label class="control-label" for="ni_ren_zhi_wu">拟任职务</label>
+				<label class="col-md-1 control-label" for="workDate">参加工作时间</label>
+				<div class="col-md-3">
+					<input type="text" placeholder="点击选择日期" id="workDate" name="workDate" class="form-control tableDate" />
+					<p class="help-block"></p>
 				</div>
-				<div class="col-md-10">
-					<input style="width: 500px; margin-top: 7px; margin-bottom: 7px;"
-						name="ni_ren_zhi_wu" type="text" id="ni_ren_zhi_wu">
-				</div>
-			</div>
-			<div class="row" style="border: 1px solid #ccc; border-bottom: none;">
-				<div class="col-md-2">
-					<label class="control-label" for="ni_mian_zhi_wu">拟免职务</label>
-				</div>
-				<div class="col-md-10">
-					<input style="width: 500px; margin-top: 7px; margin-bottom: 7px;"
-						class="input-clarge focused" name="ni_mian_zhi_wu" type="text"
-						id="ni_mian_zhi_wu">
-				</div>
-			</div>
-			<div class="row" style="border: 1px solid #ccc;">
-				<div class="col-md-2">
-					<label class="control-label" for="resume">简历</label>
-				</div>
-				<div class="col-md-10">
-					<input style="width: 500px; margin-top: 7px; margin-bottom: 7px;"
-						class="input-clarge focused" name="resume" type="text" id="resume">
-					<button type="button" class="btn btn-info" onclick="addResume()">增加</button>
-					<div id="zjadd">
-					</div>
-					
-				</div>
-
 			</div>
 		</div>
-	</div>
-
-	<!-- <div class="col-md-3" style="height: 200px;">
-			<label class="control-label" for="sex">性别wwwwwww</label>
-		</div> -->
+		<div class="col-md-3 tableRow"></div>
+		<div class="col-md-16-16 tableRow">
+			<div class="form-group">
+				<label class="col-md-1-16 control-label" for="health">健康状况</label>
+				<div class="col-md-3-16">
+					<select id="health" name="health" class="form-control">
+						<option>健康状况</option>
+					</select>
+					<p class="help-block"></p>
+				</div>
+				<label class="col-md-1-16 control-label" for="state">人员状态</label>
+				<div class="col-md-3-16">
+					<select id="state" name="state" class="form-control">
+						<option>人员状态</option>
+					</select>
+					<p class="help-block"></p>
+				</div>
+				<label class="col-md-1-16 control-label" for="salaryRankId">考勤课酬</label>
+				<div class="col-md-3-16">
+					<input class="form-control" name="salaryRankId" type="text" id="salaryRankId" placeholder="考勤课酬" />
+					<p class="help-block"></p>
+				</div>
+				<label class="col-md-1-16 control-label" for="shuangDhiDate">双师认定时间</label>
+				<div class="col-md-3-16">
+					<input type="text" placeholder="点击选择日期" id="shuangDhiDate" name="shuangDhiDate" class="form-control tableDate" />
+				</div>
+			</div>
+		</div>
+		<div class="col-md-16-16 tableRow">
+			<div class="form-group">
+				<label class="col-md-1-16 control-label" for="idCard">身份证号</label>
+				<div class="col-md-4-16">
+					<input class="form-control" name="idCard" type="text" id="idCard" placeholder="身份证号" />
+					<p class="help-block"></p>
+				</div>
+				<label class="col-md-2-16 control-label" for="specialty">熟悉专业有何专长</label>
+				<textarea class="col-md-4-16 form-control" name="specialty" id="specialty" rows="3" placeholder="熟悉专业有何专长"></textarea>
+				<label class="col-md-2-16 control-label" for="enterDate">进入本单位工作时间</label>
+				<div class="col-md-3-16">
+					<input type="text" placeholder="点击选择日期" id="enterDate" name="enterDate" class="form-control tableDate">
+					<p class="help-block"></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-16-16 tableRow">
+			<div class="form-group">
+				<label class="col-md-1-16 control-label" for="technicalTitle">专业技术职称</label>
+				<div class="col-md-15-16">
+					<span class="col-md-9-16 innerLabel">职称</span>
+					<span class="col-md-3-16 innerLabel">获得日期</span>
+					<span class="col-md-3-16 innerLabel">职称聘任时间</span>
+					<span class="col-md-1-16 innerLabel">删除</span>
+					<span class="col-md-9-16">
+						<input class="form-control" name="technicalTitles[0].technicalTitle" type="text" id="technicalTitles0technicalTitle" onclick="find('专业技术职称','3')" placeholder="点击选择" />
+					</span>
+					<span class="col-md-3-16">
+						<input type="text" placeholder="点击选择日期" id="technicalTitles0ownDate" name="technicalTitles[0].ownDate" class="form-control tableDate" />
+					</span>
+					<span class="col-md-3-16">
+						<input type="text" placeholder="点击选择日期" id="technicalTitles0jobDate" name="technicalTitles[0].jobDate" class="form-control tableDate" />
+					</span>
+					<span class="col-md-1-16 butRow">
+						<a onclick="deleteRow(this)"><i class='fa fa-trash-o'></i></a>
+					</span>
+					<span class="col-md-16-16 butRow">
+						<button type="button" class="btn btn-info" onclick="add('0')">增加</button>
+					</span>
+					<p class="col-md-16-16 help-block"></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-16-16 tableRow">
+			<div class="form-group">
+				<label class="col-md-1-16 control-label" for="education">学历学位</label>
+				<div class="col-md-15-16">
+					<span class="col-md-2-16 innerLabel">类型</span>
+					<span class="col-md-2-16 innerLabel">学历</span>
+					<span class="col-md-2-16 innerLabel">学位</span>
+					<span class="col-md-3-16 innerLabel">学校</span>
+					<span class="col-md-3-16 innerLabel">专业</span>
+					<span class="col-md-2-16 innerLabel">毕业时间</span>
+					<span class="col-md-1-16 innerLabel">最高</span>
+					<span class="col-md-1-16 innerLabel">删除</span>
+					<span class="col-md-2-16">
+						<select id="educations0type" name="educations[0].type" class="form-control smForm">
+							<option>类型</option>
+						</select>
+					</span>
+					<span class="col-md-2-16">
+						<select id="educations0education" name="educations[0].education" class="form-control smForm">
+							<option>学历</option>
+						</select>
+					</span>
+					<span class="col-md-2-16">
+						<select id="educations0degree" name="educations[0].degree" class="form-control smForm">
+							<option>学位</option>
+						</select>
+					</span>
+					<span class="col-md-3-16">
+						<input type="text" placeholder="毕业院校" id="educations0school" name="educations[0].school" class="form-control smForm" />
+					</span>
+					<span class="col-md-3-16">
+						<input type="text" placeholder="专业" id="educations0specialty" name="educations[0].specialty" class="form-control smForm" />
+					</span>
+					<span class="col-md-2-16">
+						<input type="text" placeholder="点击选择日期" id="educations0graduationDate" name="educations[0].graduationDate" class="form-control tableDate smForm" />
+					</span>
+					<span class="col-md-1-16 butRow">
+						<input type="radio" id="educations0isHighest" name="educations[0].isHighest" />
+					</span>
+					<span class="col-md-1-16 butRow">
+						<a onclick="deleteRow(this)"><i class='fa fa-trash-o'></i></a>
+					</span>
+					<div class="col-md-16-16 butRow">
+						<button type="button" class="btn btn-info" onclick="add('1')">增加</button>
+					</div>
+					<p class="col-md-16-16 help-block"></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-16-16 tableRow">
+			<div class="form-group">
+				<label class="col-md-1-16 control-label" for="rank">职级</label>
+				<div class="col-md-15-16">
+					<span class="col-md-9-16 innerLabel">职级</span>
+					<span class="col-md-3-16 innerLabel">获得日期</span>
+					<span class="col-md-3-16 innerLabel">职级状态</span>
+					<span class="col-md-1-16 innerLabel">删除</span>
+					<span class="col-md-9-16">
+						<select id="ranks0rank" name="ranks0rank" class="form-control">
+							<option>职级</option>
+						</select>
+					</span>
+					<span class="col-md-3-16">
+						<input type="text" placeholder="点击选择日期" id="ranks0ownDate" name="ranks[0].ownDate" class="form-control tableDate" />
+					</span>
+					<span class="col-md-3-16">
+						<select id="ranks0state" name="ranks[0].state" class="form-control">
+							<option>职级状态</option>
+						</select>
+					</span>
+					<span class="col-md-1-16 butRow">
+						<a onclick="deleteRow(this)"><i class='fa fa-trash-o'></i></a>
+					</span>
+					<span class="col-md-16-16 butRow">
+						<button type="button" class="btn btn-info" onclick="add('0')">增加</button>
+					</span>
+					<p class="col-md-16-16 help-block"></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-16-16 tableRow">
+			<div class="form-group">
+				<label class="col-md-1-16 control-label" for="xianRenZhiWu">现任职务</label>
+				<div class="col-md-15-16">
+					<input class="form-control" name="xianRenZhiWu" type="text" id="xianRenZhiWu" placeholder="现任职务" />
+					<p class="help-block"></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-16-16 tableRow">
+			<div class="form-group">
+				<label class="col-md-1-16 control-label" for="niRenZhiWu">拟任职务</label>
+				<div class="col-md-15-16">
+					<input class="form-control" name="niRenZhiWu" type="text" id="niRenZhiWu" placeholder="拟任职务" />
+					<p class="help-block"></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-16-16 tableRow">
+			<div class="form-group">
+				<label class="col-md-1-16 control-label" for="niMianZhiWu">拟免职务</label>
+				<div class="col-md-15-16">
+					<input class="form-control" name="niMianZhiWu" type="text" id="niMianZhiWu" placeholder="拟免职务" />
+					<p class="help-block"></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-16-16 tableRow">
+			<div class="form-group">
+				<label class="col-md-1-16 control-label" for="rank">简历</label>
+				<div class="col-md-15-16">
+					<span class="col-md-3-16 innerLabel">起始时间</span>
+					<span class="col-md-3-16 innerLabel">结束时间态</span>
+					<span class="col-md-9-16 innerLabel">简历</span>
+					<span class="col-md-1-16 innerLabel">删除</span>
+					<span class="col-md-3-16">
+						<input type="text" placeholder="点击选择日期" id="resumes0beginDate" name="resumes[0].beginDate" class="form-control tableDate" />
+					</span>
+					<span class="col-md-3-16">
+						<input type="text" placeholder="点击选择日期" id="resumes0endDate" name="resumes[0].endDate" class="form-control tableDate" />
+					</span>
+					<span class="col-md-9-16">
+						<textarea class="form-control" name="resumes[0].content" id="resumes0content" rows="3" placeholder="简历"></textarea>
+					</span>
+					<span class="col-md-1-16 butRow">
+						<a onclick="deleteRow(this)"><i class='fa fa-trash-o'></i></a>
+					</span>
+					<span class="col-md-16-16 butRow">
+						<button type="button" class="btn btn-info" onclick="add('0')">增加</button>
+					</span>
+					<p class="col-md-16-16 help-block"></p>
+				</div>
+			</div>
+		</div>
+	</form>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog" style="width: 400px;">
 		<div class="modal-content">
 			<div class="modal-header">
 
 				<button type="button" class="close" data-dismiss="modal">×</button>
 				<h4 class="modal-title" id="myModalLabel">人员籍贯代码</h4>
-				<input class="input-clarge focused" name="name" type="text"
-					id="codeName" style="margin-top: 7px; margin-bottom: 7px;">
+				<input class="input-clarge focused" name="name" type="text" id="codeName" style="margin-top: 7px; margin-bottom: 7px;">
 				<button type="button" class="btn btn-info" onclick="onClickfind()">查找</button>
 
 			</div>
 			<div class="modal-body" id="modal_body">
-				<div id="treeDemo" class="ztree"
-					style="height: 300px; overflow: auto"></div>
+				<div id="treeDemo" class="ztree" style="height: 300px; overflow: auto"></div>
 				<div id="color" style="width: 360px; height: 300px; overflow: auto"></div>
 			</div>
 			<div class="modal-footer">
@@ -347,11 +338,9 @@ div {
 		 } */
 		}
 	};
-	var resumenum =
-<%=resumenum%>
-	;
+	
 	$(document).ready(function() {
-		$(".form_date").datepicker({
+		$(".tableDate").datepicker({
 			format : 'yyyy-mm-dd',
 			language : 'zh-CN'
 		});
@@ -366,6 +355,11 @@ div {
 		getCodeSimple('中国各民族名称代码', $("#nationality"), "");
 		getCodeSimple('政治面貌代码', $("#party"), "");
 		getCodeSimple('健康状况代码', $("#health"), "");
+		getCodeSimple('人员状态', $('#state'), "");
+		getCodeSimple('是否全日制', $("#educations0type"), "");
+		getCodeSimple('学历代码', $("#educations0education"), "");
+		getCodeSimple('中华人民共和国学位代码', $("#educations0degree"), "");
+		getCodeSimple('职级状态代码', $('#ranks0state'), "");
 	})
 	function deleteitem(obj, name) {
 		//if (comfirm("确实要删除该记录吗？")){
@@ -387,8 +381,10 @@ div {
 		var html = "<div name="+'resume1'+resumenum+">"
 				+ "<input style="+'width:500px;margin-top:10px;'+" class="+'input-clarge focused'+" name="+'resume'+resumenum+" type="+'text'+"  id="+'resume'+resumenum+">"
 				+ "<input type=hidden name=xlavail"+resumenum+" value=1>"
-				+ "&nbsp;&nbsp;&nbsp;&nbsp;<a style="+'cursor: pointer;'+" href=\"javascript:deleteitem(document.all.xlavail"
-				+ resumenum + ",'resume1" + resumenum + "')\"><i class='fa fa-trash-o'></i></a></div>"
+				+ "&nbsp;&nbsp;&nbsp;&nbsp;<a style=" + 'cursor: pointer;'
+				+ " href=\"javascript:deleteitem(document.all.xlavail"
+				+ resumenum + ",'resume1" + resumenum
+				+ "')\"><i class='fa fa-trash-o'></i></a></div>"
 		document.all.zjadd.insertAdjacentHTML("beforeBegin", html)
 
 	}
