@@ -20,7 +20,15 @@ a:hover {
 								id="bs-example-navbar-collapse-1">
 								<ul class="nav navbar-nav">
 									<li class="active"><a href="rest/unit/people">机构成员</a></li>
-									<li><a href="rest/unit/renmian">人员调整</a></li>
+									<li class="dropdown">
+                          				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">人员调整<span class="caret"></span></a>
+                         			 	<ul class="dropdown-menu">
+                            				<li><a href="#">职务调整</a></li>
+                            				<li role="separator" class="divider"></li>
+                              				<li><a href="#">岗位调整</a></li>
+                          				</ul>
+                  					</li>
+                  
 									<li><a href="rest/unit/setUnit">机构设置</a></li>
 									<li><a href="rest/unit/sortUnit">机构排序</a></li>
 									<li><a href="rest/unit/newUnit">新增机构</a></li>
@@ -38,7 +46,10 @@ a:hover {
 	</div>
 
 	<script type="text/javascript">
-		$("#unitNav a").click(function() {
+		$("#unitNav a:eq(1)").click(function() {
+			$("#unitNav li").removeClass("active");
+		});
+		$("#unitNav a").not("#unitNav a:eq(1)").click(function() {
 			var url = $(this).attr("href");
 			$("#unitNav li").removeClass("active");
 			$(this).parent().addClass("active");
