@@ -727,7 +727,7 @@
 
 .row0 {
 	margin-right: 0px !important;
-    margin-left: 0px !important;
+	margin-left: 0px !important;
 }
 
 .butRow {
@@ -755,4 +755,17 @@
 
 .smForm {
 	font-size: 12px;
+}
+
+.addDemo {
+	display: none;
+}
+
+.addRow {
+	margin-top: 2px;
+	vertical-align: middle;
+}
+
+.delBut {
+	cursor: pointer;
 }

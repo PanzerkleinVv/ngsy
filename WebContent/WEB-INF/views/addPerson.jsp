@@ -110,25 +110,15 @@
 			<div class="form-group">
 				<label class="col-md-1-16 control-label" for="technicalTitle">专业技术职称</label>
 				<div class="col-md-15-16">
-					<span class="col-md-9-16 innerLabel">职称</span>
-					<span class="col-md-3-16 innerLabel">获得日期</span>
-					<span class="col-md-3-16 innerLabel">职称聘任时间</span>
-					<span class="col-md-1-16 innerLabel">删除</span>
-					<span class="col-md-9-16">
-						<input class="form-control" name="technicalTitles[0].technicalTitle" type="text" id="technicalTitles0technicalTitle" onclick="find('专业技术职称','3')" placeholder="点击选择" />
-					</span>
-					<span class="col-md-3-16">
-						<input type="text" placeholder="点击选择日期" id="technicalTitles0ownDate" name="technicalTitles[0].ownDate" class="form-control tableDate" />
-					</span>
-					<span class="col-md-3-16">
-						<input type="text" placeholder="点击选择日期" id="technicalTitles0jobDate" name="technicalTitles[0].jobDate" class="form-control tableDate" />
-					</span>
-					<span class="col-md-1-16 butRow">
-						<a onclick="deleteRow(this)"><i class='fa fa-trash-o'></i></a>
-					</span>
-					<span class="col-md-16-16 butRow">
-						<button type="button" class="btn btn-info" onclick="add('0')">增加</button>
-					</span>
+					<div class="row">
+						<span class="col-md-9-16 innerLabel">职称</span>
+						<span class="col-md-3-16 innerLabel">获得日期</span>
+						<span class="col-md-3-16 innerLabel">职称聘任时间</span>
+						<span class="col-md-1-16 innerLabel">删除</span>
+					</div>
+					<div class="col-md-16-16 butRow addRow">
+						<button id="0But" type="button" class="btn btn-info" onclick="add('0')">增加</button>
+					</div>
 					<p class="col-md-16-16 help-block"></p>
 				</div>
 			</div>
@@ -137,46 +127,18 @@
 			<div class="form-group">
 				<label class="col-md-1-16 control-label" for="education">学历学位</label>
 				<div class="col-md-15-16">
-					<span class="col-md-2-16 innerLabel">类型</span>
-					<span class="col-md-2-16 innerLabel">学历</span>
-					<span class="col-md-2-16 innerLabel">学位</span>
-					<span class="col-md-3-16 innerLabel">学校</span>
-					<span class="col-md-3-16 innerLabel">专业</span>
-					<span class="col-md-2-16 innerLabel">毕业时间</span>
-					<span class="col-md-1-16 innerLabel">最高</span>
-					<span class="col-md-1-16 innerLabel">删除</span>
-					<span class="col-md-2-16">
-						<select id="educations0type" name="educations[0].type" class="form-control smForm">
-							<option>类型</option>
-						</select>
-					</span>
-					<span class="col-md-2-16">
-						<select id="educations0education" name="educations[0].education" class="form-control smForm">
-							<option>学历</option>
-						</select>
-					</span>
-					<span class="col-md-2-16">
-						<select id="educations0degree" name="educations[0].degree" class="form-control smForm">
-							<option>学位</option>
-						</select>
-					</span>
-					<span class="col-md-3-16">
-						<input type="text" placeholder="毕业院校" id="educations0school" name="educations[0].school" class="form-control smForm" />
-					</span>
-					<span class="col-md-3-16">
-						<input type="text" placeholder="专业" id="educations0specialty" name="educations[0].specialty" class="form-control smForm" />
-					</span>
-					<span class="col-md-2-16">
-						<input type="text" placeholder="点击选择日期" id="educations0graduationDate" name="educations[0].graduationDate" class="form-control tableDate smForm" />
-					</span>
-					<span class="col-md-1-16 butRow">
-						<input type="radio" id="educations0isHighest" name="educations[0].isHighest" />
-					</span>
-					<span class="col-md-1-16 butRow">
-						<a onclick="deleteRow(this)"><i class='fa fa-trash-o'></i></a>
-					</span>
-					<div class="col-md-16-16 butRow">
-						<button type="button" class="btn btn-info" onclick="add('1')">增加</button>
+					<div class="row">
+						<span class="col-md-2-16 innerLabel">类型</span>
+						<span class="col-md-2-16 innerLabel">学历</span>
+						<span class="col-md-2-16 innerLabel">学位</span>
+						<span class="col-md-3-16 innerLabel">学校</span>
+						<span class="col-md-3-16 innerLabel">专业</span>
+						<span class="col-md-2-16 innerLabel">毕业时间</span>
+						<span class="col-md-1-16 innerLabel">最高</span>
+						<span class="col-md-1-16 innerLabel">删除</span>
+					</div>
+					<div class="col-md-16-16 butRow addRow">
+						<button id="1But" type="button" class="btn btn-info" onclick="add('1')">增加</button>
 					</div>
 					<p class="col-md-16-16 help-block"></p>
 				</div>
@@ -186,29 +148,15 @@
 			<div class="form-group">
 				<label class="col-md-1-16 control-label" for="rank">职级</label>
 				<div class="col-md-15-16">
-					<span class="col-md-9-16 innerLabel">职级</span>
-					<span class="col-md-3-16 innerLabel">获得日期</span>
-					<span class="col-md-3-16 innerLabel">职级状态</span>
-					<span class="col-md-1-16 innerLabel">删除</span>
-					<span class="col-md-9-16">
-						<select id="ranks0rank" name="ranks0rank" class="form-control">
-							<option>职级</option>
-						</select>
-					</span>
-					<span class="col-md-3-16">
-						<input type="text" placeholder="点击选择日期" id="ranks0ownDate" name="ranks[0].ownDate" class="form-control tableDate" />
-					</span>
-					<span class="col-md-3-16">
-						<select id="ranks0state" name="ranks[0].state" class="form-control">
-							<option>职级状态</option>
-						</select>
-					</span>
-					<span class="col-md-1-16 butRow">
-						<a onclick="deleteRow(this)"><i class='fa fa-trash-o'></i></a>
-					</span>
-					<span class="col-md-16-16 butRow">
-						<button type="button" class="btn btn-info" onclick="add('0')">增加</button>
-					</span>
+					<div class="row">
+						<span class="col-md-9-16 innerLabel">职级</span>
+						<span class="col-md-3-16 innerLabel">获得日期</span>
+						<span class="col-md-3-16 innerLabel">职级状态</span>
+						<span class="col-md-1-16 innerLabel">删除</span>
+					</div>
+					<div class="col-md-16-16 butRow addRow">
+						<button id="2But" type="button" class="btn btn-info" onclick="add('2')">增加</button>
+					</div>
 					<p class="col-md-16-16 help-block"></p>
 				</div>
 			</div>
@@ -244,28 +192,21 @@
 			<div class="form-group">
 				<label class="col-md-1-16 control-label" for="rank">简历</label>
 				<div class="col-md-15-16">
-					<span class="col-md-3-16 innerLabel">起始时间</span>
-					<span class="col-md-3-16 innerLabel">结束时间态</span>
-					<span class="col-md-9-16 innerLabel">简历</span>
-					<span class="col-md-1-16 innerLabel">删除</span>
-					<span class="col-md-3-16">
-						<input type="text" placeholder="点击选择日期" id="resumes0beginDate" name="resumes[0].beginDate" class="form-control tableDate" />
-					</span>
-					<span class="col-md-3-16">
-						<input type="text" placeholder="点击选择日期" id="resumes0endDate" name="resumes[0].endDate" class="form-control tableDate" />
-					</span>
-					<span class="col-md-9-16">
-						<textarea class="form-control" name="resumes[0].content" id="resumes0content" rows="3" placeholder="简历"></textarea>
-					</span>
-					<span class="col-md-1-16 butRow">
-						<a onclick="deleteRow(this)"><i class='fa fa-trash-o'></i></a>
-					</span>
-					<span class="col-md-16-16 butRow">
-						<button type="button" class="btn btn-info" onclick="add('0')">增加</button>
-					</span>
+					<div class="row addRow">
+						<span class="col-md-3-16 innerLabel">起始时间</span>
+						<span class="col-md-3-16 innerLabel">结束时间</span>
+						<span class="col-md-9-16 innerLabel">简历</span>
+						<span class="col-md-1-16 innerLabel">删除</span>
+					</div>
+					<div class="col-md-16-16 butRow addRow">
+						<button id="3But" type="button" class="btn btn-info" onclick="add('3')">增加</button>
+					</div>
 					<p class="col-md-16-16 help-block"></p>
 				</div>
 			</div>
+		</div>
+		<div class="col-md-16-16 tableRow butRow">
+			<button type="button" class="col-md-16-16 addRow btn green" onclick="save()">保存</button>
 		</div>
 	</form>
 </div>
@@ -275,7 +216,7 @@
 			<div class="modal-header">
 
 				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h4 class="modal-title" id="myModalLabel">人员籍贯代码</h4>
+				<h4 class="modal-title" id="myModalLabel">选择代码</h4>
 				<input class="input-clarge focused" name="name" type="text" id="codeName" style="margin-top: 7px; margin-bottom: 7px;">
 				<button type="button" class="btn btn-info" onclick="onClickfind()">查找</button>
 
@@ -300,8 +241,97 @@
 <div style="display: none">
 	<input id="tag2" type="text">
 </div>
-
-
+<div class="addDemo">
+	<input type="hidden" id="0Next" value="0" disabled="disabled" /> <input type="hidden" id="1Next" value="0" disabled="disabled" /> <input type="hidden" id="2Next" value="0" disabled="disabled" /> <input type="hidden" id="3Next" value="0" disabled="disabled" />
+	<div id="0">
+		<div class="row addRow">
+			<span class="col-md-9-16">
+				<select id="technicalTitles_i_technicalTitle" name="technicalTitles[_i_].technicalTitle" class="form-control smForm">
+					<option>职称</option>
+				</select>
+			</span>
+			<span class="col-md-3-16">
+				<input type="text" placeholder="点击选择日期" id="technicalTitles_i_ownDate" name="technicalTitles[_i_].ownDate" class="form-control tableDate" />
+			</span>
+			<span class="col-md-3-16">
+				<input type="text" placeholder="点击选择日期" id="technicalTitles_i_jobDate" name="technicalTitles[_i_].jobDate" class="form-control tableDate" />
+			</span>
+			<span class="col-md-1-16 butRow">
+				<a onclick="deleteRow(this)" class="delBut"><i class='fa fa-trash-o'></i></a>
+			</span>
+		</div>
+	</div>
+	<div id="1">
+		<div class="row addRow">
+			<span class="col-md-2-16">
+				<select id="educations_i_type" name="educations[_i_].type" class="form-control smForm">
+					<option>类型</option>
+				</select>
+			</span>
+			<span class="col-md-2-16">
+				<select id="educations_i_education" name="educations[_i_].education" class="form-control smForm">
+					<option>学历</option>
+				</select>
+			</span>
+			<span class="col-md-2-16">
+				<select id="educations_i_degree" name="educations[_i_].degree" class="form-control smForm">
+					<option>学位</option>
+				</select>
+			</span>
+			<span class="col-md-3-16">
+				<input type="text" placeholder="毕业院校" id="educations_i_school" name="educations[_i_].school" class="form-control smForm" />
+			</span>
+			<span class="col-md-3-16">
+				<input type="text" placeholder="专业" id="educations_i_specialty" name="educations[_i_].specialty" class="form-control smForm" />
+			</span>
+			<span class="col-md-2-16">
+				<input type="text" placeholder="点击选择日期" id="educations_i_graduationDate" name="educations[_i_].graduationDate" class="form-control tableDate smForm" />
+			</span>
+			<span class="col-md-1-16 butRow">
+				<input type="radio" id="educations_i_isHighest" name="educations[_i_].isHighest" />
+			</span>
+			<span class="col-md-1-16 butRow">
+				<a onclick="deleteRow(this)" class="delBut"><i class='fa fa-trash-o'></i></a>
+			</span>
+		</div>
+	</div>
+	<div id="2">
+		<div class="row addRow">
+			<span class="col-md-9-16">
+				<select id="ranks_i_rank" name="ranks[_i_]rank" class="form-control">
+					<option>职级</option>
+				</select>
+			</span>
+			<span class="col-md-3-16">
+				<input type="text" placeholder="点击选择日期" id="ranks_i_ownDate" name="ranks[_i_].ownDate" class="form-control tableDate" />
+			</span>
+			<span class="col-md-3-16">
+				<select id="ranks_i_state" name="ranks[_i_].state" class="form-control">
+					<option>职级状态</option>
+				</select>
+			</span>
+			<span class="col-md-1-16 butRow">
+				<a onclick="deleteRow(this)" class="delBut"><i class='fa fa-trash-o'></i></a>
+			</span>
+		</div>
+	</div>
+	<div id="3">
+		<div class="row addRow">
+			<span class="col-md-3-16">
+				<input type="text" placeholder="点击选择日期" id="resumes_i_beginDate" name="resumes[_i_].beginDate" class="form-control tableDate" />
+			</span>
+			<span class="col-md-3-16">
+				<input type="text" placeholder="点击选择日期" id="resumes_i_endDate" name="resumes[_i_].endDate" class="form-control tableDate" />
+			</span>
+			<span class="col-md-9-16">
+				<textarea class="form-control" name="resumes[_i_].content" id="resumes_i_content" rows="3" placeholder="简历"></textarea>
+			</span>
+			<span class="col-md-1-16 butRow">
+				<a onclick="deleteRow(this)" class="delBut"><i class='fa fa-trash-o'></i></a>
+			</span>
+		</div>
+	</div>
+</div>
 <script type="text/javascript">
 	var setting = {
 		view : {
@@ -338,7 +368,7 @@
 		 } */
 		}
 	};
-	
+
 	$(document).ready(function() {
 		$(".tableDate").datepicker({
 			format : 'yyyy-mm-dd',
@@ -356,37 +386,27 @@
 		getCodeSimple('政治面貌代码', $("#party"), "");
 		getCodeSimple('健康状况代码', $("#health"), "");
 		getCodeSimple('人员状态', $('#state'), "");
-		getCodeSimple('是否全日制', $("#educations0type"), "");
-		getCodeSimple('学历代码', $("#educations0education"), "");
-		getCodeSimple('中华人民共和国学位代码', $("#educations0degree"), "");
-		getCodeSimple('职级状态代码', $('#ranks0state'), "");
+		getCodeSimple('是否全日制', $("#educations_i_type"), "");
+		getCodeSimple('学历代码', $("#educations_i_education"), "");
+		getCodeSimple('中华人民共和国学位代码', $("#educations_i_degree"), "");
+		getCodeSimple('职级状态代码', $('#ranks_i_state'), "");
+		getCodeSimple('专业技术职务代码', $('#technicalTitles_i_technicalTitle'), "");
 	})
-	function deleteitem(obj, name) {
-		//if (comfirm("确实要删除该记录吗？")){
-		obj.value = "0"
-		//alert(obj.value)
-		var elements = document.getElementsByName(name);//查找文档中所以id为name的元素
-		//document.all.fam1.style.display="block"
-		for (var i = 0; i < elements.length; i++) {
-			//alert("ok")
-			elements[i].style.display = "none"
-		}
-		//}
-		return;
+	function deleteRow(target) {
+		$(target).parent().parent().remove();
+		return false;
 	}
-	function addResume() {
-		resumenum = resumenum + 1
-		document.all.resumenum.value = resumenum
-		console.log(resumenum)
-		var html = "<div name="+'resume1'+resumenum+">"
-				+ "<input style="+'width:500px;margin-top:10px;'+" class="+'input-clarge focused'+" name="+'resume'+resumenum+" type="+'text'+"  id="+'resume'+resumenum+">"
-				+ "<input type=hidden name=xlavail"+resumenum+" value=1>"
-				+ "&nbsp;&nbsp;&nbsp;&nbsp;<a style=" + 'cursor: pointer;'
-				+ " href=\"javascript:deleteitem(document.all.xlavail"
-				+ resumenum + ",'resume1" + resumenum
-				+ "')\"><i class='fa fa-trash-o'></i></a></div>"
-		document.all.zjadd.insertAdjacentHTML("beforeBegin", html)
-
+	function add(i) {
+		var next = parseInt($('#' + i + 'Next').val());
+		var demo = $('#' + i).html();
+		demo = demo.replace(/_i_/g, next);
+		var but = $('#' + i + 'But');
+		but.parent().before(demo);
+		$(".tableDate").datepicker({
+			format : 'yyyy-mm-dd',
+			language : 'zh-CN'
+		});
+		$('#' + i + 'Next').val(next + 1);
 	}
 	//点击选择按钮的籍贯
 	function find(name, tag) {
@@ -409,7 +429,6 @@
 				alert("菜单加载失败！")
 			}
 		});
-
 	}
 	//模糊查找
 	function onClickfind() {
@@ -474,6 +493,5 @@
 		$("#tag1").val("")
 		$("#tag2").val("")
 		$('#myModal').modal('hide');
-
 	});
 </script>
