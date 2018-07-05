@@ -24,4 +24,6 @@ public interface CodeService extends GenericService<Code, String> {
 	long countByExample(CodeExample example);
 	
 	List<Code> searchCodeByName(String name);
+	
+	Code getCodeName(String type, String code);
 }

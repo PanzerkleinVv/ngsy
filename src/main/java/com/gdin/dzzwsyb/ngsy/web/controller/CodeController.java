@@ -354,4 +354,18 @@ public class CodeController {
 		} else
 			return null;
 	}
+
+	@RequestMapping(value = "/getCodeName")
+	@ResponseBody
+	public Code getCodeName(Code code) {
+		if (code != null) {
+			if (code.getName() != null) {
+				CodeType codeType = codeTypeService.selectList(code.getName()).get(0);
+				if (codeType != null) {
+					return codeService.getCodeName(codeType.getId(), code.getCode());
+				}
+			}
+		}
+		return null;
+	}
 }

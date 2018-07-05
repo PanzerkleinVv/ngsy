@@ -2,6 +2,68 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<nav id="unitNav" class="navbar navbar-default" style="height: 20px">
+	<div class="container-fluid">
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="rest/person/get">简介</a></li>
+				<li><a href="rest/person/edit">修改</a></li>
+				<li><a href="#">导出任免表</a></li>
+				<li><a href="#">机构排序</a></li>
+				<li><a href="#">新增机构</a></li>
+				<li><a href="#">职务设置</a></li>
+				<li><a href="#">岗位设置</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<c:choose>
+	<c:when test="${person != null}">
+		<div class="mainContent">
+			<input id="id" type="hidden" value="${person.id}" />
+			<jsp:useBean id="now" class="java.util.Date" />
+			<div>
+				<div class="col-md-2"></div>
+				<div class="col-md-10">
+					&emsp;&emsp;${person.name}，
+					<input type="hidden" id="人的性别代码" class="needCodeName" value="${person.sex}" />
+					，
+					<input type="hidden" id="人员籍贯代码" class="needCodeName" value="${person.nativePlace}" />
+					人， 出生地
+					<input type="hidden" id="人员籍贯代码" class="needCodeName" value="${person.birthplace}" />
+					，
+					<input type="hidden" id="中国各民族名称代码" class="needCodeName" value="${person.nationality}" />
+					，
+					<fmt:formatDate value='${person.birthday}' type='DATE' pattern='yyyy-MM-dd' />
+					生（
+					<c:set var="age" value="${now.time - birthday.time}" />
+					<fmt:formatNumber value="${interval/1000/60/60/24/((365*4+1)/4)}" pattern="#0" />
+					岁），
+					<fmt:formatDate value='${person.workDate}' type='DATE' pattern='yyyy-MM-dd' />
+					参加工作，
+					<c:if test="${person.partydate != null}">
+						<fmt:formatDate value='${person.partydate}' type='DATE' pattern='yyyy-MM-dd' />
+					</c:if>
+					入党，学历
+					<input id="getEducation" type="hidden" value="${person.id}" />
+					，
+					<input id="getRank" type="hidden" value="${person.id}" />
+					，
+					<input id="getDuties" type="hidden" value="${person.id}" />
+					，
+					<input id="getJob" type="hidden" value="${person.id}" />
+					。
+				</div>
+			</div>
+			<div>
+				<div class="col-md-12" id="resumeDiv"></div>
+			</div>
+		</div>
+	</c:when>
+	<c:otherwise>
+		找不到该人员。
+	</c:otherwise>
+</c:choose>
 <div class="mainContent row0 row">
 	<form role="form" class="form-horizontal needs-validation" autocomplete="off">
 		<input type="hidden" id="id" name="id" value="${person != null ? person.id : ''}" />
@@ -22,7 +84,7 @@
 				</div>
 				<label class="col-md-1 control-label" for="birthday">出生年月</label>
 				<div class="col-md-3">
-					<input type="text" placeholder="点击选择日期" id="birthday" name="birthday" class="form-control tableDate" required value="<c:if test='${person != null}'><fmt:formatDate value='${person.birthday}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
+					<input type="text" placeholder="点击选择日期" id="birthday" name="birthday" class="form-control tableDate" required value="${person != null ? person.birthday : ''}" />
 					<p class="help-block"></p>
 				</div>
 			</div>
@@ -59,12 +121,12 @@
 				</div>
 				<label class="col-md-1 control-label" for="partydate">入党时间</label>
 				<div class="col-md-3">
-					<input type="text" placeholder="点击选择日期" id="partydate" name="partydate" class="form-control tableDate" value="<c:if test='${person != null}'><fmt:formatDate value='${person.partydate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
+					<input type="text" placeholder="点击选择日期" id="partydate" name="partydate" class="form-control tableDate" value="${person != null ? person.partydate : ''}" />
 					<p class="help-block"></p>
 				</div>
 				<label class="col-md-1 control-label" for="workDate">参加工作时间</label>
 				<div class="col-md-3">
-					<input type="text" placeholder="点击选择日期" id="workDate" name="workDate" class="form-control tableDate" required value="<c:if test='${person != null}'><fmt:formatDate value='${person.workDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
+					<input type="text" placeholder="点击选择日期" id="workDate" name="workDate" class="form-control tableDate" required value="${person != null ? person.workDate : ''}" />
 					<p class="help-block"></p>
 				</div>
 			</div>
@@ -95,7 +157,7 @@
 				</div>
 				<label class="col-md-1-16 control-label" for="shuangDhiDate">双师认定时间</label>
 				<div class="col-md-3-16">
-					<input type="text" placeholder="点击选择日期" id="shuangDhiDate" name="shuangDhiDate" class="form-control tableDate" value="<c:if test='${person != null}'><fmt:formatDate value='${person.shuangDhiDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
+					<input type="text" placeholder="点击选择日期" id="shuangDhiDate" name="shuangDhiDate" class="form-control tableDate" value="${person != null ? person.shuangDhiDate : ''}" />
 				</div>
 			</div>
 		</div>
@@ -110,7 +172,7 @@
 				<textarea class="col-md-4-16 form-control" name="specialty" id="specialty" rows="3" placeholder="熟悉专业有何专长">${person != null ? person.specialty : ''}</textarea>
 				<label class="col-md-2-16 control-label" for="enterDate">进入本单位工作时间</label>
 				<div class="col-md-3-16">
-					<input type="text" placeholder="点击选择日期" id="enterDate" name="enterDate" class="form-control tableDate" required value="<c:if test='${person != null}'><fmt:formatDate value='${person.enterDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
+					<input type="text" placeholder="点击选择日期" id="enterDate" name="enterDate" class="form-control tableDate" required value="${person != null ? person.enterDate : ''}" />
 					<p class="help-block"></p>
 				</div>
 			</div>
@@ -138,10 +200,10 @@
 									</select>
 								</span>
 								<span class="col-md-3-16">
-									<input type="text" placeholder="点击选择日期" id="technicalTitles${status.index}ownDate" name="technicalTitles[${status.index}].ownDate" class="form-control tableDate" required value="<c:if test='${person != null}'><fmt:formatDate value='${technicalTitle.ownDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
+									<input type="text" placeholder="点击选择日期" id="technicalTitles${status.index}ownDate" name="technicalTitles[${status.index}].ownDate" class="form-control tableDate" required value="${technicalTitle.ownDate}" />
 								</span>
 								<span class="col-md-3-16">
-									<input type="text" placeholder="点击选择日期" id="technicalTitles${status.index}jobDate" name="technicalTitles[${status.index}].jobDate" class="form-control tableDate" value="<c:if test='${person != null}'><fmt:formatDate value='${technicalTitle.jobDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
+									<input type="text" placeholder="点击选择日期" id="technicalTitles${status.index}jobDate" name="technicalTitles[${status.index}].jobDate" class="form-control tableDate" value="${technicalTitle.jobDate}" />
 								</span>
 								<span class="col-md-1-16 butRow">
 									<a onclick="deleteRow(this)" class="delBut"><i class='fa fa-trash-o'></i></a>
@@ -201,7 +263,7 @@
 									<input type="text" placeholder="专业" id="educations${status.index}specialty" name="educations[${status.index}].specialty" class="form-control smForm" required value="${education.specialty}" />
 								</span>
 								<span class="col-md-2-16">
-									<input type="text" placeholder="点击选择日期" id="educations${status.index}graduationDate" name="educations[${status.index}].graduationDate" class="form-control tableDate smForm" required value="<c:if test='${person != null}'><fmt:formatDate value='${education.graduationDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
+									<input type="text" placeholder="点击选择日期" id="educations${status.index}graduationDate" name="educations[${status.index}].graduationDate" class="form-control tableDate smForm" required value="${education.graduationDate}" />
 								</span>
 								<span class="col-md-1-16 butRow">
 									<input type="radio" id="educations${status.index}isHighest" name="educations[${status.index}].isHighest" value="${education.isHighest}" />
@@ -242,7 +304,7 @@
 									</select>
 								</span>
 								<span class="col-md-3-16">
-									<input type="text" placeholder="点击选择日期" id="ranks${status.index}ownDate" name="ranks[${status.index}].ownDate" class="form-control tableDate" required value="<c:if test='${person != null}'><fmt:formatDate value='${rank.ownDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
+									<input type="text" placeholder="点击选择日期" id="ranks${status.index}ownDate" name="ranks[${status.index}].ownDate" class="form-control tableDate" required value="${rank.ownDate}" />
 								</span>
 								<span class="col-md-3-16">
 									<input type="hidden" class="hiddenValue" disabled="disabled" value="${rank.state}" />
@@ -307,10 +369,10 @@
 							<div class="row addRow form-group">
 								<input type="hidden" id="resumes${status.index}id" name="resumes[${status.index}].id" value="${resume.id}" />
 								<span class="col-md-3-16">
-									<input type="text" placeholder="点击选择日期" id="resumes${status.index}beginDate" name="resumes[${status.index}].beginDate" class="form-control tableDate" required value="<c:if test='${person != null}'><fmt:formatDate value='${resume.beginDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
+									<input type="text" placeholder="点击选择日期" id="resumes${status.index}beginDate" name="resumes[${status.index}].beginDate" class="form-control tableDate" required value="${resume.beginDate}" />
 								</span>
 								<span class="col-md-3-16">
-									<input type="text" placeholder="点击选择日期" id="resumes${status.index}endDate" name="resumes[${status.index}].endDate" class="form-control tableDate" value="<c:if test='${person != null}'><fmt:formatDate value='${resume.endDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
+									<input type="text" placeholder="点击选择日期" id="resumes${status.index}endDate" name="resumes[${status.index}].endDate" class="form-control tableDate" value="${resume.endDate}" />
 								</span>
 								<span class="col-md-9-16">
 									<textarea class="form-control" name="resumes[${status.index}].content" id="resumes${status.index}content" rows="3" placeholder="简历" required>${resume.content}</textarea>
@@ -511,8 +573,8 @@
 		$("#current-page-title").html("干部新增");
 	});
 	$(function() {
-		getCodeName('人员籍贯代码', $("#nativePlace").val(), $("#nativePlaceView"));
-		getCodeName('人员籍贯代码', $("#birthplace").val(), $("#birthplaceView"));
+		getCodeName($("#nativePlace").val(), $("#nativePlaceView"));
+		getCodeName($("#birthplace").val(), $("#birthplaceView"));
 		getCodeSimple('人的性别代码', $('#sex'), $("#sexValue").val());
 		getCodeSimple('中国各民族名称代码', $("#nationality"), "");
 		getCodeSimple('政治面貌代码', $("#party"), "");
@@ -534,7 +596,21 @@
 			getCodeSimple(codeType, this, this.prev('input.hiddenValue'));
 		});
 	}
-
+	function getCodeName(value, target) {
+		if (value != null && value.length > 0) {
+			$.ajax({
+				type : "Get",
+				url : 'rest/code/getCodeName',
+				dataType : "json",
+				data : {
+					'code' : value
+				},
+				success : function(result) {
+					target.html(result.name);
+				}
+			});
+		}
+	}
 	function deleteRow(target) {
 		$(target).parent().parent().remove();
 		return false;

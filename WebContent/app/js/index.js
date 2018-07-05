@@ -67,9 +67,13 @@ function goBack() {
 
 /**
  * 获取数据字典下拉菜单option
- * @param name 对应code_type表的name
- * @param target 目标select的jQuery对象（需用$()封装后传入）
- * @param selected 传入当前选定的option的value
+ * 
+ * @param name
+ *            对应code_type表的name
+ * @param target
+ *            目标select的jQuery对象（需用$()封装后传入）
+ * @param selected
+ *            传入当前选定的option的value
  * @returns null，在目标select对象内append数据字典option
  */
 function getCodeSimple(name, target, selected) {
@@ -80,13 +84,28 @@ function getCodeSimple(name, target, selected) {
 		if (data.length != 0) {
 			$.each(data, function(i, n) {
 				if (selected == n.code) {
-					target.append('<option value="' + n.code + '" selected="selected">' + n.name
-							+ '</option>');
+					target.append('<option value="' + n.code
+							+ '" selected="selected">' + n.name + '</option>');
 				} else {
 					target.append('<option value="' + n.code + '">' + n.name
 							+ '</option>');
 				}
 			});
+		}
+	});
+}
+
+function getCodeName(typeName, value, target) {
+	$.ajax({
+		type : "Get",
+		url : 'rest/code/getCodeName',
+		dataType : "json",
+		data : {
+			'code' : value,
+			'name' : name
+		},
+		success : function(result) {
+			target.html(result.name);
 		}
 	});
 }

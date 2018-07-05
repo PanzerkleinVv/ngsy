@@ -739,7 +739,7 @@
 	border-collapse: collapse;
 }
 
-.tableRow label {
+.tableRow .control-label {
 	background-color: #DDDDDD;
 	padding-bottom: 7px;
 	text-align: center !important;
@@ -768,4 +768,14 @@
 
 .delBut {
 	cursor: pointer;
+}
+
+label.error {
+	background-color: #FFFFFF;
+	color: #9f0000;
+}
+
+.error:not(label) {
+	background-color: RGBA(255, 0, 0, 0.05);
+	border-color: #9f0000;
 }
