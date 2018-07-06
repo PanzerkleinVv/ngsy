@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-06-26 18:12:48
+Date: 2018-07-06 17:26:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -19847,7 +19847,6 @@ INSERT INTO `code` VALUES ('f1345c303f6155e43a8d6d1fcbac2ee56238b6be', 'db8300f0
 INSERT INTO `code` VALUES ('f13deb680228bbb6df0924938e84af4dd2b85190', '15d9098278633caeddf023f6dd91dbd7bc1e8717', '气象行政二十级', '9820', '2');
 INSERT INTO `code` VALUES ('f13f64a8b45e446737f5935bc17fc30ba90d19a6', '20fbaaa7877cc81525bab66f74e79d4ec27142b2', '物理学教育', '070204', '1');
 INSERT INTO `code` VALUES ('f13ff9af0e70f3c606af019cc487ca20b969e6c6', 'ccefd243e588c16c26da7435d12aa9cdec79230b', '体育基础津贴一档', '2F01', '1');
-INSERT INTO `code` VALUES ('f142525275ecc8954f7892458f7d30ddc360f375', 'caf8432bb72a4762ce4987de2ebee0998187e151', '其他（本代码已停止使用，请修改）', '9', '1');
 INSERT INTO `code` VALUES ('f14273ab7b36a796843197294e89419202053be0', '9e9dcdc7313b4c6ea6807adae9705310b5f5912b', '廛河回族区', '410304', '3');
 INSERT INTO `code` VALUES ('f142eb73ef9279e3bf7dd11cc8226c8e04055177', '0d479e991ff6ab1f7a6ca77054e41cf247622c31', '讲师（中专）', '023', '2');
 INSERT INTO `code` VALUES ('f148dacbb98577f4c4ed7050b8173fc4102041f6', '0cbded8f58422ce1ada36a4429081cd84850bff5', '河北承德', '130800', '2');
@@ -21384,7 +21383,7 @@ CREATE TABLE `job_unit` (
   `rank` varchar(20) DEFAULT NULL COMMENT '岗位级别',
   `type` varchar(20) DEFAULT NULL COMMENT '院内岗位分类',
   `count` int(11) DEFAULT NULL COMMENT '应有岗数',
-  `salary` decimal(10,0) DEFAULT NULL COMMENT '岗位工资',
+  `salary` decimal(10,2) DEFAULT NULL COMMENT '岗位工资',
   `is_used` varchar(2) DEFAULT NULL COMMENT '是否使用中',
   `sort` int(11) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
@@ -21393,6 +21392,8 @@ CREATE TABLE `job_unit` (
 -- ----------------------------
 -- Records of job_unit
 -- ----------------------------
+INSERT INTO `job_unit` VALUES ('0e708cfb09b18d508b77bcc6b7a49526b4a9e0c5', 'fccfcad598229852bc359c8d96c2d57f33449297', '岗位2', '2', '1', '2', null, '1', '1');
+INSERT INTO `job_unit` VALUES ('49a085f1c7159def89e7e2a3086c2ccb5605f10c', 'fccfcad598229852bc359c8d96c2d57f33449297', '岗位1', '1', '1', '1', '100.01', '1', '0');
 
 -- ----------------------------
 -- Table structure for log
@@ -21406,7 +21407,7 @@ CREATE TABLE `log` (
   `type` varchar(20) DEFAULT NULL COMMENT '对象类型',
   `target` varchar(40) DEFAULT NULL COMMENT '对象id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of log
@@ -21508,6 +21509,21 @@ INSERT INTO `log` VALUES ('94', '2018-06-26 17:43:32', '1', '修改字典项：�
 INSERT INTO `log` VALUES ('95', '2018-06-26 17:43:38', '1', '修改字典项：院内岗位分类3', 'code_type', '8146b3b18096917d49c4103b20e6f764197d0188');
 INSERT INTO `log` VALUES ('96', '2018-06-26 18:06:40', '1', '新增机构：规划与质量管理处（职业技术教育研究所）', 'unit', '6cb893ffe3adfb4b3a87b38eeac0737367da421d');
 INSERT INTO `log` VALUES ('97', '2018-06-26 18:06:54', '1', '机构排序：0eaf3b8fe299c0c94de341b0f1da0e00bfd467a6', 'unit', null);
+INSERT INTO `log` VALUES ('98', '2018-06-28 09:58:04', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('99', '2018-06-28 10:01:32', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('100', '2018-06-28 10:25:35', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('101', '2018-06-28 10:25:47', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('102', '2018-06-28 10:25:51', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('103', '2018-06-28 10:25:53', '1', '更新行政职务：fccfcad598229852bc359c8d96c2d57f33449297', 'duties_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('104', '2018-06-28 10:29:09', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('105', '2018-06-28 10:29:13', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('106', '2018-06-28 10:30:28', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('107', '2018-06-28 10:31:19', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('108', '2018-06-28 10:36:34', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('109', '2018-06-28 10:38:14', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('110', '2018-06-28 10:38:34', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('111', '2018-06-28 10:38:37', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
+INSERT INTO `log` VALUES ('112', '2018-06-29 17:17:32', '1', '删除字典项：人员状态', 'code_type', 'caf8432bb72a4762ce4987de2ebee0998187e151');
 
 -- ----------------------------
 -- Table structure for ndkh
