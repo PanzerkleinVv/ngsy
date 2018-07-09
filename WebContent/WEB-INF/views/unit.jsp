@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
-a:hover {
+#unitNav a:hover {
 	font-size: 18px;
 }
 </style>
@@ -23,9 +23,9 @@ a:hover {
 									<li class="dropdown">
                           				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">人员调整<span class="caret"></span></a>
                          			 	<ul class="dropdown-menu">
-                            				<li><a href="#">职务调整</a></li>
+                            				<li><a href="rest/unit/adjustduties">职务调整</a></li>
                             				<li role="separator" class="divider"></li>
-                              				<li><a href="#">岗位调整</a></li>
+                              				<li><a href="rest/unit/adjustjob">岗位调整</a></li>
                           				</ul>
                   					</li>
                   
@@ -57,16 +57,29 @@ a:hover {
 				$.post(url, function(data) {
 					$("#unitContent").html(data);
 				});
-			} else {
+			}
+			else {
 				var zTree = $.fn.zTree.getZTreeObj("treeDemo");
 				checkCount = zTree.getCheckedNodes(true);
+				var ids = ['1','2'];
 				if (checkCount.length > 0) {
 					var unitId = checkCount[0].id;
-					$.post(url, {
-						"id" : unitId
-					}, function(data) {
-						$("#unitContent").html(data);
-					});
+					if(url == "rest/unit/adjustduties"){
+						$.post(url, {
+							"id" : unitId,
+							"ids": ids
+						}, function(data) {
+							$("#unitContent").html(data);
+						});
+					}
+					else{
+						$.post(url, {
+							"id" : unitId
+						}, function(data) {
+							$("#unitContent").html(data);
+						});
+					}
+					
 				}
 			}
 			return false;

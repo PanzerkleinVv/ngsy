@@ -28,4 +28,6 @@ public interface DutiesPersonMapper extends GenericDao<DutiesPerson, String> {
 	int updateByPrimaryKeySelective(DutiesPerson record);
 
 	int updateByPrimaryKey(DutiesPerson record);
+	
+	List<DutiesPerson> selectPersons(DutiesPersonExample example);
 }
