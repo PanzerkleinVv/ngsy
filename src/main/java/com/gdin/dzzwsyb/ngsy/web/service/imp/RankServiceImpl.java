@@ -58,16 +58,19 @@ public class RankServiceImpl extends GenericServiceImpl<Rank, String> implements
 			if (rank == null) {
 				continue;
 			}
+			int temp = 0;
 			rank.setPersonId(personId);
 			if (rank.getId() != null && !"".equals(rank.getId())) {
-				flag += update(rank);
+				temp = update(rank);
 			} else {
 				rank.setId(ApplicationUtils.newUUID());
-				flag += insert(rank);
+				temp = insert(rank);
 			}
-		}
-		if (flag != ranks.size()) {
-			throw new Exception("修改职级出错，操作回滚");
+			if (temp < 1) {
+				throw new Exception("修改职级出错，操作回滚");
+			} else {
+				flag += temp;
+			}
 		}
 		return flag;
 	}

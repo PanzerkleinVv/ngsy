@@ -59,16 +59,19 @@ public class TechnicalTitleServiceImpl extends GenericServiceImpl<TechnicalTitle
 			if (technicalTitle == null) {
 				continue;
 			}
+			int temp = 0;
 			technicalTitle.setPersonId(personId);
 			if (technicalTitle.getId() != null && !"".equals(technicalTitle.getId())) {
-				flag += update(technicalTitle);
+				temp = update(technicalTitle);
 			} else {
 				technicalTitle.setId(ApplicationUtils.newUUID());
-				flag += insert(technicalTitle);
+				temp = insert(technicalTitle);
 			}
-		}
-		if (flag != technicalTitles.size()) {
-			throw new Exception("修改职称出错，操作回滚");
+			if (temp < 1) {
+				throw new Exception("修改职称出错，操作回滚");
+			} else {
+				flag += temp;
+			}
 		}
 		return flag;
 	}

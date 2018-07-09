@@ -57,16 +57,19 @@ public class EducationServiceImpl extends GenericServiceImpl<Education, String> 
 			if (education == null) {
 				continue;
 			}
+			int temp = 0;
 			education.setPersonId(personId);
 			if (education.getId() != null && !"".equals(education.getId())) {
-				flag += update(education);
+				temp = update(education);
 			} else {
 				education.setId(ApplicationUtils.newUUID());
-				flag += insert(education);
+				temp = insert(education);
 			}
-		}
-		if (flag != educations.size()) {
-			throw new Exception("修改教育信息出错，操作回滚");
+			if (temp < 1) {
+				throw new Exception("修改教育信息出错，操作回滚");
+			} else {
+				flag += temp;
+			}
 		}
 		return flag;
 	}

@@ -58,16 +58,19 @@ public class ResumeServiceImpl extends GenericServiceImpl<Resume, String> implem
 			if (resume == null) {
 				continue;
 			}
+			int temp = 0;
 			resume.setPersonId(personId);
 			if (resume.getId() != null && !"".equals(resume.getId())) {
-				flag += update(resume);
+				temp = update(resume);
 			} else {
 				resume.setId(ApplicationUtils.newUUID());
-				flag += insert(resume);
+				temp = insert(resume);
 			}
-		}
-		if (flag != resumes.size()) {
-			throw new Exception("修改简介出错，操作回滚");
+			if (temp < 1) {
+				throw new Exception("修改简介出错，操作回滚");
+			} else {
+				flag += temp;
+			}
 		}
 		return flag;
 	}

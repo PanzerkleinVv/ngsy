@@ -18,6 +18,7 @@ import com.gdin.dzzwsyb.ngsy.web.model.Person;
 import com.gdin.dzzwsyb.ngsy.web.model.ResultMessage;
 import com.gdin.dzzwsyb.ngsy.web.security.RoleSign;
 import com.gdin.dzzwsyb.ngsy.web.service.EducationService;
+import com.gdin.dzzwsyb.ngsy.web.service.FamilyService;
 import com.gdin.dzzwsyb.ngsy.web.service.LogService;
 import com.gdin.dzzwsyb.ngsy.web.service.PersonService;
 import com.gdin.dzzwsyb.ngsy.web.service.RankService;
@@ -38,6 +39,8 @@ public class PersonController {
 	private RankService rankService;
 	@Resource
 	private ResumeService resumeService;
+	@Resource
+	private FamilyService familyService;
 	@Resource
 	private LogService logService;
 
@@ -74,6 +77,9 @@ public class PersonController {
 					if (person.getResumes() != null && person.getResumes().size() > 0) {
 						flag += resumeService.modify(person.getResumes(), person.getId());
 					}
+					if (person.getFamilies() != null && person.getFamilies().size() > 0) {
+						flag += familyService.modify(person.getFamilies(), person.getId());
+					}
 					message.success();
 					final Log log = new Log(userId, MODULE, person.getId(), METHOD + person.getName());
 					logService.log(log);
@@ -100,6 +106,9 @@ public class PersonController {
 					}
 					if (person.getResumes() != null && person.getResumes().size() > 0) {
 						flag += resumeService.modify(person.getResumes(), person.getId());
+					}
+					if (person.getFamilies() != null && person.getFamilies().size() > 0) {
+						flag += familyService.modify(person.getFamilies(), person.getId());
 					}
 					message.success();
 					final Log log = new Log(userId, MODULE, person.getId(), METHOD + person.getName());
@@ -154,6 +163,7 @@ public class PersonController {
 				person.setEducations(educationService.selectByPersonId(person.getId()));
 				person.setRanks(rankService.selectByPersonId(person.getId()));
 				person.setResumes(resumeService.selectByPersonId(person.getId()));
+				person.setFamilies(familyService.selectByPersonId(person.getId()));
 			}
 			model.addAttribute("person", person);
 		}
