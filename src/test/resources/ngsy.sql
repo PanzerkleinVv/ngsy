@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-07-06 17:26:24
+Date: 2018-07-09 17:14:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21348,6 +21348,24 @@ CREATE TABLE `education` (
 
 -- ----------------------------
 -- Records of education
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for family
+-- ----------------------------
+DROP TABLE IF EXISTS `family`;
+CREATE TABLE `family` (
+  `id` varchar(40) NOT NULL COMMENT '主键',
+  `person_id` varchar(40) DEFAULT NULL COMMENT '人员主键',
+  `relation` varchar(20) DEFAULT NULL COMMENT '关系',
+  `name` varchar(100) DEFAULT NULL COMMENT '姓名',
+  `age` int(4) unsigned DEFAULT NULL COMMENT '年龄',
+  `desc` varchar(255) DEFAULT NULL COMMENT '单位与职务',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='家庭信息';
+
+-- ----------------------------
+-- Records of family
 -- ----------------------------
 
 -- ----------------------------

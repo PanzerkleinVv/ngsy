@@ -96,16 +96,18 @@ function getCodeSimple(name, target, selected) {
 }
 
 function getCodeName(typeName, value, target) {
-	$.ajax({
-		type : "Get",
-		url : 'rest/code/getCodeName',
-		dataType : "json",
-		data : {
-			'code' : value,
-			'name' : name
-		},
-		success : function(result) {
-			target.html(result.name);
-		}
-	});
+	if (value != null && value.length >0) {
+		$.ajax({
+			type : "Get",
+			url : 'rest/code/getCodeName',
+			dataType : "json",
+			data : {
+				'code' : value,
+				'name' : name
+			},
+			success : function(result) {
+				target.html(result.name);
+			}
+		});
+	}
 }

@@ -300,10 +300,10 @@
 						<span class="col-md-9-16 innerLabel">简历</span>
 						<span class="col-md-1-16 innerLabel">删除</span>
 					</div>
-					<c:set var="i2" value="0" />
+					<c:set var="i3" value="0" />
 					<c:if test="${person != null && person.resumes != null}">
 						<c:forEach var="resume" items="${person.resumes}" varStatus="status">
-							<c:set var="i2" value="${status.index}" />
+							<c:set var="i3" value="${status.index}" />
 							<div class="row addRow form-group">
 								<input type="hidden" id="resumes${status.index}id" name="resumes[${status.index}].id" value="${resume.id}" />
 								<span class="col-md-3-16">
@@ -323,6 +323,58 @@
 					</c:if>
 					<div class="col-md-16-16 butRow addRow">
 						<button id="3But" type="button" class="btn btn-info" onclick="add('3')">增加</button>
+					</div>
+					<p class="col-md-16-16 help-block"></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-16-16 tableRow">
+			<div class="form-group">
+				<label class="col-md-1-16 control-label" for="family">主要家庭成员及重要社会关系</label>
+				<div class="col-md-15-16">
+					<div class="row">
+						<span class="col-md-2-16 innerLabel">称谓</span>
+						<span class="col-md-2-16 innerLabel">姓名</span>
+						<span class="col-md-2-16 innerLabel">年龄</span>
+						<span class="col-md-3-16 innerLabel">政治面貌</span>
+						<span class="col-md-6-16 innerLabel">工作单位及职务</span>
+						<span class="col-md-1-16 innerLabel">删除</span>
+					</div>
+					<c:set var="i4" value="0" />
+					<c:if test="${person != null && person.resumes != null}">
+						<c:forEach var="family" items="${person.families}" varStatus="status">
+							<c:set var="i4" value="${status.index}" />
+							<div class="row addRow form-group">
+								<input type="hidden" id="families${status.index}id" name="families[${status.index}].id" value="${family.id}" />
+								<span class="col-md-2-16">
+									<input type="hidden" class="hiddenValue" disabled="disabled" value="${family.relation}" />
+									<select id="families${status.index}relation" name="families[${status.index}].relation" class="form-control get_ct5" required>
+										<option value="">称谓</option>
+									</select>
+								</span>
+								<span class="col-md-2-16">
+									<input type="text" placeholder="姓名" id="families${status.index}name" name="families[${status.index}].name" class="form-control" value="${family.name}" required />
+								</span>
+								<span class="col-md-2-16">
+									<input type="number" placeholder="年龄" id="families${status.index}age" name="families[${status.index}].age" class="form-control" min="0" max="150" value="${family.age}" />
+								</span>
+								<span class="col-md-3-16">
+									<input type="hidden" class="hiddenValue" disabled="disabled" value="${family.party}" />
+									<select id="families${status.index}party" name="families[${status.index}].party" class="form-control get_ct6" required>
+										<option value="">政治面貌</option>
+									</select>
+								</span>
+								<span class="col-md-6-16">
+									<textarea class="form-control" name="families[${status.index}].desc" id="families${status.index}desc" rows="2" placeholder="工作单位及职务" required>${family.desc}</textarea>
+								</span>
+								<span class="col-md-1-16 butRow">
+									<a onclick="deleteRow(this)" class="delBut"><i class='fa fa-trash-o'></i></a>
+								</span>
+							</div>
+						</c:forEach>
+					</c:if>
+					<div class="col-md-16-16 butRow addRow">
+						<button id="4But" type="button" class="btn btn-info" onclick="add('4')">增加</button>
 					</div>
 					<p class="col-md-16-16 help-block"></p>
 				</div>
@@ -365,10 +417,11 @@
 	<input id="tag2" type="text">
 </div>
 <div class="addDemo">
-	<input type="hidden" id="0Next" value="0" disabled="disabled" />
-	<input type="hidden" id="1Next" value="0" disabled="disabled" />
-	<input type="hidden" id="2Next" value="0" disabled="disabled" />
-	<input type="hidden" id="3Next" value="0" disabled="disabled" />
+	<input type="hidden" id="0Next" value="${i0}" disabled="disabled" />
+	<input type="hidden" id="1Next" value="${i1}" disabled="disabled" />
+	<input type="hidden" id="2Next" value="${i2}" disabled="disabled" />
+	<input type="hidden" id="3Next" value="${i3}" disabled="disabled" />
+	<input type="hidden" id="4Next" value="${i4}" disabled="disabled" />
 	<div id="0">
 		<div class="row addRow form-group">
 			<input type="hidden" id="technicalTitles_i_id" name="technicalTitles[_i_].id" />
@@ -461,6 +514,33 @@
 			</span>
 		</div>
 	</div>
+	<div id="4">
+		<div class="row addRow form-group">
+			<input type="hidden" id="families_i_id" name="families[_i_].id" />
+			<span class="col-md-2-16">
+				<select id="families_i_relation" name="families[_i_].relation" class="form-control" required>
+					<option value="">称谓</option>
+				</select>
+			</span>
+			<span class="col-md-2-16">
+				<input type="text" placeholder="姓名" id="families_i_name" name="families[_i_].name" class="form-control" required />
+			</span>
+			<span class="col-md-2-16">
+				<input type="number" placeholder="年龄" id="families_i_age" name="families[_i_].age" class="form-control" min="0" max="150" />
+			</span>
+			<span class="col-md-3-16">
+				<select id="families_i_party" name="families[_i_].party" class="form-control" required>
+					<option value="">政治面貌</option>
+				</select>
+			</span>
+			<span class="col-md-6-16">
+				<textarea class="form-control" name="families[_i_].desc" id="families_i_desc" rows="2" placeholder="工作单位及职务" required></textarea>
+			</span>
+			<span class="col-md-1-16 butRow">
+				<a onclick="deleteRow(this)" class="delBut"><i class='fa fa-trash-o'></i></a>
+			</span>
+		</div>
+	</div>
 </div>
 <script type="text/javascript" src="app/js/personCard.js"></script>
 <script type="text/javascript">
@@ -523,11 +603,15 @@
 		getCodeSimple('中华人民共和国学位代码', $("#educations_i_degree"), "");
 		getCodeSimple('职级状态代码', $('#ranks_i_state'), "");
 		getCodeSimple('专业技术职务代码', $('#technicalTitles_i_technicalTitle'), "");
+		getCodeSimple('家庭关系代码', $('#families_i_relation'), "");
+		getCodeSimple('政治面貌代码', $('#families_i_party'), "");
 		getCodeSimpleLocal('专业技术职务代码', '.get_ct0');
 		getCodeSimpleLocal('是否全日制', '.get_ct1');
 		getCodeSimpleLocal('学历代码', '.get_ct2');
 		getCodeSimpleLocal('中华人民共和国学位代码', '.get_ct3');
 		getCodeSimpleLocal('职级状态代码', '.get_ct4');
+		getCodeSimpleLocal('家庭关系代码', '.get_ct5');
+		getCodeSimpleLocal('政治面貌代码', '.get_ct6');
 	})
 	function getCodeSimpleLocal(codeType, targetClass) {
 		$(targetClass).each(function() {

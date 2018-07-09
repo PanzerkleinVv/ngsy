@@ -55,6 +55,9 @@ public class ResumeServiceImpl extends GenericServiceImpl<Resume, String> implem
 	public int modify(List<Resume> resumes, String personId) throws Exception {
 		int flag = 0;
 		for (Resume resume : resumes) {
+			if (resume == null) {
+				continue;
+			}
 			resume.setPersonId(personId);
 			if (resume.getId() != null && !"".equals(resume.getId())) {
 				flag += update(resume);

@@ -54,6 +54,9 @@ public class EducationServiceImpl extends GenericServiceImpl<Education, String> 
 	public int modify(List<Education> educations, String personId) throws Exception {
 		int flag = 0;
 		for (Education education : educations) {
+			if (education == null) {
+				continue;
+			}
 			education.setPersonId(personId);
 			if (education.getId() != null && !"".equals(education.getId())) {
 				flag += update(education);

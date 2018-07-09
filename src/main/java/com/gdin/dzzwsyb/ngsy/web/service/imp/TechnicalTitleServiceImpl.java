@@ -56,6 +56,9 @@ public class TechnicalTitleServiceImpl extends GenericServiceImpl<TechnicalTitle
 	public int modify(List<TechnicalTitle> technicalTitles, String personId) throws Exception {
 		int flag = 0;
 		for (TechnicalTitle technicalTitle : technicalTitles) {
+			if (technicalTitle == null) {
+				continue;
+			}
 			technicalTitle.setPersonId(personId);
 			if (technicalTitle.getId() != null && !"".equals(technicalTitle.getId())) {
 				flag += update(technicalTitle);

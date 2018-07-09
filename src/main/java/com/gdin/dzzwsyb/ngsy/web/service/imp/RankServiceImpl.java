@@ -55,6 +55,9 @@ public class RankServiceImpl extends GenericServiceImpl<Rank, String> implements
 	public int modify(List<Rank> ranks, String personId) throws Exception {
 		int flag = 0;
 		for (Rank rank : ranks) {
+			if (rank == null) {
+				continue;
+			}
 			rank.setPersonId(personId);
 			if (rank.getId() != null && !"".equals(rank.getId())) {
 				flag += update(rank);

@@ -60,6 +60,8 @@ public class Person {
 	private List<Rank> ranks;
 
 	private List<Resume> resumes;
+	
+	private List<Family> families;
 
 	public String getId() {
 		return id;
@@ -261,6 +263,14 @@ public class Person {
 		this.resumes = resumes;
 	}
 
+	public List<Family> getFamilies() {
+		return families;
+	}
+
+	public void setFamilies(List<Family> families) {
+		this.families = families;
+	}
+
 	public Person() {
 
 	};
@@ -291,6 +301,7 @@ public class Person {
 		educations = person.getEducations();
 		ranks = person.getRanks();
 		resumes = person.getResumes();
+		families =person.getFamilies();
 	}
 
 }
