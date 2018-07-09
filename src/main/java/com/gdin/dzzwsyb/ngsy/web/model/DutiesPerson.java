@@ -21,6 +21,22 @@ public class DutiesPerson {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date lostDate;
+	
+	private int sort;
+
+	public DutiesPerson() {}
+	
+	public DutiesPerson(DutiesPerson dutiesPerson) {
+		// TODO Auto-generated constructor stub
+		id = dutiesPerson.getId();
+		personId = dutiesPerson.getPersonId();
+		dutiesUnitId = dutiesPerson.getDutiesUnitId();
+		ownDate = dutiesPerson.getOwnDate();
+		isProbation = dutiesPerson.getIsProbation();
+		probationDate = dutiesPerson.getProbationDate();
+		lostDate = dutiesPerson.getLostDate();
+		sort = dutiesPerson.getSort();
+	}
 
 	public String getId() {
 		return id;
@@ -76,5 +92,13 @@ public class DutiesPerson {
 
 	public void setLostDate(Date lostDate) {
 		this.lostDate = lostDate;
+	}
+	
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 }

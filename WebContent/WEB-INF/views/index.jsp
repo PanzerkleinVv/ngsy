@@ -60,6 +60,8 @@
 </head>
 <link rel="stylesheet"
 	href="assets/plugins/bootstrapStyle/bootstrapStyle.css" type="text/css">
+<link rel="stylesheet"
+	href="assets/css/bootstrap-table.css" type="text/css">
 <link rel="alternate icon" type="image/png"
 	href="assets/i/favicon.png">
 <!-- <link rel="stylesheet" href="assets/css/amazeui.min.css" /> -->
@@ -332,6 +334,10 @@
 		src="assets/scripts/jquery.ztree.exedit.js"></script>
 	<script type="text/javascript"
 		src="assets/scripts/jquery.form.js"></script>
+	<script type="text/javascript"
+		src="assets/js/bootstrap-table.js"></script>
+	<script type="text/javascript"
+		src="assets/js/bootstrap-table-zh-CN.js"></script>
 	<!-- <script data-main="app/js/main" src="app/lib/requirejs/require.js"></script> -->
 	<!-- <script src="assets/js/amazeui.min.js"></script> -->
 </body>

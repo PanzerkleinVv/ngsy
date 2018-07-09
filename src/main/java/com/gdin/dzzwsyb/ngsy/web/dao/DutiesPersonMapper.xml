@@ -17,6 +17,7 @@
 			property="probationDate" />
 		<result column="lost_date" jdbcType="TIMESTAMP"
 			property="lostDate" />
+		<result column="sort" jdbcType="INTEGER" property="sort" />
 	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
@@ -87,7 +88,7 @@
 	<sql id="Base_Column_List">
 		id, person_id, duties_unit_id, own_date, is_probation,
 		probation_date,
-		lost_date
+		lost_date,sort
 	</sql>
 	<select id="selectByExample"
 		parameterType="com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExample"
@@ -134,7 +135,8 @@
 		#{dutiesUnitId,jdbcType=VARCHAR},
 		#{ownDate,jdbcType=TIMESTAMP},
 		#{isProbation,jdbcType=VARCHAR}, #{probationDate,jdbcType=TIMESTAMP},
-		#{lostDate,jdbcType=TIMESTAMP})
+		#{lostDate,jdbcType=TIMESTAMP}),
+		#{sort,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective"
 		parameterType="com.gdin.dzzwsyb.ngsy.web.model.DutiesPerson">
@@ -161,6 +163,9 @@
 			<if test="lostDate != null">
 				lost_date,
 			</if>
+			<if test="sort != null">
+				sort,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -183,6 +188,9 @@
 			</if>
 			<if test="lostDate != null">
 				#{lostDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
 			</if>
 		</trim>
 	</insert>
@@ -218,6 +226,9 @@
 			</if>
 			<if test="record.lostDate != null">
 				lost_date = #{record.lostDate,jdbcType=TIMESTAMP},
+			<if test="record.sort != null">
+				sort = #{record.sort,jdbcType=INTEGER},
+			</if>
 			</if>
 		</set>
 		<if test="_parameter != null">
@@ -239,6 +250,7 @@
 		#{record.probationDate,jdbcType=TIMESTAMP},
 		lost_date =
 		#{record.lostDate,jdbcType=TIMESTAMP}
+		sort = #{record.sort,jdbcType=INTEGER}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -265,6 +277,9 @@
 			<if test="lostDate != null">
 				lost_date = #{lostDate,jdbcType=TIMESTAMP},
 			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
@@ -282,7 +297,18 @@
 		probation_date =
 		#{probationDate,jdbcType=TIMESTAMP},
 		lost_date =
-		#{lostDate,jdbcType=TIMESTAMP}
+		#{lostDate,jdbcType=TIMESTAMP},
+		sort = #{sort,jdbcType=INTEGER}
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
+	<select id="selectPersons" parameterType="com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExample"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from duties_person
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		order by sort
+	</select>
 </mapper>
