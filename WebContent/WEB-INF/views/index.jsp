@@ -48,9 +48,11 @@
 <link href="assets/plugins/bootstrap/css/bootstrap-treeview.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/easyui.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/icon.css" rel="stylesheet" type="text/css" />
-</head>
+<link href="assets/plugins/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="assets/plugins/bootstrapStyle/bootstrapStyle.css" type="text/css">
 <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+</head>
+
 
 <!-- END HEAD -->
 
@@ -273,5 +275,7 @@
 	<script type="text/javascript" src="assets/scripts/jquery.ztree.excheck.js"></script>
 	<script type="text/javascript" src="assets/scripts/jquery.ztree.exedit.js"></script>
 	<script type="text/javascript" src="assets/scripts/jquery.form.js"></script>
+	<script type="text/javascript" src="assets/plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
+	<script type="text/javascript" src="assets/plugins/bootstrap-fileinput/js/locales/zh.js"></script>
 </body>
 </html>

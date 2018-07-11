@@ -1,9 +1,17 @@
 package com.gdin.dzzwsyb.ngsy.web.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -16,6 +24,7 @@ import com.gdin.dzzwsyb.ngsy.core.util.ApplicationUtils;
 import com.gdin.dzzwsyb.ngsy.web.model.Log;
 import com.gdin.dzzwsyb.ngsy.web.model.Person;
 import com.gdin.dzzwsyb.ngsy.web.model.ResultMessage;
+import com.gdin.dzzwsyb.ngsy.web.properties.SourceURL;
 import com.gdin.dzzwsyb.ngsy.web.security.RoleSign;
 import com.gdin.dzzwsyb.ngsy.web.service.EducationService;
 import com.gdin.dzzwsyb.ngsy.web.service.FamilyService;
@@ -43,6 +52,9 @@ public class PersonController {
 	private FamilyService familyService;
 	@Resource
 	private LogService logService;
+
+	@Autowired
+	private SourceURL sourceURL;
 
 	final static private String MODULE = "person";
 
@@ -168,6 +180,26 @@ public class PersonController {
 			model.addAttribute("person", person);
 		}
 		return "addPerson";
+	}
+
+	@RequestMapping(value = "/photo")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public void photo(Person person, HttpServletResponse response, HttpServletRequest request) throws IOException {
+		if (person != null && person.getId() != null && !"".equals(person.getId())) {
+			person = personService.selectById(person.getId());
+			if (person != null) {
+				File photo = new File(sourceURL.PHOTO_URL + person.getId());
+				if (photo.exists()) {
+					BufferedImage bufferedImage = ImageIO.read(photo);
+					ImageIO.write(bufferedImage, "jpg", photo);
+					return;
+				}
+			}
+		}
+		File photo = new File(request.getServletContext().getRealPath(sourceURL.PHOTO_URL_DEFAULT));
+		BufferedImage bufferedImage = ImageIO.read(photo);
+		ImageIO.write(bufferedImage, "jpg", photo);
+		return;
 	}
 
 }

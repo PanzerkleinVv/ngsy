@@ -14,8 +14,7 @@
 				</div>
 				<label class="col-md-1 control-label" for="sex">性别</label>
 				<div class="col-md-3">
-					<input type="hidden" id="sexValue" disabled="disabled" value="${person != null ? person.sex : ''}" />
-					<select id="sex" name="sex" class="form-control" required>
+					<input type="hidden" id="sexValue" disabled="disabled" value="${person != null ? person.sex : ''}" /> <select id="sex" name="sex" class="form-control" required>
 						<option value="">选择性别</option>
 					</select>
 					<p class="help-block"></p>
@@ -29,30 +28,26 @@
 			<div class="form-group tableRow">
 				<label class="col-md-1 control-label" for="nationality">民族</label>
 				<div class="col-md-3">
-					<input type="hidden" id="nationalityValue" disabled="disabled" value="${person != null ? person.nationality : ''}" />
-					<select id="nationality" name="nationality" class="form-control" required>
+					<input type="hidden" id="nationalityValue" disabled="disabled" value="${person != null ? person.nationality : ''}" /> <select id="nationality" name="nationality" class="form-control" required>
 						<option value="">选择民族</option>
 					</select>
 					<p class="help-block"></p>
 				</div>
 				<label class="col-md-1 control-label" for="nativePlace">籍贯</label>
 				<div class="col-md-3">
-					<input class="form-control" type="text" id="nativePlaceView" onclick="find('人员籍贯代码','0')" placeholder="点击选择" required />
-					<input name="nativePlace" type="hidden" id="nativePlace" value="${person != null ? person.nativePlace : ''}" />
+					<input class="form-control" type="text" id="nativePlaceView" onclick="find('人员籍贯代码','0')" placeholder="点击选择" required /> <input name="nativePlace" type="hidden" id="nativePlace" value="${person != null ? person.nativePlace : ''}" />
 					<p class="help-block"></p>
 				</div>
 				<label class="col-md-1 control-label" for="birthplace">出生地</label>
 				<div class="col-md-3">
-					<input class="form-control" type="text" id="birthplaceView" onclick="find('人员籍贯代码','1')" placeholder="点击选择" required />
-					<input name="birthplace" type="hidden" id="birthplace" value="${person != null ? person.birthplace : ''}" />
+					<input class="form-control" type="text" id="birthplaceView" onclick="find('人员籍贯代码','1')" placeholder="点击选择" required /> <input name="birthplace" type="hidden" id="birthplace" value="${person != null ? person.birthplace : ''}" />
 					<p class="help-block"></p>
 				</div>
 			</div>
 			<div class="form-group tableRow">
 				<label class="col-md-1 control-label" for="party">政治面貌</label>
 				<div class="col-md-3">
-					<input type="hidden" id="partyValue" disabled="disabled" value="${person != null ? person.party : ''}" />
-					<select id="party" name="party" class="form-control" required>
+					<input type="hidden" id="partyValue" disabled="disabled" value="${person != null ? person.party : ''}" /> <select id="party" name="party" class="form-control" required>
 						<option value="">政治面貌</option>
 					</select>
 					<p class="help-block"></p>
@@ -69,21 +64,22 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3 tableRow"></div>
+		<div class="col-md-3 tableRow butRow uploadPhoto">
+			<label for="photo"><img src="${person != null ? 'rest/person/photo/id=' + person.id : 'app/img/defaultPhoto.jpg'}" width="160px" height="200px" /></label>
+			<input type="file" name="photo" id="photo" />
+		</div>
 		<div class="col-md-16-16 tableRow">
 			<div class="form-group">
 				<label class="col-md-1-16 control-label" for="health">健康状况</label>
 				<div class="col-md-3-16">
-					<input type="hidden" id="healthValue" disabled="disabled" value="${person != null ? person.health : ''}" />
-					<select id="health" name="health" class="form-control" required>
+					<input type="hidden" id="healthValue" disabled="disabled" value="${person != null ? person.health : ''}" /> <select id="health" name="health" class="form-control" required>
 						<option value="">健康状况</option>
 					</select>
 					<p class="help-block"></p>
 				</div>
 				<label class="col-md-1-16 control-label" for="state">人员状态</label>
 				<div class="col-md-3-16">
-					<input type="hidden" id="stateValue" disabled="disabled" value="${person != null ? person.state : ''}" />
-					<select id="state" name="state" class="form-control" required>
+					<input type="hidden" id="stateValue" disabled="disabled" value="${person != null ? person.state : ''}" /> <select id="state" name="state" class="form-control" required>
 						<option value="">人员状态</option>
 					</select>
 					<p class="help-block"></p>
@@ -132,8 +128,7 @@
 							<div class="row addRow form-group">
 								<input type="hidden" id="technicalTitles${status.index}id" name="technicalTitles[${status.index}].id" value="${technicalTitle.id}" />
 								<span class="col-md-9-16">
-									<input type="hidden" class="hiddenValue" disabled="disabled" value="${technicalTitle.technicalTitle}" />
-									<select id="technicalTitles${status.index}technicalTitle" name="technicalTitles[${status.index}].technicalTitle" class="form-control smForm get_ct0" required>
+									<input type="hidden" class="hiddenValue" disabled="disabled" value="${technicalTitle.technicalTitle}" /> <select id="technicalTitles${status.index}technicalTitle" name="technicalTitles[${status.index}].technicalTitle" class="form-control smForm get_ct0" required>
 										<option value="">职称</option>
 									</select>
 								</span>
@@ -177,20 +172,17 @@
 							<div class="row addRow form-group">
 								<input type="hidden" id="educations${status.index}id" name="educations[${status.index}].id" value="${education.id}" />
 								<span class="col-md-2-16">
-									<input type="hidden" class="hiddenValue" disabled="disabled" value="${education.type}" />
-									<select id="educations${status.index}type" name="educations[${status.index}].type" class="form-control smForm get_ct1" required>
+									<input type="hidden" class="hiddenValue" disabled="disabled" value="${education.type}" /> <select id="educations${status.index}type" name="educations[${status.index}].type" class="form-control smForm get_ct1" required>
 										<option value="">类型</option>
 									</select>
 								</span>
 								<span class="col-md-2-16">
-									<input type="hidden" class="hiddenValue" disabled="disabled" value="${education.education}" />
-									<select id="educations${status.index}education" name="educations[${status.index}].education" class="form-control smForm get_ct2" required>
+									<input type="hidden" class="hiddenValue" disabled="disabled" value="${education.education}" /> <select id="educations${status.index}education" name="educations[${status.index}].education" class="form-control smForm get_ct2" required>
 										<option value="">学历</option>
 									</select>
 								</span>
 								<span class="col-md-2-16">
-									<input type="hidden" class="hiddenValue" disabled="disabled" value="${education.degree}" />
-									<select id="educations${status.index}degree" name="educations[${status.index}].degree" class="form-control smForm get_ct3" required>
+									<input type="hidden" class="hiddenValue" disabled="disabled" value="${education.degree}" /> <select id="educations${status.index}degree" name="educations[${status.index}].degree" class="form-control smForm get_ct3" required>
 										<option value="">学位</option>
 									</select>
 								</span>
@@ -236,8 +228,7 @@
 							<div class="row addRow form-group">
 								<input type="hidden" id="ranks${status.index}id" name="ranks[${status.index}].id" value="${rank.id}" />
 								<span class="col-md-9-16">
-									<input type="hidden" class="hiddenValue" disabled="disabled" value="${rank.rank}" />
-									<select id="ranks${status.index}rank" name="ranks[${status.index}]rank" class="form-control" required>
+									<input type="hidden" class="hiddenValue" disabled="disabled" value="${rank.rank}" /> <select id="ranks${status.index}rank" name="ranks[${status.index}]rank" class="form-control" required>
 										<option value="">职级</option>
 									</select>
 								</span>
@@ -245,8 +236,7 @@
 									<input type="text" placeholder="点击选择日期" id="ranks${status.index}ownDate" name="ranks[${status.index}].ownDate" class="form-control tableDate" required value="<c:if test='${person != null}'><fmt:formatDate value='${rank.ownDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
 								</span>
 								<span class="col-md-3-16">
-									<input type="hidden" class="hiddenValue" disabled="disabled" value="${rank.state}" />
-									<select id="ranks${status.index}state" name="ranks[${status.index}].state" class="form-control get_ct4" required>
+									<input type="hidden" class="hiddenValue" disabled="disabled" value="${rank.state}" /> <select id="ranks${status.index}state" name="ranks[${status.index}].state" class="form-control get_ct4" required>
 										<option value="">职级状态</option>
 									</select>
 								</span>
@@ -347,8 +337,7 @@
 							<div class="row addRow form-group">
 								<input type="hidden" id="families${status.index}id" name="families[${status.index}].id" value="${family.id}" />
 								<span class="col-md-2-16">
-									<input type="hidden" class="hiddenValue" disabled="disabled" value="${family.relation}" />
-									<select id="families${status.index}relation" name="families[${status.index}].relation" class="form-control get_ct5" required>
+									<input type="hidden" class="hiddenValue" disabled="disabled" value="${family.relation}" /> <select id="families${status.index}relation" name="families[${status.index}].relation" class="form-control get_ct5" required>
 										<option value="">称谓</option>
 									</select>
 								</span>
@@ -359,8 +348,7 @@
 									<input type="number" placeholder="年龄" id="families${status.index}age" name="families[${status.index}].age" class="form-control" min="0" max="150" value="${family.age}" />
 								</span>
 								<span class="col-md-3-16">
-									<input type="hidden" class="hiddenValue" disabled="disabled" value="${family.party}" />
-									<select id="families${status.index}party" name="families[${status.index}].party" class="form-control get_ct6" required>
+									<input type="hidden" class="hiddenValue" disabled="disabled" value="${family.party}" /> <select id="families${status.index}party" name="families[${status.index}].party" class="form-control get_ct6" required>
 										<option value="">政治面貌</option>
 									</select>
 								</span>
@@ -417,11 +405,7 @@
 	<input id="tag2" type="text">
 </div>
 <div class="addDemo">
-	<input type="hidden" id="0Next" value="${i0}" disabled="disabled" />
-	<input type="hidden" id="1Next" value="${i1}" disabled="disabled" />
-	<input type="hidden" id="2Next" value="${i2}" disabled="disabled" />
-	<input type="hidden" id="3Next" value="${i3}" disabled="disabled" />
-	<input type="hidden" id="4Next" value="${i4}" disabled="disabled" />
+	<input type="hidden" id="0Next" value="${i0}" disabled="disabled" /> <input type="hidden" id="1Next" value="${i1}" disabled="disabled" /> <input type="hidden" id="2Next" value="${i2}" disabled="disabled" /> <input type="hidden" id="3Next" value="${i3}" disabled="disabled" /> <input type="hidden" id="4Next" value="${i4}" disabled="disabled" />
 	<div id="0">
 		<div class="row addRow form-group">
 			<input type="hidden" id="technicalTitles_i_id" name="technicalTitles[_i_].id" />

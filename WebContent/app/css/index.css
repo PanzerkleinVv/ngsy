@@ -779,3 +779,7 @@ label.error {
 	background-color: RGBA(255, 0, 0, 0.05);
 	border-color: #9f0000;
 }
+
+.uploadPhoto {
+	height: 220px;
+}

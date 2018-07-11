@@ -23,37 +23,23 @@
 			<input id="id" type="hidden" value="${person.id}" />
 			<jsp:useBean id="now" class="java.util.Date" />
 			<div>
-				<div class="col-md-2"></div>
+				<div class="col-md-2">
+					<img src="rest/person/photo/id=${person.id}" width="160px" height="200px" s/>
+				</div>
 				<div class="col-md-10">
 					<div>
-					&emsp;&emsp;${person.name}，
-					<input type="hidden" id="人的性别代码" class="needCodeName" value="${person.sex}" />
-					，
-					<input type="hidden" id="人员籍贯代码" class="needCodeName" value="${person.nativePlace}" />
-					人， 出生地
-					<input type="hidden" id="人员籍贯代码" class="needCodeName" value="${person.birthplace}" />
-					，
-					<input type="hidden" id="中国各民族名称代码" class="needCodeName" value="${person.nationality}" />
-					，
-					<fmt:formatDate value='${person.birthday}' type='DATE' pattern='yyyy-MM-dd' />
-					生（
-					<c:set var="age" value="${now.time - birthday.time}" />
-					<fmt:formatNumber value="${interval/1000/60/60/24/((365*4+1)/4)}" pattern="#0" />
-					岁），
-					<fmt:formatDate value='${person.workDate}' type='DATE' pattern='yyyy-MM-dd' />
-					参加工作，
-					<c:if test="${person.partydate != null}">
-						<fmt:formatDate value='${person.partydate}' type='DATE' pattern='yyyy-MM-dd' />
-					</c:if>
-					入党，学历
-					<input id="getEducation" type="hidden" value="${person.id}" />
-					，
-					<input id="getRank" type="hidden" value="${person.id}" />
-					，
-					<input id="getDuties" type="hidden" value="${person.id}" />
-					，
-					<input id="getJob" type="hidden" value="${person.id}" />
-					。
+						&emsp;&emsp;${person.name}， <input type="hidden" id="人的性别代码" class="needCodeName" value="${person.sex}" /> ， <input type="hidden" id="人员籍贯代码" class="needCodeName" value="${person.nativePlace}" /> 人， 出生地 <input type="hidden" id="人员籍贯代码" class="needCodeName" value="${person.birthplace}" /> ， <input type="hidden" id="中国各民族名称代码" class="needCodeName" value="${person.nationality}" /> ，
+						<fmt:formatDate value='${person.birthday}' type='DATE' pattern='yyyy-MM-dd' />
+						生（
+						<c:set var="age" value="${now.time - birthday.time}" />
+						<fmt:formatNumber value="${interval/1000/60/60/24/((365*4+1)/4)}" pattern="#0" />
+						岁），
+						<fmt:formatDate value='${person.workDate}' type='DATE' pattern='yyyy-MM-dd' />
+						参加工作，
+						<c:if test="${person.partydate != null}">
+							<fmt:formatDate value='${person.partydate}' type='DATE' pattern='yyyy-MM-dd' />
+						</c:if>
+						入党，学历 <input id="getEducation" type="hidden" value="${person.id}" /> ， <input id="getRank" type="hidden" value="${person.id}" /> ， <input id="getDuties" type="hidden" value="${person.id}" /> ， <input id="getJob" type="hidden" value="${person.id}" /> 。
 					</div>
 					<div id="familyDiv"></div>
 				</div>
