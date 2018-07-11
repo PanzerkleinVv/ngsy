@@ -337,6 +337,8 @@
 	<script type="text/javascript"
 		src="assets/js/bootstrap-table.js"></script>
 	<script type="text/javascript"
+		src="assets/js/layer.js"></script>
+	<script type="text/javascript"
 		src="assets/js/bootstrap-table-zh-CN.js"></script>
 	<!-- <script data-main="app/js/main" src="app/lib/requirejs/require.js"></script> -->
 	<!-- <script src="assets/js/amazeui.min.js"></script> -->

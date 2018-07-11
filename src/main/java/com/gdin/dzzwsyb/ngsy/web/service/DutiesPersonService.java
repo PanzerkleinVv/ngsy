@@ -15,5 +15,8 @@ public interface DutiesPersonService extends GenericService<DutiesPerson, String
 	
 	List<DutiesPerson> selectPersons(List<DutiesUnit> duties);
 	
-	boolean modify(List<DutiesPerson> duties, String unitId) throws Exception;
+	boolean modify(List<DutiesPersonExtend> duties) throws Exception;
+	
+	int updateByPrimaryKey(DutiesPerson dutiesPerson);
+	
 }
