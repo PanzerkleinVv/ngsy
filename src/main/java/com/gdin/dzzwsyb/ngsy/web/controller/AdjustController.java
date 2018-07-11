@@ -1,6 +1,9 @@
 package com.gdin.dzzwsyb.ngsy.web.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,19 +11,17 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gdin.dzzwsyb.ngsy.core.util.ApplicationUtils;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesPerson;
+import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExample;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExtend;
-import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonList;
+import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExtendList;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesUnit;
-import com.gdin.dzzwsyb.ngsy.web.model.DutiesUnitList;
 import com.gdin.dzzwsyb.ngsy.web.model.Log;
 import com.gdin.dzzwsyb.ngsy.web.model.Person;
 import com.gdin.dzzwsyb.ngsy.web.model.ResultMessage;
@@ -61,6 +62,13 @@ public class AdjustController {
 					DutiesPersonExtend dutiesPersonExtend = new DutiesPersonExtend(dutiesPerson);
 					Person person = personService.selectById(dutiesPerson.getPersonId());
 					DutiesUnit dutiesUnit = dutiesUnitService.selectById(dutiesPerson.getDutiesUnitId());
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+		            String ownDateStr = sdf.format(dutiesPerson.getOwnDate());
+		            dutiesPersonExtend.setOwnDateStr(ownDateStr);
+		            if(dutiesPerson.getProbationDate() != null) {
+		            	String probationDateStr = sdf.format(dutiesPerson.getProbationDate());
+		            	dutiesPersonExtend.setProbationDateStr(probationDateStr);
+		            }
 					dutiesPersonExtend.setPersonName(person.getName());
 					dutiesPersonExtend.setDutiesName(dutiesUnit.getName());
 					dutiesPersonExtends.add(dutiesPersonExtend);
@@ -75,15 +83,15 @@ public class AdjustController {
 	
 	@RequestMapping("/save")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String save(String unitId, DutiesPersonList dutiePersons, RedirectAttributes model, HttpSession session)
+	public String save(String unitId, DutiesPersonExtendList dutiesPersonExtends, RedirectAttributes model, HttpSession session)
 			throws Exception {
 		if (unitId != null && !"".equals(unitId)) {
-			if (dutiePersons.getDutiesPersons() != null && dutiePersons.getDutiesPersons().size() > 0) {
+			if (dutiesPersonExtends.getDutiesPersonExtends() != null && dutiesPersonExtends.getDutiesPersonExtends().size() > 0) {
 				final ResultMessage message = new ResultMessage();
 				final Long userId = (Long) session.getAttribute("userId");
 				final String METHOD = "更新内部人员职务排序：";
 				message.edit();
-				if (dutiesPersonService.modify(dutiePersons.getDutiesPersons(), unitId)) {
+				if (dutiesPersonService.modify(dutiesPersonExtends.getDutiesPersonExtends())) {
 					message.success();
 					final Log log = new Log(userId, MODULE, unitId, METHOD + unitId);
 					logService.log(log);
@@ -99,5 +107,57 @@ public class AdjustController {
 		return "redirect:/rest/adjust/adjustduties";
 	}
 	
+	//退休（未修改人员表中的state）
+	@RequestMapping("/lostDuties")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public String lostDuties(String dutiesPersonExtendId, String  unitId, RedirectAttributes model)
+			throws Exception {
+		DutiesPerson dutiesPerson = dutiesPersonService.selectById(dutiesPersonExtendId);
+		Date lostDate = ApplicationUtils.getYMD();
+		dutiesPerson.setLostDate(lostDate);
+		int flag = dutiesPersonService.update(dutiesPerson);
+		if (flag < 1) {
+			throw new Exception("退休更新出错");
+		}
+		final Unit unit = new Unit();
+		unit.setId(unitId);
+		model.addFlashAttribute("unit", unit);
+		return "redirect:/rest/adjust/adjustduties";
+	}
+	
+	@RequestMapping("/regularDuties")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public String regularDuties(String dutiesPersonExtendId, String  unitId, RedirectAttributes model)
+			throws Exception {
+		DutiesPerson dutiesPerson = dutiesPersonService.selectById(dutiesPersonExtendId);
+		dutiesPerson.setIsProbation("否");
+		dutiesPerson.setProbationDate(null);
+		int flag = dutiesPersonService.updateByPrimaryKey(dutiesPerson);
+		if (flag < 1) {
+			throw new Exception("转正更新出错");
+		}
+		final Unit unit = new Unit();
+		unit.setId(unitId);
+		model.addFlashAttribute("unit", unit);
+		return "redirect:/rest/adjust/adjustduties";
+	}
+	
+	//免职（未修改人员表中的state）
+	@RequestMapping("/delDuties")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public String delDuties(String dutiesPersonExtendId, String  unitId, RedirectAttributes model)
+			throws Exception {
+		DutiesPerson dutiesPerson = dutiesPersonService.selectById(dutiesPersonExtendId);
+		Date lostDate = ApplicationUtils.getYMD();
+		dutiesPerson.setLostDate(lostDate);
+		int flag = dutiesPersonService.update(dutiesPerson);
+		if (flag < 1) {
+			throw new Exception("退休更新出错");
+		}
+		final Unit unit = new Unit();
+		unit.setId(unitId);
+		model.addFlashAttribute("unit", unit);
+		return "redirect:/rest/adjust/adjustduties";
+	}
 	
 }

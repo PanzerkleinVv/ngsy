@@ -5,6 +5,28 @@ public class DutiesPersonExtend extends DutiesPerson{
 	
 	private String dutiesName;
 	
+	private String ownDateStr;
+	
+	private String probationDateStr;
+	
+	public String getOwnDateStr() {
+		return ownDateStr;
+	}
+
+	public void setOwnDateStr(String ownDateStr) {
+		this.ownDateStr = ownDateStr;
+	}
+
+	
+
+	public String getProbationDateStr() {
+		return probationDateStr;
+	}
+
+	public void setProbationDateStr(String probationDateStr) {
+		this.probationDateStr = probationDateStr;
+	}
+
 	public String getPersonName() {
 		return personName;
 	}

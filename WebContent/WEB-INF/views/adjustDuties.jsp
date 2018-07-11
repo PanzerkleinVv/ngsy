@@ -2,19 +2,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="row">
 	<c:set var="i" value="0" />
-	<div class="col-md-3">
+	<div class="col-md-2-3">
 		<div class="mainContent">
 		<form id="dutiesPersonForm">
-			<input type="hidden" name="unitId" value="${unit.id}" />
 			<div class="multipleList sortable">
+			<input type="hidden" name="unitId" id="unitId" value="${unit.id}" />
 				<c:forEach items="${dutiesPersonExtends}" var="dutiesPersonExtend" varStatus="status" >
 					<c:set var="i" value="${status.index}" />
 					<div class="multipleList-row sortableLine">
-						<input type="hidden" name="dutiesPersonExtend[${status.index}].id"
+						<input type="hidden" name="dutiesPersonExtends[${status.index}].id"
 								class="dutyPersonId" value="${dutiesPersonExtend.id}" />
 						<span>${dutiesPersonExtend.personName}</span>
 						<input type="hidden"
-								name="dutiesPersonExtend[${status.index}].sort" class="dutyPersonSort"
+								name="dutiesPersonExtends[${status.index}].sort" class="dutyPersonSort"
 								value="${dutiesPersonExtend.sort}" />
 						
 					</div>
@@ -28,11 +28,11 @@
 		</form>
 		</div>
 	</div>
-<div class="col-md-9">
+<div class="col-md-9-10">
 	<div class="userTable">
 		<div class="userRow userHeader">
 			<span class="userItem">姓名</span> <span class="userItem">职务</span>
-			<span class="userItem">入职时间</span> <span class="userItem">是否试用</span>
+			<span class="userItem">入职时间</span> <span class="userItem" style="min-width:20px">是否试用</span>
 			<span class="userItem">试用期至</span><span class="userItem" style="min-width:150px">操作</span>
 		</div>
 		<c:forEach items="${dutiesPersonExtends}" var="dutiesPersonExtend" varStatus="status" > 
@@ -40,13 +40,14 @@
 	    					<span class="userItem"><input name="id" id="dutiesPersonExtendId" 
 					type="hidden" value="${dutiesPersonExtend.id}" />${dutiesPersonExtend.personName}</span>
 	    					<span class="userItem">${dutiesPersonExtend.dutiesName} </span>
-	    					<span class="userItem">${dutiesPersonExtend.ownDate} </span>
+	    					<span class="userItem">${dutiesPersonExtend.ownDateStr} </span>
 	    					<span class="userItem">${dutiesPersonExtend.isProbation} </span>
-	    					<span class="userItem">${dutiesPersonExtend.probationDate} </span>
+	    					<span class="userItem">${dutiesPersonExtend.probationDateStr} </span>
 	    					<span class="userItem">
-	    					<a class="btn btn-success" id="Regular"><i class="halflings-icon white zoom-in"></i>转正</a>
-	    					<a class="btn btn-info" id="Lost"><i class="halflings-icon white edit"></i>退休</a>
-	    					<a class="btn btn-danger" id="Del"><i class="halflings-icon white trash"></i>免职</a>
+	    					<a class="btn btn-success" onclick="Regular(this)" <c:if test="${dutiesPersonExtend.probationDate == null || dutiesPersonExtend.probationDate eq 'nullnull'}"> disabled="disabled"</c:if>
+	    					><i class="halflings-icon white zoom-in"></i>转正</a>
+	    					<a class="btn btn-info" onclick="Lost(this)"><i class="halflings-icon white edit"></i>退休</a>
+	    					<a class="btn btn-danger" onclick="Del(this)"><i class="halflings-icon white trash"></i>免职</a>
 	    					</span>
 	    			</div>
         </c:forEach>  
@@ -102,7 +103,7 @@
 
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">关闭</a>
+				<a href="#" class="btn btn-success" data-dismiss="modal">关闭</a>
 				<a id="AddDutiesPeople" class="btn btn-primary">增加信息</a>
 			</div>
 		</div>
@@ -136,5 +137,51 @@
 	function save(target) {
 		$('#dutiesPersonForm').submit();
 	}
-			
+	function Lost(target) {
+		var url = "rest/adjust/lostDuties";
+		var rowDiv = $(target).parent().parent();
+		var dutiesPersonExtendId = rowDiv.find("input[name='id']").val();
+		layer.confirm('您是否要调整该人员为退休？', {
+				  btn: ['确定','取消'] //按钮
+				}, function(){
+					$.post(url, {
+						"dutiesPersonExtendId" : dutiesPersonExtendId,
+						"unitId" : $("#unitId").val()
+					}, function(data) {
+						layer.msg('退休操作完成', {icon: 1});
+						$("#unitContent").html(data);
+					});
+				});
+	}
+	function Regular(target){
+		var url = "rest/adjust/regularDuties";
+		var rowDiv = $(target).parent().parent();
+		var dutiesPersonExtendId = rowDiv.find("input[name='id']").val();
+		$.post(url,{
+			"dutiesPersonExtendId" : dutiesPersonExtendId,
+			"unitId" : $("#unitId").val()
+		},function(data){
+			layer.msg('转正操作完成', {icon: 1});
+			$("#unitContent").html(data);
+		});
+	}
+	function Del(target){
+		var url = "rest/adjust/delDuties";
+		var rowDiv = $(target).parent().parent();
+		var dutiesPersonExtendId = rowDiv.find("input[name='id']").val();
+		layer.confirm('您是否要调整该人员为免职？', {
+			  btn: ['确定','取消'] //按钮
+			}, function(){
+			$.post(url,{
+				"dutiesPersonExtendId" : dutiesPersonExtendId,
+				"unitId" : $("#unitId").val()
+			},function(data){
+				layer.msg('免职操作完成', {icon: 1});
+				$("#unitContent").html(data);
+			});
+		});
+	}
+	
+	
+	
 </script>

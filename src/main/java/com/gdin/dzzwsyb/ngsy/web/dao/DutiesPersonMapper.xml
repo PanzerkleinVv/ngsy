@@ -301,14 +301,5 @@
 		sort = #{sort,jdbcType=INTEGER}
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
-	<select id="selectPersons" parameterType="com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExample"
-		resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from duties_person
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-		order by sort
-	</select>
+	
 </mapper>
