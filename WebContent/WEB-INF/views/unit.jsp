@@ -25,7 +25,7 @@
                          			 	<ul class="dropdown-menu">
                             				<li><a href="rest/unit/adjustduties">职务调整</a></li>
                             				<li role="separator" class="divider"></li>
-                              				<li><a href="rest/unit/adjustjob">岗位调整</a></li>
+                              				<li><a href="rest/unit/adjustjobs">岗位调整</a></li>
                           				</ul>
                   					</li>
                   
