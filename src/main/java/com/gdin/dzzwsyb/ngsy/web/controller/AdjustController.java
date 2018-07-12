@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gdin.dzzwsyb.ngsy.core.util.ApplicationUtils;
@@ -77,6 +79,7 @@ public class AdjustController {
 			unit = unitService.selectById(unit.getId());
 			model.addAttribute("unit", unit);
 			model.addAttribute("dutiesPersonExtends", dutiesPersonExtends);
+			model.addAttribute("duties", duties);
 		}
 		return "adjustDuties";
 	}
@@ -158,6 +161,40 @@ public class AdjustController {
 		unit.setId(unitId);
 		model.addFlashAttribute("unit", unit);
 		return "redirect:/rest/adjust/adjustduties";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/personBlur")
+	public List<Person> personBlur(String personName) {
+		List<Person> persons = new ArrayList<Person>();
+		if(personName != null || personName.equals("")) {
+			persons = personService.selectPersonsByName(personName);
+		}
+		return persons;
+	}
+	
+	@RequestMapping("/addDutiesPerson")
+	public String addDutiesPerson(DutiesPerson dutiesPerson, String personName, String  unitId, RedirectAttributes model) {
+		dutiesPerson.setId(UUID.randomUUID().toString().replaceAll("-",""));
+		final List<DutiesUnit> duties = dutiesUnitService.selectList(unitId);
+		final List<DutiesPerson> dutiesPersons= dutiesPersonService.selectPersons(duties);
+		int sort = dutiesPersons.get(dutiesPersons.size()-1).getSort();
+		dutiesPerson.setSort(sort+1);
+		//暂时没有考虑person表同名
+		List<Person> persons = personService.selectPersonsByName(personName);
+		dutiesPerson.setPersonId(persons.get(0).getId());
+		int flag = dutiesPersonService.insert(dutiesPerson);
+		final Unit unit = new Unit();
+		unit.setId(unitId);
+		model.addFlashAttribute("unit", unit);
+		return "redirect:/rest/adjust/adjustduties";
+	}
+	
+	@RequestMapping("/adjustjobs")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public String adjustjobs(@ModelAttribute("unit") Unit unit, Model model) {
+		
+		return "adjustJobs";
 	}
 	
 }
