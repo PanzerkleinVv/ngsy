@@ -18,11 +18,18 @@ public class PageController {
         return "dashboard";
     }
     /**
-     * 登录页
+     * 新增人员
      */
     @RequestMapping("/addPerson")
     public String addPerson() {
         return "addPerson";
+    }
+    /**
+     * 查询人员
+     */
+    @RequestMapping("/findPerson")
+    public String findPerson() {
+        return "findPerson";
     }
     /**
      * 登录页

@@ -1,6 +1,7 @@
 package com.gdin.dzzwsyb.ngsy.web.model;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -51,6 +52,16 @@ public class Person {
 	private String type;
 
 	private String salaryRankId;
+
+	private List<TechnicalTitle> technicalTitles;
+
+	private List<Education> educations;
+
+	private List<Rank> ranks;
+
+	private List<Resume> resumes;
+	
+	private List<Family> families;
 
 	public String getId() {
 		return id;
@@ -219,8 +230,50 @@ public class Person {
 	public void setSalaryRankId(String salaryRankId) {
 		this.salaryRankId = salaryRankId == null ? null : salaryRankId.trim();
 	}
-	
-	public Person() {};
+
+	public List<TechnicalTitle> getTechnicalTitles() {
+		return technicalTitles;
+	}
+
+	public void setTechnicalTitles(List<TechnicalTitle> technicalTitles) {
+		this.technicalTitles = technicalTitles;
+	}
+
+	public List<Education> getEducations() {
+		return educations;
+	}
+
+	public void setEducations(List<Education> educations) {
+		this.educations = educations;
+	}
+
+	public List<Rank> getRanks() {
+		return ranks;
+	}
+
+	public void setRanks(List<Rank> ranks) {
+		this.ranks = ranks;
+	}
+
+	public List<Resume> getResumes() {
+		return resumes;
+	}
+
+	public void setResumes(List<Resume> resumes) {
+		this.resumes = resumes;
+	}
+
+	public List<Family> getFamilies() {
+		return families;
+	}
+
+	public void setFamilies(List<Family> families) {
+		this.families = families;
+	}
+
+	public Person() {
+
+	};
 
 	public Person(Person person) {
 		id = person.getId();
@@ -244,6 +297,11 @@ public class Person {
 		enterDate = person.getEnterDate();
 		type = person.getType();
 		salaryRankId = person.getSalaryRankId();
+		technicalTitles = person.getTechnicalTitles();
+		educations = person.getEducations();
+		ranks = person.getRanks();
+		resumes = person.getResumes();
+		families =person.getFamilies();
 	}
-	
+
 }

@@ -75,17 +75,28 @@ public class CodeServiceImpl extends GenericServiceImpl<Code, String> implements
 
 	@Override
 	public long countByExample(CodeExample example) {
-		// TODO Auto-generated method stub
 		return codeMapper.countByExample(example);
 	}
 
 	@Override
 	public List<Code> searchCodeByName(String name) {
-		// TODO Auto-generated method stub
 		Code record = new Code();
 		record.setName(name);
 		record.setType("0cbded8f58422ce1ada36a4429081cd84850bff5");
 		return codeMapper.searchCodeByName(record);
+	}
+
+	@Override
+	public Code getCodeName(String type, String code) {
+		if (code != null && type != null) {
+			CodeExample example = new CodeExample();
+			example.createCriteria().andCodeEqualTo(code).andTypeEqualTo(type);;
+			List<Code> codes = codeMapper.selectByExample(example);
+			if (codes != null && codes.size() > 0) {
+				return codes.get(0);
+			}
+		}
+		return null;
 	}
 	
 }

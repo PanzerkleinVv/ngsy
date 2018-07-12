@@ -44,6 +44,9 @@ public class JobUnitServiceImpl extends GenericServiceImpl<JobUnit, String> impl
 				continue;
 			} else {
 				job.setUnitId(unitId);
+				if ("".equals(job.getSalary())) {
+					job.setSalary(null);
+				}
 				if (job.getId() == null || "".equals(job.getId())) {
 					job.setId(ApplicationUtils.newUUID());
 					flag = jobUnitMapper.insertSelective(job);

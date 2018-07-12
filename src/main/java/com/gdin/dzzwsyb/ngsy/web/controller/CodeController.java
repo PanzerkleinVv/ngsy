@@ -173,7 +173,8 @@ public class CodeController {
 	 */
 	@RequestMapping(value = "/codeList")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String codeList(@ModelAttribute("codeType") CodeType codeType, @ModelAttribute("message") ResultMessage message, Model model) {
+	public String codeList(@ModelAttribute("codeType") CodeType codeType,
+			@ModelAttribute("message") ResultMessage message, Model model) {
 		List<Code> codes = null;
 		if (codeType != null && !"".equals(codeType.getId())) {
 			codeType = codeTypeService.selectById(codeType.getId());
@@ -311,49 +312,60 @@ public class CodeController {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * 获取人员籍贯字典项列表json对象封装成nodes
 	 * 
 	 * @param code
-	 *           
+	 * 
 	 * @return ArrayList<Node> 对象
 	 */
-	
+
 	@RequestMapping(value = "/getJiGuan")
 	@ResponseBody
 	public ArrayList<Node> getJiGuan(CodeType codeType) {
 		if (codeType != null) {
 			codeType = codeTypeService.selectList(codeType.getName()).get(0);
-			List<Code> codes= codeService.selectList(codeType.getId());
-			ArrayList<Node> nodes = new ArrayList<Node>();//把所有资源转换成树模型的节点集合，此容器用于保存所有节点
-	         for(Code res : codes){
-	             Node node = new Node();
-	             node.setId(res.getCode());
-	            /* CodeExample example = new CodeExample();
-	             example.createCriteria().andCodeEqualTo(res.getCode().substring(0,4)+"00");*/
-	             if(res.getLevel().equals("2")||(res.getLevel().equals("3")))
-	            	 node.setpId(res.getCode().substring(0,2)+"0000");
-	             else 
-	            	node.setpId(res.getCode().substring(0,4)+"00");
-	             node.setName(res.getName());
-	             node.setOpen(false);
-	             nodes.add(node);//添加到节点容器
-	         }
-	         return nodes;
+			List<Code> codes = codeService.selectList(codeType.getId());
+			ArrayList<Node> nodes = new ArrayList<Node>();// 把所有资源转换成树模型的节点集合，此容器用于保存所有节点
+			for (Code res : codes) {
+				Node node = new Node();
+				node.setId(res.getCode());
+				if (res.getLevel().equals("2") || (res.getLevel().equals("3")))
+					node.setpId(res.getCode().substring(0, 2) + "0000");
+				else
+					node.setpId(res.getCode().substring(0, 4) + "00");
+				node.setName(res.getName());
+				node.setOpen(false);
+				nodes.add(node);// 添加到节点容器
+			}
+			return nodes;
 		} else {
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(value = "/getJiGuanByName")
 	@ResponseBody
-	public List<Code> getJiGuanByName(Code code){
+	public List<Code> getJiGuanByName(Code code) {
 		if (code != null) {
 			List<Code> codes = codeService.searchCodeByName(code.getName());
 			return codes;
-		}
-		else 
+		} else
 			return null;
+	}
+
+	@RequestMapping(value = "/getCodeName")
+	@ResponseBody
+	public Code getCodeName(Code code) {
+		if (code != null) {
+			if (code.getName() != null) {
+				CodeType codeType = codeTypeService.selectList(code.getName()).get(0);
+				if (codeType != null) {
+					return codeService.getCodeName(codeType.getId(), code.getCode());
+				}
+			}
+		}
+		return null;
 	}
 }
