@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-07-09 17:14:48
+Date: 2018-07-12 19:51:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21301,6 +21301,7 @@ CREATE TABLE `duties_person` (
   `is_probation` varchar(2) DEFAULT NULL COMMENT '是否试用',
   `probation_date` datetime DEFAULT NULL COMMENT '试用期至',
   `lost_date` datetime DEFAULT NULL COMMENT '卸任时间',
+  `sort` int(2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -21349,6 +21350,8 @@ CREATE TABLE `education` (
 -- ----------------------------
 -- Records of education
 -- ----------------------------
+INSERT INTO `education` VALUES ('a8cfa889a3144544bd59370ea8690f4b419d5be7', '314b283bd683219ffba492803745d700c77cc8a1', '1', '啊发放', '阿发沙发斯蒂芬', '11', '2', '2018-07-12 00:00:00', '1');
+INSERT INTO `education` VALUES ('cbc012df6a9ac0c35a0d8a561a71b0be57807461', '314b283bd683219ffba492803745d700c77cc8a1', '2', '按时发顺丰', '暗示法法师的法师', '23', '404', '2018-01-09 00:00:00', null);
 
 -- ----------------------------
 -- Table structure for family
@@ -21360,13 +21363,16 @@ CREATE TABLE `family` (
   `relation` varchar(20) DEFAULT NULL COMMENT '关系',
   `name` varchar(100) DEFAULT NULL COMMENT '姓名',
   `age` int(4) unsigned DEFAULT NULL COMMENT '年龄',
-  `desc` varchar(255) DEFAULT NULL COMMENT '单位与职务',
+  `job` varchar(255) DEFAULT NULL COMMENT '单位与职务',
+  `party` varchar(20) DEFAULT NULL COMMENT '政治面貌',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='家庭信息';
 
 -- ----------------------------
 -- Records of family
 -- ----------------------------
+INSERT INTO `family` VALUES ('51a2a13e8c0d62007e29c527032d8fee72925708', '314b283bd683219ffba492803745d700c77cc8a1', '20', '手送到', '10', '1312321', '13');
+INSERT INTO `family` VALUES ('5a5215155c1b48fece60fe18c2eca49d6885a1de', '314b283bd683219ffba492803745d700c77cc8a1', '12', '啊发顺丰', '40', '啊啊啊', '13');
 
 -- ----------------------------
 -- Table structure for job_person
@@ -21425,7 +21431,7 @@ CREATE TABLE `log` (
   `type` varchar(20) DEFAULT NULL COMMENT '对象类型',
   `target` varchar(40) DEFAULT NULL COMMENT '对象id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of log
@@ -21542,6 +21548,12 @@ INSERT INTO `log` VALUES ('109', '2018-06-28 10:38:14', '1', '更新岗位：fcc
 INSERT INTO `log` VALUES ('110', '2018-06-28 10:38:34', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
 INSERT INTO `log` VALUES ('111', '2018-06-28 10:38:37', '1', '更新岗位：fccfcad598229852bc359c8d96c2d57f33449297', 'job_unit', 'fccfcad598229852bc359c8d96c2d57f33449297');
 INSERT INTO `log` VALUES ('112', '2018-06-29 17:17:32', '1', '删除字典项：人员状态', 'code_type', 'caf8432bb72a4762ce4987de2ebee0998187e151');
+INSERT INTO `log` VALUES ('113', '2018-07-12 14:02:44', '1', '新增人员：张三', 'person', '314b283bd683219ffba492803745d700c77cc8a1');
+INSERT INTO `log` VALUES ('114', '2018-07-12 17:38:33', '1', '修改人员：张三', 'person', '314b283bd683219ffba492803745d700c77cc8a1');
+INSERT INTO `log` VALUES ('115', '2018-07-12 17:47:35', '1', '修改人员：张三', 'person', '314b283bd683219ffba492803745d700c77cc8a1');
+INSERT INTO `log` VALUES ('116', '2018-07-12 17:51:17', '1', '修改人员：张三', 'person', '314b283bd683219ffba492803745d700c77cc8a1');
+INSERT INTO `log` VALUES ('117', '2018-07-12 17:52:56', '1', '修改人员：张三', 'person', '314b283bd683219ffba492803745d700c77cc8a1');
+INSERT INTO `log` VALUES ('125', '2018-07-12 18:18:27', '1', '修改人员：张三', 'person', '314b283bd683219ffba492803745d700c77cc8a1');
 
 -- ----------------------------
 -- Table structure for ndkh
@@ -21608,6 +21620,7 @@ CREATE TABLE `person` (
 -- ----------------------------
 -- Records of person
 -- ----------------------------
+INSERT INTO `person` VALUES ('314b283bd683219ffba492803745d700c77cc8a1', '张三', '1', '2018-07-12 00:00:00', '01', '220102', '410102', '01', '2018-07-24 00:00:00', '2018-07-17 00:00:00', '10', '', '440104199209210417', '阿司法所短发岛疯', '阿发沙发斯蒂芬', '按时发顺丰大', '1', null, '2018-07-12 00:00:00', null, '');
 
 -- ----------------------------
 -- Table structure for rank
@@ -21642,6 +21655,9 @@ CREATE TABLE `resume` (
 -- ----------------------------
 -- Records of resume
 -- ----------------------------
+INSERT INTO `resume` VALUES ('118b8e4002e91b9f915800caaaec77e41c10eb1d', '314b283bd683219ffba492803745d700c77cc8a1', '2018-02-14 00:00:00', '2018-04-18 00:00:00', '阿飞洒发发发发送');
+INSERT INTO `resume` VALUES ('2b9d5c29778a1fd5dbf9ff683ce1017b0b349779', '314b283bd683219ffba492803745d700c77cc8a1', '2018-07-14 00:00:00', '2018-07-28 00:00:00', '啊发送到发');
+INSERT INTO `resume` VALUES ('fc7cb26cb39355f1e32f6f52102e30468aa0ea85', '314b283bd683219ffba492803745d700c77cc8a1', '2018-07-02 00:00:00', '2018-07-06 00:00:00', '啊发送到发');
 
 -- ----------------------------
 -- Table structure for role
@@ -21691,6 +21707,8 @@ CREATE TABLE `technical_title` (
 -- ----------------------------
 -- Records of technical_title
 -- ----------------------------
+INSERT INTO `technical_title` VALUES ('2d990e8dec63557814e156cf756bf1ec14647650', '314b283bd683219ffba492803745d700c77cc8a1', '010', '2018-07-04 00:00:00', '2018-07-03 00:00:00');
+INSERT INTO `technical_title` VALUES ('afec3522feed16d0bb3139f8095f9355b0477bc6', '314b283bd683219ffba492803745d700c77cc8a1', '011', '2018-06-26 00:00:00', '2018-06-26 00:00:00');
 
 -- ----------------------------
 -- Table structure for unit

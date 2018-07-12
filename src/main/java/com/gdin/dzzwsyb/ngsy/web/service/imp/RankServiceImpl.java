@@ -74,7 +74,7 @@ public class RankServiceImpl extends GenericServiceImpl<Rank, String> implements
 		}
 		return flag;
 	}
-	
+
 	@Override
 	public List<Rank> selectByPersonId(String personId) {
 		if (personId != null && !"".equals(personId)) {
@@ -84,6 +84,14 @@ public class RankServiceImpl extends GenericServiceImpl<Rank, String> implements
 			return rankMapper.selectByExample(example);
 		}
 		return null;
+	}
+
+	@Override
+	public List<Rank> getSingleMessage(String personId) {
+		RankExample example = new RankExample();
+		example.createCriteria().andPersonIdEqualTo(personId).andStateEqualTo("1");
+		example.setOrderByClause("own_date desc");
+		return rankMapper.selectByExample(example);
 	}
 
 }

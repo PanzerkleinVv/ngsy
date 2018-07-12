@@ -80,7 +80,7 @@ public class ResumeServiceImpl extends GenericServiceImpl<Resume, String> implem
 		if (personId != null && !"".equals(personId)) {
 			ResumeExample example = new ResumeExample();
 			example.createCriteria().andPersonIdEqualTo(personId);
-			example.setOrderByClause("beginDate asc");
+			example.setOrderByClause("begin_date asc");
 			return resumeMapper.selectByExample(example);
 		}
 		return null;

@@ -25,6 +25,13 @@ public class PageController {
         return "addPerson";
     }
     /**
+     * 查询人员
+     */
+    @RequestMapping("/findPerson")
+    public String findPerson() {
+        return "findPerson";
+    }
+    /**
      * 登录页
      */
     @RequestMapping("/login")

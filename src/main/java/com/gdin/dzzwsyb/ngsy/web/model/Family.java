@@ -11,7 +11,7 @@ public class Family {
 
     private Integer age;
 
-    private String desc;
+    private String job;
 
     private String party;
 
@@ -55,12 +55,12 @@ public class Family {
         this.age = age;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getJob() {
+        return job;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setJob(String job) {
+        this.job = job == null ? null : job.trim();
     }
 
     public String getParty() {

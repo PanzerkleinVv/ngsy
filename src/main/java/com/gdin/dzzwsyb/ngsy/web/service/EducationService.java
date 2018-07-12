@@ -13,4 +13,6 @@ public interface EducationService extends GenericService<Education, String> {
 	int modify(List<Education> educations, String personId) throws Exception;
 
 	List<Education> selectByPersonId(String personId);
+	
+	List<Education> getSingleMessage(String personId);
 }

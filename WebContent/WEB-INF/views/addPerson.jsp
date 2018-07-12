@@ -3,7 +3,7 @@
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="mainContent row0 row">
-	<form role="form" class="form-horizontal needs-validation" autocomplete="off">
+	<form role="form" class="form-horizontal needs-validation" autocomplete="off" enctype="multipart/form-data">
 		<input type="hidden" id="id" name="id" value="${person != null ? person.id : ''}" />
 		<div class="col-md-9 tableRow">
 			<div class="form-group tableRow">
@@ -65,8 +65,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 tableRow butRow uploadPhoto">
-			<label for="photo"><img src="${person != null ? 'rest/person/photo/id=' + person.id : 'app/img/defaultPhoto.jpg'}" width="160px" height="200px" /></label>
-			<input type="file" name="photo" id="photo" />
+			<label for="photo"><img id="photoView" src="rest/person/photo?id=${person != null ? person.id : ''}" width="160px" height="200px" /></label> <input type="file" name="photo" id="photo" accept="image/*" style="display: none;" />
 		</div>
 		<div class="col-md-16-16 tableRow">
 			<div class="form-group">
@@ -91,7 +90,7 @@
 				</div>
 				<label class="col-md-1-16 control-label" for="shuangDhiDate">双师认定时间</label>
 				<div class="col-md-3-16">
-					<input type="text" placeholder="点击选择日期" id="shuangDhiDate" name="shuangDhiDate" class="form-control tableDate" value="<c:if test='${person != null}'><fmt:formatDate value='${person.shuangDhiDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
+					<input type="text" placeholder="点击选择日期" id="shuangShiDate" name="shuangShiDate" class="form-control tableDate" value="<c:if test='${person != null}'><fmt:formatDate value='${person.shuangShiDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
 				</div>
 			</div>
 		</div>
@@ -196,7 +195,7 @@
 									<input type="text" placeholder="点击选择日期" id="educations${status.index}graduationDate" name="educations[${status.index}].graduationDate" class="form-control tableDate smForm" required value="<c:if test='${person != null}'><fmt:formatDate value='${education.graduationDate}' type='DATE' pattern='yyyy-MM-dd' /></c:if>" />
 								</span>
 								<span class="col-md-1-16 butRow">
-									<input type="radio" id="educations${status.index}isHighest" name="educations[${status.index}].isHighest" value="${education.isHighest}" />
+									<input type="checkbox" id="educations${status.index}isHighest" name="educations[${status.index}].isHighest" value="1" ${education.isHighest == '1' ? 'checked="checked"' : ''} />
 								</span>
 								<span class="col-md-1-16 butRow">
 									<a onclick="deleteRow(this)" class="delBut"><i class='fa fa-trash-o'></i></a>
@@ -345,7 +344,7 @@
 									<input type="text" placeholder="姓名" id="families${status.index}name" name="families[${status.index}].name" class="form-control" value="${family.name}" required />
 								</span>
 								<span class="col-md-2-16">
-									<input type="number" placeholder="年龄" id="families${status.index}age" name="families[${status.index}].age" class="form-control" min="0" max="150" value="${family.age}" />
+									<input type="number" placeholder="年龄" id="families${status.index}age" name="families[${status.index}].age" class="form-control" min="0" max="150" step="1" value="${family.age}" />
 								</span>
 								<span class="col-md-3-16">
 									<input type="hidden" class="hiddenValue" disabled="disabled" value="${family.party}" /> <select id="families${status.index}party" name="families[${status.index}].party" class="form-control get_ct6" required>
@@ -353,7 +352,7 @@
 									</select>
 								</span>
 								<span class="col-md-6-16">
-									<textarea class="form-control" name="families[${status.index}].desc" id="families${status.index}desc" rows="2" placeholder="工作单位及职务" required>${family.desc}</textarea>
+									<textarea class="form-control" name="families[${status.index}].job" id="families${status.index}job" rows="2" placeholder="工作单位及职务" required>${family.job}</textarea>
 								</span>
 								<span class="col-md-1-16 butRow">
 									<a onclick="deleteRow(this)" class="delBut"><i class='fa fa-trash-o'></i></a>
@@ -453,7 +452,7 @@
 				<input type="text" placeholder="点击选择日期" id="educations_i_graduationDate" name="educations[_i_].graduationDate" class="form-control tableDate smForm" required />
 			</span>
 			<span class="col-md-1-16 butRow">
-				<input type="radio" id="educations_i_isHighest" name="educations[_i_].isHighest" />
+				<input type="checkbox" id="educations_i_isHighest" name="educations[_i_].isHighest" />
 			</span>
 			<span class="col-md-1-16 butRow">
 				<a onclick="deleteRow(this)" class="delBut"><i class='fa fa-trash-o'></i></a>
@@ -510,7 +509,7 @@
 				<input type="text" placeholder="姓名" id="families_i_name" name="families[_i_].name" class="form-control" required />
 			</span>
 			<span class="col-md-2-16">
-				<input type="number" placeholder="年龄" id="families_i_age" name="families[_i_].age" class="form-control" min="0" max="150" />
+				<input type="number" placeholder="年龄" id="families_i_age" name="families[_i_].age" class="form-control" min="0" max="150" step="1" />
 			</span>
 			<span class="col-md-3-16">
 				<select id="families_i_party" name="families[_i_].party" class="form-control" required>
@@ -518,7 +517,7 @@
 				</select>
 			</span>
 			<span class="col-md-6-16">
-				<textarea class="form-control" name="families[_i_].desc" id="families_i_desc" rows="2" placeholder="工作单位及职务" required></textarea>
+				<textarea class="form-control" name="families[_i_].job" id="families_i_job" rows="2" placeholder="工作单位及职务" required></textarea>
 			</span>
 			<span class="col-md-1-16 butRow">
 				<a onclick="deleteRow(this)" class="delBut"><i class='fa fa-trash-o'></i></a>
@@ -571,17 +570,17 @@
 		});
 	});
 	$(function() {
-		$("#index-page-title").html("干部新增");
-		$("#current-page-title").html("干部新增");
+		$("#index-page-title").html("人员新增");
+		$("#current-page-title").html("人员新增");
 	});
 	$(function() {
-		getCodeName('人员籍贯代码', $("#nativePlace").val(), $("#nativePlaceView"));
-		getCodeName('人员籍贯代码', $("#birthplace").val(), $("#birthplaceView"));
+		getCodeNameValue('人员籍贯代码', $("#nativePlace").val(), $("#nativePlaceView"));
+		getCodeNameValue('人员籍贯代码', $("#birthplace").val(), $("#birthplaceView"));
 		getCodeSimple('人的性别代码', $('#sex'), $("#sexValue").val());
-		getCodeSimple('中国各民族名称代码', $("#nationality"), "");
-		getCodeSimple('政治面貌代码', $("#party"), "");
-		getCodeSimple('健康状况代码', $("#health"), "");
-		getCodeSimple('人员状态', $('#state'), "");
+		getCodeSimple('中国各民族名称代码', $("#nationality"), $("#nationalityValue").val());
+		getCodeSimple('政治面貌代码', $("#party"), $("#partyValue").val());
+		getCodeSimple('健康状况代码', $("#health"), $("#healthValue").val());
+		getCodeSimple('人员状态', $('#state'), $("#stateValue").val());
 		getCodeSimple('是否全日制', $("#educations_i_type"), "");
 		getCodeSimple('学历代码', $("#educations_i_education"), "");
 		getCodeSimple('中华人民共和国学位代码', $("#educations_i_degree"), "");
@@ -598,8 +597,8 @@
 		getCodeSimpleLocal('政治面貌代码', '.get_ct6');
 	})
 	function getCodeSimpleLocal(codeType, targetClass) {
-		$(targetClass).each(function() {
-			getCodeSimple(codeType, this, this.prev('input.hiddenValue'));
+		$(targetClass).each(function(i, n) {
+			getCodeSimple(codeType, $(n), $(n).prev('input.hiddenValue').val());
 		});
 	}
 
@@ -716,14 +715,53 @@
 	$(function() {
 		$("form.needs-validation").validate({
 			submitHandler : function(form) {
-				alert("submit!");
-				form.submit();
+				$(form).ajaxSubmit({
+					type : 'post',
+					url : "rest/person/save",
+					success : function(result) { //表单提交后更新页面显示的数据
+						$('#main-content').html(result);
+					}
+				});
 			},
 			rules : {
 				"idCard" : {
 					checkIdCard : true
+				},
+				"photo" : {
+					checkPhotoSize : true
 				}
 			}
 		});
+	});
+
+	jQuery.validator.addMethod("checkPhotoSize", function(value, element) {
+		if (element.files.length == 0) {
+			return true;
+		}
+		var fileSize = element.files[0].size;
+		var maxSize = 3 * 1024 * 1024;
+		if (fileSize > maxSize) {
+			return false;
+		} else {
+			return true;
+		}
+	}, "请上传大小在3MB以下的图片");
+
+	$("#photo").change(function(e) {
+		var url = null;
+		if (this.files.length > 0) {
+			var file = e.target.files[0] || e.dataTransfer.files[0];
+			if (file) {
+				var reader = new FileReader();
+				reader.onload = function() {
+					url = this.result;
+					$("#photoView").attr("src", url);
+				}
+				reader.readAsDataURL(file);
+			}
+		} else {
+			url = 'rest/person/photo?id=' + $("#id").val();
+			$("#photoView").attr("src", url);
+		}
 	});
 </script>

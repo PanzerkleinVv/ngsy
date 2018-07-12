@@ -444,73 +444,73 @@ public class FamilyExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNull() {
-            addCriterion("desc is null");
+        public Criteria andJobIsNull() {
+            addCriterion("job is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNotNull() {
-            addCriterion("desc is not null");
+        public Criteria andJobIsNotNull() {
+            addCriterion("job is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescEqualTo(String value) {
-            addCriterion("desc =", value, "desc");
+        public Criteria andJobEqualTo(String value) {
+            addCriterion("job =", value, "job");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotEqualTo(String value) {
-            addCriterion("desc <>", value, "desc");
+        public Criteria andJobNotEqualTo(String value) {
+            addCriterion("job <>", value, "job");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThan(String value) {
-            addCriterion("desc >", value, "desc");
+        public Criteria andJobGreaterThan(String value) {
+            addCriterion("job >", value, "job");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThanOrEqualTo(String value) {
-            addCriterion("desc >=", value, "desc");
+        public Criteria andJobGreaterThanOrEqualTo(String value) {
+            addCriterion("job >=", value, "job");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThan(String value) {
-            addCriterion("desc <", value, "desc");
+        public Criteria andJobLessThan(String value) {
+            addCriterion("job <", value, "job");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThanOrEqualTo(String value) {
-            addCriterion("desc <=", value, "desc");
+        public Criteria andJobLessThanOrEqualTo(String value) {
+            addCriterion("job <=", value, "job");
             return (Criteria) this;
         }
 
-        public Criteria andDescLike(String value) {
-            addCriterion("desc like", value, "desc");
+        public Criteria andJobLike(String value) {
+            addCriterion("job like", value, "job");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotLike(String value) {
-            addCriterion("desc not like", value, "desc");
+        public Criteria andJobNotLike(String value) {
+            addCriterion("job not like", value, "job");
             return (Criteria) this;
         }
 
-        public Criteria andDescIn(List<String> values) {
-            addCriterion("desc in", values, "desc");
+        public Criteria andJobIn(List<String> values) {
+            addCriterion("job in", values, "job");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotIn(List<String> values) {
-            addCriterion("desc not in", values, "desc");
+        public Criteria andJobNotIn(List<String> values) {
+            addCriterion("job not in", values, "job");
             return (Criteria) this;
         }
 
-        public Criteria andDescBetween(String value1, String value2) {
-            addCriterion("desc between", value1, value2, "desc");
+        public Criteria andJobBetween(String value1, String value2) {
+            addCriterion("job between", value1, value2, "job");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotBetween(String value1, String value2) {
-            addCriterion("desc not between", value1, value2, "desc");
+        public Criteria andJobNotBetween(String value1, String value2) {
+            addCriterion("job not between", value1, value2, "job");
             return (Criteria) this;
         }
 

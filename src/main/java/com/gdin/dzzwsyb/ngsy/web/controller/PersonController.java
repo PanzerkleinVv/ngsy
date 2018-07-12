@@ -3,7 +3,6 @@ package com.gdin.dzzwsyb.ngsy.web.controller;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
 import com.gdin.dzzwsyb.ngsy.core.util.ApplicationUtils;
+import com.gdin.dzzwsyb.ngsy.core.util.HandleFile;
 import com.gdin.dzzwsyb.ngsy.web.model.Log;
 import com.gdin.dzzwsyb.ngsy.web.model.Person;
 import com.gdin.dzzwsyb.ngsy.web.model.ResultMessage;
@@ -68,7 +71,8 @@ public class PersonController {
 	@RequestMapping(value = "/save")
 	@RequiresRoles(value = RoleSign.ADMIN)
 	@Transactional(rollbackFor = { Exception.class })
-	public String save(Person person, RedirectAttributes model, HttpSession session) throws Exception {
+	public String save(Person person, @RequestParam(value = "photo", required = false) MultipartFile file,
+			RedirectAttributes model, HttpSession session) throws Exception {
 		if (person != null) {
 			ResultMessage message = new ResultMessage();
 			final Long userId = (Long) session.getAttribute("userId");
@@ -132,6 +136,9 @@ public class PersonController {
 					return "redirect:/rest/person/back";
 				}
 			}
+			if (file != null && !file.isEmpty()) {
+				HandleFile.savePhoto(file, person.getId(), sourceURL.PHOTO_URL);
+			}
 			model.addFlashAttribute("person", person);
 			model.addFlashAttribute("message", message);
 			return "redirect:/rest/person/get";
@@ -155,6 +162,10 @@ public class PersonController {
 			Model model) {
 		person = personService.selectById(person.getId());
 		if (person != null) {
+			person.setEducations(educationService.getSingleMessage(person.getId()));
+			person.setRanks(rankService.getSingleMessage(person.getId()));
+			person.setFamilies(familyService.selectByPersonId(person.getId()));
+			person.setResumes(resumeService.selectByPersonId(person.getId()));
 			model.addAttribute("person", person);
 			model.addAttribute("message", message);
 			return "person";
@@ -191,15 +202,25 @@ public class PersonController {
 				File photo = new File(sourceURL.PHOTO_URL + person.getId());
 				if (photo.exists()) {
 					BufferedImage bufferedImage = ImageIO.read(photo);
-					ImageIO.write(bufferedImage, "jpg", photo);
+					ImageIO.write(bufferedImage, "jpg", response.getOutputStream());
 					return;
 				}
 			}
 		}
 		File photo = new File(request.getServletContext().getRealPath(sourceURL.PHOTO_URL_DEFAULT));
 		BufferedImage bufferedImage = ImageIO.read(photo);
-		ImageIO.write(bufferedImage, "jpg", photo);
+		ImageIO.write(bufferedImage, "jpg", response.getOutputStream());
 		return;
+	}
+
+	@RequestMapping(value = "/find")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public String find(Person person, Integer pageNo, Model model) {
+		Page<Person> page = personService.selectPage(person, pageNo);
+		model.addAttribute("people", page.getResult());
+		model.addAttribute("page", page);
+		model.addAttribute("query", person);
+		return "findPerson";
 	}
 
 }

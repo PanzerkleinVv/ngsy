@@ -7,7 +7,7 @@
     <result column="relation" jdbcType="VARCHAR" property="relation" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
     <result column="party" jdbcType="VARCHAR" property="party" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, person_id, relation, name, age, desc, party
+    id, person_id, relation, name, age, job, party
   </sql>
   <select id="selectByExample" parameterType="com.gdin.dzzwsyb.ngsy.web.model.FamilyExample" resultMap="BaseResultMap">
     select
@@ -103,10 +103,10 @@
   </delete>
   <insert id="insert" parameterType="com.gdin.dzzwsyb.ngsy.web.model.Family">
     insert into family (id, person_id, relation, 
-      name, age, desc, party
+      name, age, job, party
       )
     values (#{id,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR}, #{relation,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{desc,jdbcType=VARCHAR}, #{party,jdbcType=VARCHAR}
+      #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{job,jdbcType=VARCHAR}, #{party,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.gdin.dzzwsyb.ngsy.web.model.Family">
@@ -127,8 +127,8 @@
       <if test="age != null">
         age,
       </if>
-      <if test="desc != null">
-        desc,
+      <if test="job != null">
+        job,
       </if>
       <if test="party != null">
         party,
@@ -150,8 +150,8 @@
       <if test="age != null">
         #{age,jdbcType=INTEGER},
       </if>
-      <if test="desc != null">
-        #{desc,jdbcType=VARCHAR},
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
       </if>
       <if test="party != null">
         #{party,jdbcType=VARCHAR},
@@ -182,8 +182,8 @@
       <if test="record.age != null">
         age = #{record.age,jdbcType=INTEGER},
       </if>
-      <if test="record.desc != null">
-        desc = #{record.desc,jdbcType=VARCHAR},
+      <if test="record.job != null">
+        job = #{record.job,jdbcType=VARCHAR},
       </if>
       <if test="record.party != null">
         party = #{record.party,jdbcType=VARCHAR},
@@ -200,7 +200,7 @@
       relation = #{record.relation,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       age = #{record.age,jdbcType=INTEGER},
-      desc = #{record.desc,jdbcType=VARCHAR},
+      job = #{record.job,jdbcType=VARCHAR},
       party = #{record.party,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -221,8 +221,8 @@
       <if test="age != null">
         age = #{age,jdbcType=INTEGER},
       </if>
-      <if test="desc != null">
-        desc = #{desc,jdbcType=VARCHAR},
+      <if test="job != null">
+        job = #{job,jdbcType=VARCHAR},
       </if>
       <if test="party != null">
         party = #{party,jdbcType=VARCHAR},
@@ -236,7 +236,7 @@
       relation = #{relation,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER},
-      desc = #{desc,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
       party = #{party,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>

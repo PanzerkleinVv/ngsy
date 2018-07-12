@@ -2,6 +2,7 @@ package com.gdin.dzzwsyb.ngsy.web.service.imp;
 
 import javax.annotation.Resource;
 
+import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericServiceImpl;
 import com.gdin.dzzwsyb.ngsy.web.dao.PersonMapper;
@@ -59,6 +60,22 @@ public class PersonServiceImpl extends GenericServiceImpl<Person, String> implem
 		} else {
 			return 1L;
 		}
+	}
+
+	@Override
+	public Page<Person> selectPage(Person person, Integer pageNo) {
+		Page<Person> page = null;
+		PersonExample example = new PersonExample();
+		if (person == null || person.getName() == null) {
+			page = new Page<Person>(pageNo);
+			example.createCriteria().andIdIsNotNull();
+		} else {
+			page = new Page<Person>(pageNo);
+			example.createCriteria().andNameLike("%" + person.getName() + "%");
+		}
+		example.setOrderByClause("id asc");
+		personMapper.selectPage(example, page);
+		return page;
 	}
 
 }

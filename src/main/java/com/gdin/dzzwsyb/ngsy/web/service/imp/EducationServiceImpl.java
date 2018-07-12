@@ -73,7 +73,7 @@ public class EducationServiceImpl extends GenericServiceImpl<Education, String> 
 		}
 		return flag;
 	}
-	
+
 	@Override
 	public List<Education> selectByPersonId(String personId) {
 		if (personId != null && !"".equals(personId)) {
@@ -83,6 +83,14 @@ public class EducationServiceImpl extends GenericServiceImpl<Education, String> 
 			return educationMapper.selectByExample(example);
 		}
 		return null;
+	}
+
+	@Override
+	public List<Education> getSingleMessage(String personId) {
+		EducationExample example = new EducationExample();
+		example.createCriteria().andPersonIdEqualTo(personId).andIsHighestEqualTo("1");
+		example.setOrderByClause("graduation_date desc");
+		return educationMapper.selectByExample(example);
 	}
 
 }

@@ -783,3 +783,13 @@ label.error {
 .uploadPhoto {
 	height: 220px;
 }
+
+.personBaseInfo {
+	font-size: 18px;
+	line-height: 22px;
+	font-family: "宋体";
+}
+
+.personInfo2 {
+	margin-top: 10px;
+}

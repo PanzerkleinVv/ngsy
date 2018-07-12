@@ -1,5 +1,6 @@
 package com.gdin.dzzwsyb.ngsy.web.dao;
 
+import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
 import com.gdin.dzzwsyb.ngsy.web.model.Person;
 import com.gdin.dzzwsyb.ngsy.web.model.PersonExample;
@@ -28,4 +29,6 @@ public interface PersonMapper extends GenericDao<Person, String> {
 	int updateByPrimaryKeySelective(Person record);
 
 	int updateByPrimaryKey(Person record);
+	
+	List<Person> selectPage(PersonExample example, Page<Person> page);
 }

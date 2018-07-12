@@ -103,10 +103,44 @@ function getCodeName(typeName, value, target) {
 			dataType : "json",
 			data : {
 				'code' : value,
-				'name' : name
+				'name' : typeName
 			},
 			success : function(result) {
 				target.html(result.name);
+			}
+		});
+	}
+}
+
+function getCodeNameValue(typeName, value, target) {
+	if (value != null && value.length >0) {
+		$.ajax({
+			type : "Get",
+			url : 'rest/code/getCodeName',
+			dataType : "json",
+			data : {
+				'code' : value,
+				'name' : typeName
+			},
+			success : function(result) {
+				target.val(result.name);
+			}
+		});
+	}
+}
+
+function getCodeNameAppend(target) {
+	if (target.val() != null && target.val().length >0) {
+		$.ajax({
+			type : "Get",
+			url : 'rest/code/getCodeName',
+			dataType : "json",
+			data : {
+				'code' : target.val(),
+				'name' : target.attr("id")
+			},
+			success : function(result) {
+				target.after(result.name);
 			}
 		});
 	}

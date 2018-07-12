@@ -101,9 +101,12 @@
 
 					<li class="start active"><a href="./rest/page/dashboard" id="btn-dashboard"> <i class="fa fa-home"></i> <span class="title"> 首页 </span> <span class="selected"> </span>
 					</a></li>
-					
+
 					<shiro:hasAnyRoles name="admin">
-						<li class=""><a href="./rest/page/addPerson"> <i class="fa fa-plus"></i> <span class="title"> 干部新增 </span> <span class="selected "> </span>
+						<li class=""><a href="./rest/page/findPerson"> <i class="fa fa-search"></i> <span class="title"> 人员查找 </span> <span class="selected "> </span>
+						</a></li>
+
+						<li class=""><a href="./rest/page/addPerson"> <i class="fa fa-plus"></i> <span class="title"> 人员新增 </span> <span class="selected "> </span>
 						</a></li>
 
 						<li class=""><a href="./rest/unit/index" id="btn-dashboard"> <i class="fa fa-sitemap"></i> <span class="title"> 单位机构 </span> <span class="selected"> </span>

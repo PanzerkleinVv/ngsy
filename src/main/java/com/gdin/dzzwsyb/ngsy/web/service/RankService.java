@@ -13,4 +13,6 @@ public interface RankService extends GenericService<Rank, String> {
 	int modify(List<Rank> ranks, String personId) throws Exception;
 
 	List<Rank> selectByPersonId(String personId);
+	
+	List<Rank> getSingleMessage(String personId);
 }

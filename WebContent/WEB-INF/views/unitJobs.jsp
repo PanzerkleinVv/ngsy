@@ -70,7 +70,8 @@
 				$(function() {
 					$(".rankSelect").each(
 							function(i, n) {
-								getCodeSimple('岗位级别', $(n), $(n).parent().prev(
+								getCodeSimple('岗位级别', 
+				$(n), $(n).parent().prev(
 										"input[name='rankValue']").val());
 							});
 					$(".typeSelect")
