@@ -7,8 +7,6 @@ import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
@@ -17,8 +15,6 @@ import com.gdin.dzzwsyb.ngsy.web.dao.PersonMapper;
 import com.gdin.dzzwsyb.ngsy.web.model.Person;
 import com.gdin.dzzwsyb.ngsy.web.model.PersonExample;
 import com.gdin.dzzwsyb.ngsy.web.service.PersonService;
-
-import org.springframework.stereotype.Service;
 
 /**
  * 用户Service实现类
@@ -84,6 +80,7 @@ public class PersonServiceImpl extends GenericServiceImpl<Person, String> implem
 		example.setOrderByClause("id asc");
 		personMapper.selectPage(example, page);
 		return page;
+	}
 
 	@Override
 	public List<Person> selectPersonsByName(String personName) {
