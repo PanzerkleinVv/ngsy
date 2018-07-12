@@ -1,8 +1,16 @@
 package com.gdin.dzzwsyb.ngsy.web.service.imp;
 
+
 import javax.annotation.Resource;
 
 import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericServiceImpl;
 import com.gdin.dzzwsyb.ngsy.web.dao.PersonMapper;
@@ -76,6 +84,14 @@ public class PersonServiceImpl extends GenericServiceImpl<Person, String> implem
 		example.setOrderByClause("id asc");
 		personMapper.selectPage(example, page);
 		return page;
+
+	@Override
+	public List<Person> selectPersonsByName(String personName) {
+		// TODO Auto-generated method stub
+		PersonExample personExample = new PersonExample();
+		personExample.createCriteria().andNameEqualTo(personName);
+		List<Person> persons = personMapper.selectByExample(personExample);
+		return persons;
 	}
 
 }

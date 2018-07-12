@@ -91,7 +91,16 @@ public class ApplicationUtils {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		return sdf.parse(sdf.format(new Date()));
 	}
-	
+	/**
+	 * 获取系统当前时间
+	 * @param string
+	 * @return
+	 * @throws ParseException 
+	 */
+	public static Date getYMD() throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+		return sdf.parse(sdf.format(new Date()));
+	}
 	public static String removeTag(String string) {
 		return string.replaceAll("<[^>]+>", "").replaceAll("&nbsp;", "").replaceAll("&emsp;", "").replaceAll("&ensp;", "");
 	}

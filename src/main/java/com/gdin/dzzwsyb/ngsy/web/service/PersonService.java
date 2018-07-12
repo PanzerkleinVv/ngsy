@@ -12,4 +12,7 @@ public interface PersonService extends GenericService<Person, String> {
 	long checkIdCard(Person person);
 	
 	Page<Person> selectPage(Person person, Integer pageNo);
+
+	List<Person> selectPersonsByName(String personName);
+  
 }

@@ -53,7 +53,6 @@
 <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
 </head>
 
-
 <!-- END HEAD -->
 
 <!-- BEGIN BODY -->
