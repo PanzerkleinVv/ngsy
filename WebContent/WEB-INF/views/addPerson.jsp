@@ -642,8 +642,7 @@
 	}
 	//模糊查找
 	function onClickfind() {
-		$
-				.ajax({
+		$.ajax({
 					type : "Post",
 					url : 'rest/code/getJiGuanByName',
 					data : {

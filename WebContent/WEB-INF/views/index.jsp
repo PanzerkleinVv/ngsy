@@ -258,7 +258,7 @@
 	<script src="assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
 	<script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 
-	<script src="assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="assets/plugins/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
 	<script src="assets/plugins/jquery-validation/dist/localization/messages_zh.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="assets/plugins/select2/select2.min.js"></script>
 
@@ -270,6 +270,7 @@
 	<script src="assets/plugins/ueditor/ueditor.config.js"></script>
 	<script src="assets/plugins/ueditor/ueditor.all.min.js"></script>
 	<script src="assets/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script src="assets/js/layer.js"></script>
 	<script lang="javaScript">
 		var URL = window.UEDITOR_HOME_URL || "assets/plugins/ueditor/";
 	</script>
