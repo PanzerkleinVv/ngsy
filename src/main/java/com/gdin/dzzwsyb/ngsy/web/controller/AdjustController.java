@@ -2,7 +2,6 @@ package com.gdin.dzzwsyb.ngsy.web.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gdin.dzzwsyb.ngsy.core.util.ApplicationUtils;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesPerson;
-import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExample;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExtend;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExtendList;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesUnit;
@@ -167,7 +165,7 @@ public class AdjustController {
 	@RequestMapping("/personBlur")
 	public List<Person> personBlur(String personName) {
 		List<Person> persons = new ArrayList<Person>();
-		if(personName != null || personName.equals("")) {
+		if(personName != null || !"".equals(personName)) {
 			persons = personService.selectPersonsByName(personName);
 		}
 		return persons;

@@ -82,5 +82,7 @@
         </table>
         <table tableName="unit">
         </table>
+        <table tableName="family">
+        </table>
     </context>
 </generatorConfiguration>

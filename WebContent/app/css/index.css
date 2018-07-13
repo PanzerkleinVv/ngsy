@@ -112,7 +112,7 @@
 	text-align: left;
 	width: 300px;
 	max-height: 150px;
-    overflow: hidden;
+	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
@@ -336,6 +336,7 @@
 }
 
 .codeForm {
+	
 }
 
 .codeHide {
@@ -405,7 +406,7 @@
 
 .multipleFormTable {
 	text-align: center;
-	font-size: 17px;
+	font-size: 16px;
 	font-family: 微软雅黑;
 }
 
@@ -438,59 +439,357 @@
 	padding-bottom: 5px;
 	background-color: #e7e7e7;
 }
-.col-xs-2-3,.col-sm-2-3,.col-md-2-3,.col-lg-2-3,.col-xs-9-10,.col-sm-9-10,.col-md-9-10,.col-lg-9-10 {
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  position: relative;
+
+.multipleFormRow input {
+	font-size: 12px;
+}
+
+.multipleFormRow select {
+	font-size: 12px;
+}
+
+.col-xs-2-3, .col-sm-2-3, .col-md-2-3, .col-lg-2-3, .col-xs-9-10,
+	.col-sm-9-10, .col-md-9-10, .col-lg-9-10 {
+	min-height: 1px;
+	padding-left: 15px;
+	padding-right: 15px;
+	position: relative;
 }
 
 .col-xs-2-3 {
-  width: 21%;
-  float: left;
-}
-.col-xs-9-10{
-  width: 79%;
-  float: left;
+	width: 21%;
+	float: left;
 }
 
-@media (min-width: 768px) {
-  .col-sm-2-3 {
-    width: 21%;
-    float: left;
-  }
+.col-xs-9-10 {
+	width: 79%;
+	float: left;
 }
 
-@media (min-width: 992px) {
-  .col-md-2-3 {
-    width: 21%;
-    float: left;
-  }
+@media ( min-width : 768px) {
+	.col-sm-2-3 {
+		width: 21%;
+		float: left;
+	}
 }
 
-@media (min-width: 1200px) {
-  .col-lg-2-3 {
-    width: 21%;
-    float: left;
-  }
-}
-@media (min-width: 768px) {
-  .col-sm-9-10{
-    width: 79%;
-    float: left;
-  }
+@media ( min-width : 992px) {
+	.col-md-2-3 {
+		width: 21%;
+		float: left;
+	}
 }
 
-@media (min-width: 992px) {
-  .col-md-9-10{
-    width: 79%;
-    float: left;
-  }
+@media ( min-width : 1200px) {
+	.col-lg-2-3 {
+		width: 21%;
+		float: left;
+	}
 }
 
-@media (min-width: 1200px) {
-  .col-lg-9-10{
-    width: 79%;
-    float: left;
-  }
+@media ( min-width : 768px) {
+	.col-sm-9-10 {
+		width: 79%;
+		float: left;
+	}
+}
+
+@media ( min-width : 992px) {
+	.col-md-9-10 {
+		width: 79%;
+		float: left;
+	}
+}
+
+@media ( min-width : 1200px) {
+	.col-lg-9-10 {
+		width: 79%;
+		float: left;
+	}
+}
+
+.col-sm-1-16, .col-sm-2-16, .col-sm-3-16, .col-sm-4-16, .col-sm-5-16,
+	.col-sm-6-16, .col-sm-7-16, .col-sm-8-16, .col-sm-9-16, .col-sm-10-16,
+	.col-sm-11-16, .col-sm-12-16, .col-sm-13-16, .col-sm-14-16,
+	.col-sm-15-16, .col-sm-16-16, .col-md-1-16, .col-md-2-16, .col-md-3-16,
+	.col-md-4-16, .col-md-5-16, .col-md-6-16, .col-md-7-16, .col-md-8-16,
+	.col-md-9-16, .col-md-10-16, .col-md-11-16, .col-md-12-16,
+	.col-md-13-16, .col-md-14-16, .col-md-15-16, .col-md-16-16,
+	.col-lg-1-16, .col-lg-2-16, .col-lg-3-16, .col-lg-4-16, .col-lg-5-16,
+	.col-lg-6-16, .col-lg-7-16, .col-lg-8-16, .col-lg-9-16, .col-lg-10-16,
+	.col-lg-11-16, .col-lg-12-16, .col-lg-13-16, .col-lg-14-16,
+	.col-lg-15-16, .col-lg-16-16 {
+	min-height: 1px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+@media ( min-width : 768px) {
+	.col-sm-1-16 {
+		width: 6.25%;
+		float: left;
+	}
+	.col-sm-2-16 {
+		width: 12.5%;
+		float: left;
+	}
+	.col-sm-3-16 {
+		width: 18.75%;
+		float: left;
+	}
+	.col-sm-4-16 {
+		width: 25%;
+		float: left;
+	}
+	.col-sm-5-16 {
+		width: 31.25%;
+		float: left;
+	}
+	.col-sm-6-16 {
+		width: 37.5%;
+		float: left;
+	}
+	.col-sm-7-16 {
+		width: 43.75%;
+		float: left;
+	}
+	.col-sm-8-16 {
+		width: 50%;
+		float: left;
+	}
+	.col-sm-9-16 {
+		width: 56.25%;
+		float: left;
+	}
+	.col-sm-10-16 {
+		width: 62.5%;
+		float: left;
+	}
+	.col-sm-11-16 {
+		width: 68.75%;
+		float: left;
+	}
+	.col-sm-12-16 {
+		width: 75%;
+		float: left;
+	}
+	.col-sm-13-16 {
+		width: 81.25%;
+		float: left;
+	}
+	.col-sm-14-16 {
+		width: 87.5%;
+		float: left;
+	}
+	.col-sm-15-16 {
+		width: 93.75%;
+		float: left;
+	}
+	.col-sm-16-16 {
+		width: 100%;
+		float: left;
+	}
+}
+
+@media ( min-width : 992px) {
+	.col-md-1-16 {
+		width: 6.25%;
+		float: left;
+	}
+	.col-md-2-16 {
+		width: 12.5%;
+		float: left;
+	}
+	.col-md-3-16 {
+		width: 18.75%;
+		float: left;
+	}
+	.col-md-4-16 {
+		width: 25%;
+		float: left;
+	}
+	.col-md-5-16 {
+		width: 31.25%;
+		float: left;
+	}
+	.col-md-6-16 {
+		width: 37.5%;
+		float: left;
+	}
+	.col-md-7-16 {
+		width: 43.75%;
+		float: left;
+	}
+	.col-md-8-16 {
+		width: 50%;
+		float: left;
+	}
+	.col-md-9-16 {
+		width: 56.25%;
+		float: left;
+	}
+	.col-md-10-16 {
+		width: 62.5%;
+		float: left;
+	}
+	.col-md-11-16 {
+		width: 68.75%;
+		float: left;
+	}
+	.col-md-12-16 {
+		width: 75%;
+		float: left;
+	}
+	.col-sm-13-16 {
+		width: 81.25%;
+		float: left;
+	}
+	.col-md-14-16 {
+		width: 87.5%;
+		float: left;
+	}
+	.col-md-15-16 {
+		width: 93.75%;
+		float: left;
+	}
+	.col-md-16-16 {
+		width: 100%;
+		float: left;
+	}
+}
+
+@media ( min-width : 1200px) {
+	.col-lg-1-16 {
+		width: 6.25%;
+		float: left;
+	}
+	.col-lg-2-16 {
+		width: 12.5%;
+		float: left;
+	}
+	.col-lg-3-16 {
+		width: 18.75%;
+		float: left;
+	}
+	.col-lg-4-16 {
+		width: 25%;
+		float: left;
+	}
+	.col-lg-5-16 {
+		width: 31.25%;
+		float: left;
+	}
+	.col-lg-6-16 {
+		width: 37.5%;
+		float: left;
+	}
+	.col-lg-7-16 {
+		width: 43.75%;
+		float: left;
+	}
+	.col-lg-8-16 {
+		width: 50%;
+		float: left;
+	}
+	.col-lg-9-16 {
+		width: 56.25%;
+		float: left;
+	}
+	.col-lg-10-16 {
+		width: 62.5%;
+		float: left;
+	}
+	.col-lg-11-16 {
+		width: 68.75%;
+		float: left;
+	}
+	.col-lg-12-16 {
+		width: 75%;
+		float: left;
+	}
+	.col-lg-13-16 {
+		width: 81.25%;
+		float: left;
+	}
+	.col-lg-14-16 {
+		width: 87.5%;
+		float: left;
+	}
+	.col-lg-15-16 {
+		width: 93.75%;
+		float: left;
+	}
+	.col-lg-16-16 {
+		width: 100%;
+		float: left;
+	}
+}
+
+.row0 {
+	margin-right: 0px !important;
+	margin-left: 0px !important;
+}
+
+.butRow {
+	text-align: center;
+}
+
+.tableRow {
+	border-top: 1px solid #DDDDDD;
+	border-collapse: collapse;
+}
+
+.tableRow .control-label {
+	background-color: #DDDDDD;
+	padding-bottom: 7px;
+	text-align: center !important;
+}
+
+.tableRow .innerLabel {
+	border-left: 1px solid #FFFFFF;
+	border-reght: 1px solid #FFFFFF;
+	border-collapse: collapse;
+	background-color: #DDDDDD;
+	text-align: center;
+}
+
+.smForm {
+	font-size: 12px;
+}
+
+.addDemo {
+	display: none;
+}
+
+.addRow {
+	margin-top: 2px;
+	vertical-align: middle;
+}
+
+.delBut {
+	cursor: pointer;
+}
+
+label.error {
+	background-color: #FFFFFF;
+	color: #9f0000;
+}
+
+.error:not(label) {
+	background-color: RGBA(255, 0, 0, 0.05);
+	border-color: #9f0000;
+}
+
+.uploadPhoto {
+	height: 220px;
+}
+
+.personBaseInfo {
+	font-size: 18px;
+	line-height: 22px;
+	font-family: "宋体";
+}
+
+.personInfo2 {
+	margin-top: 10px;
 }
