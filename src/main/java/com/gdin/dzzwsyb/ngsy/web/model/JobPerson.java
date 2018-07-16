@@ -27,6 +27,31 @@ public class JobPerson {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date lostDate;
+	
+	private int sort;
+	
+	public JobPerson() {};
+	
+	public JobPerson(JobPerson jobPerson) {
+		id = jobPerson.getId();
+		personId = jobPerson.getPersonId();
+		jobId = jobPerson.getJobId();
+		shuangJianTiao = jobPerson.getShuangJianTiao();
+		salary = jobPerson.getSalary();
+		ownDate = jobPerson.getOwnDate();
+		isProbation = jobPerson.getIsProbation();
+		probationDate = jobPerson.getProbationDate();
+		lostDate = jobPerson.getLostDate();
+		sort = jobPerson.getSort();
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
 
 	public String getId() {
 		return id;

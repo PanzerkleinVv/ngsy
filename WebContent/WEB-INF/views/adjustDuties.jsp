@@ -60,53 +60,54 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>任命编辑</h3>
+				<h3>任命编辑</h3><h5>(注意*为必填字段)</h5>
 			</div>
 			<div class="modal-body">
 				<form class="form-horizontal" id="AddUserForm">
 					<fieldset>		
 						<div class="control-group">
-							<label class="control-label" for="id">姓名</label>
+							<label class="control-label" for="id">姓名*：</label>
 							<div class="controls">
-								<input class="input-clarge focused" name="person_name" type="text" style="width:216px" id="person_name">
+								<input class="input-clarge focused" name="person_name" type="text" style="width:216px" id="person_name" onblur="check(0)" >
 								<div id="blurMsg">
 								
 								</div>
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="name" >职务</label >
+							<label class="control-label" for="name" >职务*：</label >
 							<div class="controls">
-								<select id="duties_name"  name="duties_name" style="width:216px">
+								<select id="duties_name"  name="duties_name" style="width:216px" onblur="check(1)">
 									<option></option>
 									<c:forEach items="${duties}" var="dutie" varStatus="status" > 
 										<option value="${dutie.id}"> ${dutie.name} </option>
 									</c:forEach>
 								</select>
-							</div>											
+							</div>										
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="own_date" >任职时间</label >
+							<label class="control-label" for="own_date" >任职时间*：</label >
 							<div class="controls">
-								<input class="input-clarge focused" name="own_date" type="date"  style="width: 216px;" id="own_date">
-							</div>											
+								<input class="input-clarge focused" name="own_date" type="date"  style="width: 216px;" id="own_date" onblur="check(2)">
+							</div>									
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="is_probation" >是否试用</label >
+							<label class="control-label" for="is_probation" >是否试用*：</label >
 							<div class="controls">
-								<select id="is_probation"  name="is_probation" style="width:216px" onchange="isProbationChange()">
+								<select id="is_probation"  name="is_probation" style="width:216px" onchange="isProbationChange()" onblur="check(3)">
 									<option></option>
 									<option>是</option>
 									<option>否</option>
 								</select>
-							</div>											
+							</div>							
 						</div>
 						<div class="control-group" id="probationDiv" style="display:none;">
 							<label class="control-label" for="probation_date" >试用期至</label >
 							<div class="controls">
-								<input class="input-clarge focused" name="probation_date" type="date"  style="width: 216px;" id="probation_date">
-							</div>											
-						</div>				
+								<input class="input-clarge focused" name="probation_date" type="date"  style="width: 216px;" id="probation_date" onblur="check(4)">
+							</div>								
+						</div>	
+						<span id='msg4'></span>				
 					</fieldset>
 				</form>
 
@@ -125,6 +126,8 @@
 		document.getElementById("AddUserForm").reset(); 
 		$("#blurMsg").css("display","none");
 		$('#myModal').modal('show');
+		$('#msg4').html("");
+		$("#AddJobPeople").attr("disabled", false);
 	})
 	$(function() {
 		var options = {
@@ -196,16 +199,34 @@
 		var url = 'rest/adjust/personBlur';
 		$.post(url,{
 			personName:$("#person_name").val()
-		},function(data){
-			console.log(data);
+		},function(result){
 			$("#blurMsg").removeAttr("style");
-			if(data == false){
+			if(result == false){
 				var html = '<font style="color:red;">'+"人员库暂无此人信息"+'</font>';
 				$("#blurMsg").html(html);
 			}
 			else{
-				var html = '<font style="color:green;">'+"人员库有此人信息"+'</font>';
+				var html = "";
+				if(result.length > 1){
+					for (var i = 0; i < result.length; i++) {
+						html += '<span class="radio_box" style="margin-right:30px">'
+								+ '<input type="radio" id="'+result[i].id+'"  name="radio"  value="' +result[i].id+'"style="cursor:pointer;">'
+								+ '<label for="'+result[i].id+'">'
+								+ result[i].name+'   身份证'+result[i].idCard
+								+ '</label>'
+								+ '</span><br>'
+					}
+				}
+				else{
+					html += '<span class="radio_box" style="margin-right:30px" style="display:none">'
+						+ '<input type="radio" id="'+result[i].id+'"  name="radio" checked  value="' +result[i].id+'"style="cursor:pointer;">'
+						+ '<label for="'+result[i].id+'">'
+						+ result[i].name+'   身份证'+result[i].idCard
+						+ '</label>'
+						+ '</span><br>'
+				}
 				$("#blurMsg").html(html);
+				
 			}
 			
 		})
@@ -222,21 +243,81 @@
 	}
 	
 	function AddDutiesPeople(){
-		$("#AddDutiesPeople").attr("disabled", true);
 		var options=$("#duties_name option:selected");
 		var url = 'rest/adjust/addDutiesPerson';
-		$.post(url,{
-			unitId : $("#unitId").val(),
-			dutiesUnitId : options.val(),
-			personName : $("#person_name").val(),
-			isProbation : $("#is_probation").val(),
-			ownDate : $("#own_date").val(),
-			probationDate : $("#probation_date").val()
+		var id = $('input[name="radio"]:checked').attr('id');
+		if (check(0) && check(1) && check(2) && check(3)) {
+			if(id== null || id.length < 1){
+				$('#msg4').css('color', '#FF0000');
+				$('#msg4').html("勾选你所要任命的人");	
+			}
+			else{
+				$("#AddJobPeople").attr("disabled", true);
+				$.post(url,{
+					unitId : $("#unitId").val(),
+					dutiesUnitId : options.val(),
+					personId : id,
+					isProbation : $("#is_probation").val(),
+					ownDate : $("#own_date").val(),
+					probationDate : $("#probation_date").val()
+					
+				},function(data){
+					$(".modal-backdrop").remove();
+					$("#unitContent").html(data);
+				})
+			}
 			
-		},function(data){
-			$(".modal-backdrop").remove();
-			$("#unitContent").html(data);
-		})
+		}
+		else{
+			$('#msg4').css('color', '#FF0000');
+			$('#msg4').html("*必要字段不能为空");
+		}
 	}
-	
+	//非空校验
+
+	function check(num) {
+		var value;
+		var msg;
+		if (num == 0) {
+			value = $("#person_name").val();
+			if (value == null || value.length < 1) {
+				return false;
+			} else {
+				return true;
+			}
+		} else if (num == 1) {
+			value = $("#duties_name").val();
+			if (value == null || value.length < 1) {
+				return false;
+			} else {
+				return true;
+			}
+		} else if (num == 2) {
+			value = $("#own_date").val();
+			if (value == null || value.length < 1) {
+				return false;
+			} else {
+				return true;
+			}
+		} else if (num == 3) {
+			value = $("#is_probation").val();
+			if (value == null || value.length < 1) {
+				return false;
+			} else {
+				return true;
+			}
+		} else if (num == 4) {
+			value = $("#probation_date").val();
+			if (value == null || value.length < 1) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+	}
 </script>
+
+
+
+
