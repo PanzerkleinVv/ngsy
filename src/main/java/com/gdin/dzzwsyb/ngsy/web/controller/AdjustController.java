@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gdin.dzzwsyb.ngsy.core.util.ApplicationUtils;
-import com.gdin.dzzwsyb.ngsy.web.dao.JobPersonMapper;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesPerson;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExtend;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExtendList;
@@ -43,7 +42,7 @@ import com.gdin.dzzwsyb.ngsy.web.service.UnitService;
 @Controller
 @RequestMapping("/adjust")
 public class AdjustController {
-	
+
 	@Resource
 	private DutiesUnitService dutiesUnitService;
 	@Resource
@@ -58,29 +57,29 @@ public class AdjustController {
 	private LogService logService;
 	@Resource
 	private PersonService personService;
-	
+
 	final static private String JOBMODULE = "job_adjust";
 	final static private String DUTIESMODULE = "duties_adjust";
-	
+
 	@RequestMapping("/adjustduties")
 	@RequiresRoles(value = RoleSign.ADMIN)
 	public String dutiesList(@ModelAttribute("unit") Unit unit, Model model) {
 		List<DutiesPersonExtend> dutiesPersonExtends = new ArrayList<DutiesPersonExtend>();
 		if (unit != null && unit.getId() != null && !"".equals(unit.getId())) {
 			final List<DutiesUnit> duties = dutiesUnitService.selectList(unit.getId());
-			final List<DutiesPerson> dutiesPersons= dutiesPersonService.selectPersons(duties);
-			if(dutiesPersons.size()>0 || dutiesPersons != null) {
-				for(DutiesPerson dutiesPerson : dutiesPersons) {
+			final List<DutiesPerson> dutiesPersons = dutiesPersonService.selectPersons(duties);
+			if (dutiesPersons.size() > 0 || dutiesPersons != null) {
+				for (DutiesPerson dutiesPerson : dutiesPersons) {
 					DutiesPersonExtend dutiesPersonExtend = new DutiesPersonExtend(dutiesPerson);
 					Person person = personService.selectById(dutiesPerson.getPersonId());
 					DutiesUnit dutiesUnit = dutiesUnitService.selectById(dutiesPerson.getDutiesUnitId());
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
-		            String ownDateStr = sdf.format(dutiesPerson.getOwnDate());
-		            dutiesPersonExtend.setOwnDateStr(ownDateStr);
-		            if(dutiesPerson.getProbationDate() != null) {
-		            	String probationDateStr = sdf.format(dutiesPerson.getProbationDate());
-		            	dutiesPersonExtend.setProbationDateStr(probationDateStr);
-		            }
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					String ownDateStr = sdf.format(dutiesPerson.getOwnDate());
+					dutiesPersonExtend.setOwnDateStr(ownDateStr);
+					if (dutiesPerson.getProbationDate() != null) {
+						String probationDateStr = sdf.format(dutiesPerson.getProbationDate());
+						dutiesPersonExtend.setProbationDateStr(probationDateStr);
+					}
 					dutiesPersonExtend.setPersonName(person.getName());
 					dutiesPersonExtend.setDutiesName(dutiesUnit.getName());
 					dutiesPersonExtends.add(dutiesPersonExtend);
@@ -93,13 +92,14 @@ public class AdjustController {
 		}
 		return "adjustDuties";
 	}
-	
+
 	@RequestMapping("/save")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String save(String unitId, DutiesPersonExtendList dutiesPersonExtends, RedirectAttributes model, HttpSession session)
-			throws Exception {
+	public String save(String unitId, DutiesPersonExtendList dutiesPersonExtends, RedirectAttributes model,
+			HttpSession session) throws Exception {
 		if (unitId != null && !"".equals(unitId)) {
-			if (dutiesPersonExtends.getDutiesPersonExtends() != null && dutiesPersonExtends.getDutiesPersonExtends().size() > 0) {
+			if (dutiesPersonExtends.getDutiesPersonExtends() != null
+					&& dutiesPersonExtends.getDutiesPersonExtends().size() > 0) {
 				final ResultMessage message = new ResultMessage();
 				final Long userId = (Long) session.getAttribute("userId");
 				final String METHOD = "更新内部人员职务排序：";
@@ -119,159 +119,199 @@ public class AdjustController {
 		}
 		return "redirect:/rest/adjust/adjustduties";
 	}
-	
-	//退休（未修改人员表中的state）
+
+	// 退休（未修改人员表中的state）
 	@RequestMapping("/lostDuties")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String lostDuties(String dutiesPersonExtendId, String  unitId, RedirectAttributes model)
+	public String lostDuties(String dutiesPersonExtendId, String unitId, RedirectAttributes model, HttpSession session)
 			throws Exception {
 		DutiesPerson dutiesPerson = dutiesPersonService.selectById(dutiesPersonExtendId);
 		Date lostDate = ApplicationUtils.getYMD();
 		dutiesPerson.setLostDate(lostDate);
 		int flag = dutiesPersonService.update(dutiesPerson);
+		final Long userId = (Long) session.getAttribute("userId");
+		final String METHOD = "人员退休：";
 		if (flag < 1) {
 			throw new Exception("退休更新出错");
+		} else {
+			final Log log = new Log(userId, DUTIESMODULE, dutiesPerson.getPersonId(), METHOD);
+			logService.log(log);
 		}
 		final Unit unit = new Unit();
 		unit.setId(unitId);
 		model.addFlashAttribute("unit", unit);
 		return "redirect:/rest/adjust/adjustduties";
 	}
-	
+
 	@RequestMapping("/regularDuties")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String regularDuties(String dutiesPersonExtendId, String  unitId, RedirectAttributes model)
-			throws Exception {
+	public String regularDuties(String dutiesPersonExtendId, String unitId, RedirectAttributes model,
+			HttpSession session) throws Exception {
 		DutiesPerson dutiesPerson = dutiesPersonService.selectById(dutiesPersonExtendId);
 		dutiesPerson.setIsProbation("否");
 		dutiesPerson.setProbationDate(null);
 		int flag = dutiesPersonService.updateByPrimaryKey(dutiesPerson);
+		final Long userId = (Long) session.getAttribute("userId");
+		final String METHOD = "人员转正：";
 		if (flag < 1) {
 			throw new Exception("转正更新出错");
+		} else {
+			final Log log = new Log(userId, DUTIESMODULE, dutiesPerson.getPersonId(), METHOD);
+			logService.log(log);
 		}
 		final Unit unit = new Unit();
 		unit.setId(unitId);
 		model.addFlashAttribute("unit", unit);
 		return "redirect:/rest/adjust/adjustduties";
 	}
-	
-	//免职（未修改人员表中的state）
+
+	// 免职（未修改人员表中的state）
 	@RequestMapping("/delDuties")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String delDuties(String dutiesPersonExtendId, String  unitId, RedirectAttributes model)
+	public String delDuties(String dutiesPersonExtendId, String unitId, RedirectAttributes model, HttpSession session)
 			throws Exception {
 		DutiesPerson dutiesPerson = dutiesPersonService.selectById(dutiesPersonExtendId);
 		Date lostDate = ApplicationUtils.getYMD();
 		dutiesPerson.setLostDate(lostDate);
+		final Long userId = (Long) session.getAttribute("userId");
+		final String METHOD = "人员免职：";
 		int flag = dutiesPersonService.update(dutiesPerson);
 		if (flag < 1) {
 			throw new Exception("退休更新出错");
+		} else {
+			final Log log = new Log(userId, DUTIESMODULE, dutiesPerson.getPersonId(), METHOD);
+			logService.log(log);
 		}
 		final Unit unit = new Unit();
 		unit.setId(unitId);
 		model.addFlashAttribute("unit", unit);
 		return "redirect:/rest/adjust/adjustduties";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/personBlur")
 	public List<Person> personBlur(String personName) {
 		List<Person> persons = new ArrayList<Person>();
-		if(personName != null || !"".equals(personName)) {
+		if (personName != null || !"".equals(personName)) {
 			persons = personService.selectPersonsByName(personName);
 		}
 		return persons;
 	}
-	
+
 	@RequestMapping("/addDutiesPerson")
-	public String addDutiesPerson(DutiesPerson dutiesPerson, String  unitId, RedirectAttributes model) {
-		dutiesPerson.setId(UUID.randomUUID().toString().replaceAll("-",""));
+	public String addDutiesPerson(DutiesPerson dutiesPerson, String unitId, RedirectAttributes model,
+			HttpSession session) {
+		dutiesPerson.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		final Long userId = (Long) session.getAttribute("userId");
+		final String METHOD = "人员任职：";
 		final List<DutiesUnit> duties = dutiesUnitService.selectList(unitId);
-		final List<DutiesPerson> dutiesPersons= dutiesPersonService.selectPersons(duties);
-		int sort = dutiesPersons.get(dutiesPersons.size()-1).getSort();
-		dutiesPerson.setSort(sort+1);
+		final List<DutiesPerson> dutiesPersons = dutiesPersonService.selectPersons(duties);
+		if (dutiesPersons != null && dutiesPersons.size() > 0) {
+			dutiesPerson.setSort(dutiesPersons.get(dutiesPersons.size() - 1).getSort() + 1);
+		} else {
+			dutiesPerson.setSort(0);
+		}
 		int flag = dutiesPersonService.insert(dutiesPerson);
+		if (flag == 1) {
+			final Log log = new Log(userId, DUTIESMODULE, dutiesPerson.getPersonId(), METHOD);
+			logService.log(log);
+		}
 		final Unit unit = new Unit();
 		unit.setId(unitId);
 		model.addFlashAttribute("unit", unit);
 		return "redirect:/rest/adjust/adjustduties";
 	}
-/////////////////
-	//退休（未修改人员表中的state）
-		@RequestMapping("/lostJob")
-		@RequiresRoles(value = RoleSign.ADMIN)
-		public String lostJob(String jobPersonExtendId, String  unitId, RedirectAttributes model)
-				throws Exception {
-			JobPerson jobPerson = jobPersonService.selectById(jobPersonExtendId);
-			Date lostDate = ApplicationUtils.getYMD();
-			jobPerson.setLostDate(lostDate);
-			int flag = jobPersonService.update(jobPerson);
-			if (flag < 1) {
-				throw new Exception("退休更新出错");
-			}
-			final Unit unit = new Unit();
-			unit.setId(unitId);
-			model.addFlashAttribute("unit", unit);
-			return "redirect:/rest/adjust/adjustJobs";
+
+	// 退休（未修改人员表中的state）
+	@RequestMapping("/lostJob")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public String lostJob(String jobPersonExtendId, String unitId, RedirectAttributes model, HttpSession session)
+			throws Exception {
+		JobPerson jobPerson = jobPersonService.selectById(jobPersonExtendId);
+		Date lostDate = ApplicationUtils.getYMD();
+		final Long userId = (Long) session.getAttribute("userId");
+		final String METHOD = "人员退休：";
+		jobPerson.setLostDate(lostDate);
+		int flag = jobPersonService.update(jobPerson);
+		if (flag < 1) {
+			throw new Exception("退休更新出错");
+		} else {
+			final Log log = new Log(userId, DUTIESMODULE, jobPerson.getPersonId(), METHOD);
+			logService.log(log);
 		}
-		
-		@RequestMapping("/regularJob")
-		@RequiresRoles(value = RoleSign.ADMIN)
-		public String regularJob(String jobPersonExtendId, String  unitId, RedirectAttributes model)
-				throws Exception {
-			JobPerson jobPerson = jobPersonService.selectById(jobPersonExtendId);
-			jobPerson.setIsProbation("否");
-			jobPerson.setProbationDate(null);
-			int flag = jobPersonService.updateByPrimaryKey(jobPerson);
-			if (flag < 1) {
-				throw new Exception("转正更新出错");
-			}
-			final Unit unit = new Unit();
-			unit.setId(unitId);
-			model.addFlashAttribute("unit", unit);
-			return "redirect:/rest/adjust/adjustJobs";
+		final Unit unit = new Unit();
+		unit.setId(unitId);
+		model.addFlashAttribute("unit", unit);
+		return "redirect:/rest/adjust/adjustJobs";
+	}
+
+	@RequestMapping("/regularJob")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public String regularJob(String jobPersonExtendId, String unitId, RedirectAttributes model, HttpSession session)
+			throws Exception {
+		JobPerson jobPerson = jobPersonService.selectById(jobPersonExtendId);
+		jobPerson.setIsProbation("否");
+		jobPerson.setProbationDate(null);
+		final Long userId = (Long) session.getAttribute("userId");
+		final String METHOD = "人员转正：";
+		int flag = jobPersonService.updateByPrimaryKey(jobPerson);
+		if (flag < 1) {
+			throw new Exception("转正更新出错");
+		} else {
+			final Log log = new Log(userId, DUTIESMODULE, jobPerson.getPersonId(), METHOD);
+			logService.log(log);
 		}
-		
-		//免职（未修改人员表中的state）
-		@RequestMapping("/delJob")
-		@RequiresRoles(value = RoleSign.ADMIN)
-		public String delJob(String jobPersonExtendId, String  unitId, RedirectAttributes model)
-				throws Exception {
-			JobPerson jobPerson = jobPersonService.selectById(jobPersonExtendId);
-			Date lostDate = ApplicationUtils.getYMD();
-			jobPerson.setLostDate(lostDate);
-			int flag = jobPersonService.update(jobPerson);
-			if (flag < 1) {
-				throw new Exception("退休更新出错");
-			}
-			final Unit unit = new Unit();
-			unit.setId(unitId);
-			model.addFlashAttribute("unit", unit);
-			return "redirect:/rest/adjust/adjustJobs";
+		final Unit unit = new Unit();
+		unit.setId(unitId);
+		model.addFlashAttribute("unit", unit);
+		return "redirect:/rest/adjust/adjustJobs";
+	}
+
+	// 免职（未修改人员表中的state）
+	@RequestMapping("/delJob")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public String delJob(String jobPersonExtendId, String unitId, RedirectAttributes model, HttpSession session)
+			throws Exception {
+		JobPerson jobPerson = jobPersonService.selectById(jobPersonExtendId);
+		Date lostDate = ApplicationUtils.getYMD();
+		jobPerson.setLostDate(lostDate);
+		final Long userId = (Long) session.getAttribute("userId");
+		final String METHOD = "人员退休：";
+		int flag = jobPersonService.update(jobPerson);
+		if (flag < 1) {
+			throw new Exception("退休更新出错");
+		} else {
+			final Log log = new Log(userId, DUTIESMODULE, jobPerson.getPersonId(), METHOD);
+			logService.log(log);
 		}
-	
+		final Unit unit = new Unit();
+		unit.setId(unitId);
+		model.addFlashAttribute("unit", unit);
+		return "redirect:/rest/adjust/adjustJobs";
+	}
+
 	@RequestMapping("/adjustjobs")
 	@RequiresRoles(value = RoleSign.ADMIN)
 	public String adjustjobs(@ModelAttribute("unit") Unit unit, Model model) {
 		List<JobPersonExtend> jobPersonExtends = new ArrayList<JobPersonExtend>();
 		if (unit != null && unit.getId() != null && !"".equals(unit.getId())) {
 			final List<JobUnit> jobs = jobUnitService.selectList(unit.getId());
-			final List<JobPerson> jobPersons= jobPersonService.selectPersons(jobs);
-			if(jobPersons.size()>0 || jobPersons != null) {
-				for(JobPerson jobPerson : jobPersons) {
+			final List<JobPerson> jobPersons = jobPersonService.selectPersons(jobs);
+			if (jobPersons.size() > 0 || jobPersons != null) {
+				for (JobPerson jobPerson : jobPersons) {
 					JobPersonExtend jobPersonExtend = new JobPersonExtend(jobPerson);
 					Person person = personService.selectById(jobPerson.getPersonId());
 					JobUnit jobUnit = jobUnitService.selectById(jobPerson.getJobId());
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
-		            String ownDateStr = sdf.format(jobPerson.getOwnDate());
-		            jobPersonExtend.setOwnDateStr(ownDateStr);
-		            if(jobPerson.getProbationDate() != null) {
-		            	String probationDateStr = sdf.format(jobPerson.getProbationDate());
-		            	jobPersonExtend.setProbationDateStr(probationDateStr);
-		            }
-		            jobPersonExtend.setPersonName(person.getName());
-		            jobPersonExtend.setJobName(jobUnit.getName());
-		            jobPersonExtends.add(jobPersonExtend);
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					String ownDateStr = sdf.format(jobPerson.getOwnDate());
+					jobPersonExtend.setOwnDateStr(ownDateStr);
+					if (jobPerson.getProbationDate() != null) {
+						String probationDateStr = sdf.format(jobPerson.getProbationDate());
+						jobPersonExtend.setProbationDateStr(probationDateStr);
+					}
+					jobPersonExtend.setPersonName(person.getName());
+					jobPersonExtend.setJobName(jobUnit.getName());
+					jobPersonExtends.add(jobPersonExtend);
 				}
 			}
 			unit = unitService.selectById(unit.getId());
@@ -281,20 +321,20 @@ public class AdjustController {
 		}
 		return "adjustJobs";
 	}
-	
+
 	@RequestMapping("/jobSave")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String jobSave(String unitId, JobPersonExtendList jobPersonExtends, RedirectAttributes model, HttpSession session)
-			throws Exception {
+	public String jobSave(String unitId, JobPersonExtendList jobPersonExtends, RedirectAttributes model,
+			HttpSession session) throws Exception {
 		if (unitId != null && !"".equals(unitId)) {
-			if (jobPersonExtends.getJobPersonExtends()!= null && jobPersonExtends.getJobPersonExtends().size() > 0) {
+			if (jobPersonExtends.getJobPersonExtends() != null && jobPersonExtends.getJobPersonExtends().size() > 0) {
 				final ResultMessage message = new ResultMessage();
 				final Long userId = (Long) session.getAttribute("userId");
 				final String METHOD = "更新内部人员岗位排序：";
 				message.edit();
 				if (jobPersonService.modify(jobPersonExtends.getJobPersonExtends())) {
 					message.success();
-					final Log log = new Log(userId,JOBMODULE, unitId, METHOD);
+					final Log log = new Log(userId, JOBMODULE, unitId, METHOD);
 					logService.log(log);
 				} else {
 					message.failure();
@@ -307,19 +347,28 @@ public class AdjustController {
 		}
 		return "redirect:/rest/adjust/adjustjobs";
 	}
-	
+
 	@RequestMapping("/addJobPerson")
-	public String addJobPerson(DutiesPerson dutiesPerson, String  unitId, RedirectAttributes model) {
-		dutiesPerson.setId(UUID.randomUUID().toString().replaceAll("-",""));
-		final List<DutiesUnit> duties = dutiesUnitService.selectList(unitId);
-		final List<DutiesPerson> dutiesPersons= dutiesPersonService.selectPersons(duties);
-		int sort = dutiesPersons.get(dutiesPersons.size()-1).getSort();
-		dutiesPerson.setSort(sort+1);
-		int flag = dutiesPersonService.insert(dutiesPerson);
+	public String addJobPerson(JobPerson jobPerson, String unitId, RedirectAttributes model, HttpSession session) {
+		jobPerson.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		final List<JobUnit> jobs = jobUnitService.selectList(unitId);
+		final List<JobPerson> jobPersons = jobPersonService.selectPersons(jobs);
+		final Long userId = (Long) session.getAttribute("userId");
+		final String METHOD = "人员转正：";
+		if (jobPersons != null && jobPersons.size() > 0) {
+			jobPerson.setSort(jobPersons.get(jobPersons.size() - 1).getSort() + 1);
+		} else {
+			jobPerson.setSort(0);
+		}
+		int flag = jobPersonService.insert(jobPerson);
+		if (flag == 1) {
+			final Log log = new Log(userId, DUTIESMODULE, jobPerson.getPersonId(), METHOD);
+			logService.log(log);
+		}
 		final Unit unit = new Unit();
 		unit.setId(unitId);
 		model.addFlashAttribute("unit", unit);
 		return "redirect:/rest/adjust/adjustduties";
 	}
-	
+
 }
