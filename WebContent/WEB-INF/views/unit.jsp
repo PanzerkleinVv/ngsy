@@ -6,6 +6,7 @@
 }
 </style>
 <div class="mainContent">
+	<input type="hidden" id="gotoUnitId" value="${unit != null ? unit.id : ''}" />
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
@@ -141,8 +142,7 @@
                 spantxt = spantxt.substring(0, 6) + "...";
                 $("#" + treeNode.tId + "_span").html(spantxt);
             }
-        
-  }
+		}
 		$(document).ready(function() {
 			$.ajax({
 				type : "Post",
@@ -151,6 +151,13 @@
 				success : function(result) {
 					console.log(result);
 					zTree = $.fn.zTree.init($("#treeDemo"), setting, result);
+					var goId = $("#gotoUnitId").val();
+					if (goId != null && goId.length > 0) {
+						var node = zTree.getNodeByParam("id", goId);
+						zTree.selectNode(node,true);
+						zTree.checkNode(node, true, true);
+						$("#unitNav .active>a").click();
+					}
 				},
 				error : function() {
 					alert("菜单加载失败！")

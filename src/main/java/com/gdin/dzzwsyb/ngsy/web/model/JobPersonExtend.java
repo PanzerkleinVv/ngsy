@@ -5,6 +5,10 @@ public class JobPersonExtend extends JobPerson{
 	
 	private String jobName;
 	
+	private String unitName;
+	
+	private String unitId;
+	
 	private String ownDateStr;
 	
 	private String probationDateStr;
@@ -41,6 +45,22 @@ public class JobPersonExtend extends JobPerson{
 
 	public void setJobName(String jobName) {
 		this.jobName = jobName;
+	}
+
+	public String getUnitName() {
+		return unitName;
+	}
+
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
+	}
+
+	public String getUnitId() {
+		return unitId;
+	}
+
+	public void setUnitId(String unitId) {
+		this.unitId = unitId;
 	}
 
 	public JobPersonExtend() {};

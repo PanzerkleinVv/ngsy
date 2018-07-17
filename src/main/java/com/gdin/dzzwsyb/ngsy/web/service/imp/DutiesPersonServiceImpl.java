@@ -17,6 +17,7 @@ import com.gdin.dzzwsyb.ngsy.web.model.DutiesPerson;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExample;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExtend;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesUnit;
+import com.gdin.dzzwsyb.ngsy.web.model.JobPersonExtend;
 import com.gdin.dzzwsyb.ngsy.web.service.DutiesPersonService;
 
 @Service
@@ -38,7 +39,6 @@ public class DutiesPersonServiceImpl extends GenericServiceImpl<DutiesPerson, St
 
 	@Override
 	public List<DutiesPerson> selectPersons(List<DutiesUnit> duties) {
-		// TODO Auto-generated method stub
 		List<DutiesPerson> allPersons = new ArrayList<DutiesPerson>();
 		for(DutiesUnit dutiesUnit:duties) {
 			DutiesPersonExample example = new DutiesPersonExample();
@@ -52,7 +52,6 @@ public class DutiesPersonServiceImpl extends GenericServiceImpl<DutiesPerson, St
 		Collections.sort(allPersons,new Comparator<DutiesPerson>(){
 				@Override
 				public int compare(DutiesPerson o1, DutiesPerson o2) {
-					// TODO Auto-generated method stub
 					return new Integer(o1.getSort()).compareTo(new Integer(o2.getSort()));
 				}
 	        });
@@ -82,8 +81,12 @@ public class DutiesPersonServiceImpl extends GenericServiceImpl<DutiesPerson, St
 
 	@Override
 	public int updateByPrimaryKey(DutiesPerson dutiesPerson) {
-		// TODO Auto-generated method stub
 		return dutiesPersonMapper.updateByPrimaryKey(dutiesPerson);
+	}
+
+	@Override
+	public List<DutiesPersonExtend> selectDutiesByPersonId(String personId, boolean isXianren) {
+		return dutiesPersonMapper.selectDutiesByPersonId(personId, isXianren);
 	}
 
 

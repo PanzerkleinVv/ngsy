@@ -60,8 +60,12 @@ public class Person {
 	private List<Rank> ranks;
 
 	private List<Resume> resumes;
-	
+
 	private List<Family> families;
+
+	private List<JobPersonExtend> jobs;
+
+	private List<DutiesPersonExtend> duties;
 
 	public String getId() {
 		return id;
@@ -271,6 +275,22 @@ public class Person {
 		this.families = families;
 	}
 
+	public List<JobPersonExtend> getJobs() {
+		return jobs;
+	}
+
+	public void setJobs(List<JobPersonExtend> jobs) {
+		this.jobs = jobs;
+	}
+
+	public List<DutiesPersonExtend> getDuties() {
+		return duties;
+	}
+
+	public void setDuties(List<DutiesPersonExtend> duties) {
+		this.duties = duties;
+	}
+
 	public Person() {
 
 	};
@@ -301,7 +321,9 @@ public class Person {
 		educations = person.getEducations();
 		ranks = person.getRanks();
 		resumes = person.getResumes();
-		families =person.getFamilies();
+		families = person.getFamilies();
+		jobs = person.getJobs();
+		duties = person.getDuties();
 	}
 
 }

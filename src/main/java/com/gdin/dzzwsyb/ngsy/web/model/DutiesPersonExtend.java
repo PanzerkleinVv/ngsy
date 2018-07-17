@@ -5,6 +5,10 @@ public class DutiesPersonExtend extends DutiesPerson{
 	
 	private String dutiesName;
 	
+	private String unitName;
+	
+	private String unitId;
+	
 	private String ownDateStr;
 	
 	private String probationDateStr;
@@ -41,6 +45,22 @@ public class DutiesPersonExtend extends DutiesPerson{
 
 	public void setDutiesName(String dutiesName) {
 		this.dutiesName = dutiesName;
+	}
+
+	public String getUnitName() {
+		return unitName;
+	}
+
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
+	}
+
+	public String getUnitId() {
+		return unitId;
+	}
+
+	public void setUnitId(String unitId) {
+		this.unitId = unitId;
 	}
 
 	public DutiesPersonExtend() {

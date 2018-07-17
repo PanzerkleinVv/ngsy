@@ -232,5 +232,12 @@ public class UnitController {
 		model.addFlashAttribute("unit", unit);
 		return "redirect:/rest/adjust/adjustjobs";
 	}
+	
+	@RequestMapping("get")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public String get(Unit unit, RedirectAttributes model) {
+		model.addFlashAttribute("unit", unit);
+		return "unit";
+	}
 
 }

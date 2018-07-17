@@ -11,10 +11,6 @@ import org.springframework.stereotype.Service;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericServiceImpl;
 import com.gdin.dzzwsyb.ngsy.web.dao.JobPersonMapper;
-import com.gdin.dzzwsyb.ngsy.web.model.DutiesPerson;
-import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExample;
-import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExtend;
-import com.gdin.dzzwsyb.ngsy.web.model.DutiesUnit;
 import com.gdin.dzzwsyb.ngsy.web.model.JobPerson;
 import com.gdin.dzzwsyb.ngsy.web.model.JobPersonExample;
 import com.gdin.dzzwsyb.ngsy.web.model.JobPersonExtend;
@@ -40,7 +36,6 @@ public class JobPersonServiceImpl extends GenericServiceImpl<JobPerson, String> 
 
 	@Override
 	public List<JobPerson> selectPersons(List<JobUnit> jobs) {
-		// TODO Auto-generated method stub
 		List<JobPerson> allPersons = new ArrayList<JobPerson>();
 		for(JobUnit jobUnit:jobs) {
 			JobPersonExample example = new JobPersonExample();
@@ -53,7 +48,6 @@ public class JobPersonServiceImpl extends GenericServiceImpl<JobPerson, String> 
 		Collections.sort(allPersons,new Comparator<JobPerson>(){
 				@Override
 				public int compare(JobPerson o1, JobPerson o2) {
-					// TODO Auto-generated method stub
 					return new Integer(o1.getSort()).compareTo(new Integer(o2.getSort()));
 				}
 	        });
@@ -62,13 +56,11 @@ public class JobPersonServiceImpl extends GenericServiceImpl<JobPerson, String> 
 
 	@Override
 	public int updateByPrimaryKey(JobPerson jobPerson) {
-		// TODO Auto-generated method stub
 		return jobPersonMapper.updateByPrimaryKey(jobPerson);
 	}
 
 	@Override
 	public boolean modify(List<JobPersonExtend> jobs) throws Exception {
-		// TODO Auto-generated method stub
 		JobPersonExtend jobPersonExtend = null;
 		int flag;
 		for (int i = 0; i < jobs.size(); i++) {
@@ -85,5 +77,10 @@ public class JobPersonServiceImpl extends GenericServiceImpl<JobPerson, String> 
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public List<JobPersonExtend> selectJobsByPersonId(String personId, boolean isXianren) {
+		return jobPersonMapper.selectJobsByPersonId(personId, isXianren);
 	}
 }

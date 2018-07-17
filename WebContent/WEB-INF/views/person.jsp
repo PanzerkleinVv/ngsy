@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <nav id="unitNav" class="navbar navbar-default" style="height: 20px">
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -23,37 +24,11 @@
 					<img src="rest/person/photo?id=${person.id}" width="154px" height="180px" />
 				</div>
 				<div class="col-md-10">
+					<div class="personTitle">基本信息</div>
 					<div class="personBaseInfo">
-						&emsp;&emsp;<b>${person.name}</b>，
-						<input type="hidden" id="人的性别代码" class="needCodeName" value="${person.sex}" />
-						，
-						<input type="hidden" id="人员籍贯代码" class="needCodeName" value="${person.nativePlace}" />
-						人， 出生地
-						<input type="hidden" id="人员籍贯代码" class="needCodeName" value="${person.birthplace}" />
-						，
-						<input type="hidden" id="中国各民族名称代码" class="needCodeName" value="${person.nationality}" />
-						，
-						<fmt:formatDate value='${person.birthday}' type='DATE' pattern='yyyy年MM月dd日' />
-						生（
-						<c:set var="age" value="${now.time - birthday.time}" />
-						<fmt:formatNumber value="${interval/1000/60/60/24/((365*4+1)/4)}" pattern="#0" />
-						岁），
-						<fmt:formatDate value='${person.workDate}' type='DATE' pattern='yyyy年MM月dd日' />
-						参加工作，
-						<c:if test="${person.partydate != null}">
-							<fmt:formatDate value='${person.partydate}' type='DATE' pattern='yyyy年MM月dd日' />入党
-						</c:if>
-						（
-						<input type="hidden" id="政治面貌代码" class="needCodeName" value="${person.nationality}" />
-						）
-						<c:if test="${person.educations != null && person.educations[0] != null}">，学历<input type="hidden" id="学历代码" class="needCodeName" value="${person.educations[0].education}" />（${person.educations[0].school}${person.educations[0].specialty}），<input type="hidden" id="中华人民共和国学位代码" class="needCodeName" value="${person.educations[0].degree}" />
-						</c:if>
-						<c:if test="${person.ranks != null && person.ranks[0] != null}">，<fmt:formatDate value='${person.ranks[0].ownDate}' type='DATE' pattern='yyyy年MM月dd日' />
-							&emsp;
-							<input type="hidden" id="" class="needCodeName" value="${person.ranks[0].rank}" />（<c:set var="rankAge" value="${now.time - person.ranks[0].ownDate}" />
-							<fmt:formatNumber value="${interval/1000/60/60/24/((365*4+1)/4)}" pattern="#0" />）</c:if>
-						。
+						&emsp;&emsp;<b>${person.name}</b>，<input type="hidden" id="人的性别代码" class="needCodeName" value="${person.sex}" />，<input type="hidden" id="人员籍贯代码" class="needCodeName" value="${person.nativePlace}" />人，出生地<input type="hidden" id="人员籍贯代码" class="needCodeName" value="${person.birthplace}" />，<input type="hidden" id="中国各民族名称代码" class="needCodeName" value="${person.nationality}" />，<fmt:formatDate value='${person.birthday}' type='DATE' pattern='yyyy年MM月dd日' />生（<c:set var="age" value="${now.time - birthday.time}" /><fmt:formatNumber value="${interval/1000/60/60/24/((365*4+1)/4)}" pattern="#0" />岁），<fmt:formatDate value='${person.workDate}' type='DATE' pattern='yyyy年MM月dd日' />参加工作，<c:if test="${person.partydate != null}"><fmt:formatDate value='${person.partydate}' type='DATE' pattern='yyyy年MM月dd日' />入党</c:if>（<input type="hidden" id="政治面貌代码" class="needCodeName" value="${person.nationality}" />）<c:if test="${person.educations != null && person.educations[0] != null}">，学历<input type="hidden" id="学历代码" class="needCodeName" value="${person.educations[0].education}" />（${person.educations[0].school}${person.educations[0].specialty}），<input type="hidden" id="中华人民共和国学位代码" class="needCodeName" value="${person.educations[0].degree}" /></c:if><c:if test="${person.ranks != null && person.ranks[0] != null}">，<fmt:formatDate value='${person.ranks[0].ownDate}' type='DATE' pattern='yyyy年MM月dd日' />&emsp;<input type="hidden" id="" class="needCodeName" value="${person.ranks[0].rank}" />（<c:set var="rankAge" value="${now.time - person.ranks[0].ownDate}" /><fmt:formatNumber value="${interval/1000/60/60/24/((365*4+1)/4)}" pattern="#0" />）</c:if><c:if test="${person.duties != null && fn:length(person.duties) > 0}">，现任<c:set var="unitId"/><c:forEach var="duty" items="${person.duties}"><c:choose><c:when test="${unitId ne duty.unitId}">&emsp;<a class="goUnit" href="rest/unit/get?id=${duty.unitId}">${duty.unitName}</a>&emsp;${duty.dutiesName}</c:when><c:otherwise>、${duty.dutiesName}</c:otherwise></c:choose></c:forEach></c:if><c:if test="${person.jobs != null && fn:length(person.jobs) > 0}">，岗位<c:set var="unitId"/><c:forEach var="job" items="${person.jobs}"><c:choose><c:when test="${unitId ne job.unitId}">&emsp;<a class="goUnit" href="rest/unit/get?id=${job.unitId}">${job.unitName}</a>&emsp;${job.jobName}</c:when><c:otherwise>、${job.jobName}</c:otherwise></c:choose></c:forEach></c:if>。
 					</div>
+					<div class="personTitle nofirst">家庭信息</div>
 					<div class="personBaseInfo row">
 						<c:if test="${person.families != null}">
 							<c:forEach var="family" items="${person.families}">
@@ -68,6 +43,7 @@
 					</div>
 				</div>
 			</div>
+			<div class="personTitle nofirst">简历</div>
 			<div class="personBaseInfo row personInfo2">
 				<c:if test="${person.resumes != null}">
 					<c:forEach var="resume" items="${person.resumes}">
@@ -106,6 +82,14 @@
 				$(".mainContent").html(data);
 			});
 		}
+		return false;
+	});
+	
+	$("a.goUnit").click(function() {
+		var url = $(this).attr("href");
+		$.get(url, function(data) {
+			$("#main-content").html(data);
+		});
 		return false;
 	});
 

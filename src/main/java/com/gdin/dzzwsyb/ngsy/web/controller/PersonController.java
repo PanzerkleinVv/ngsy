@@ -29,8 +29,10 @@ import com.gdin.dzzwsyb.ngsy.web.model.Person;
 import com.gdin.dzzwsyb.ngsy.web.model.ResultMessage;
 import com.gdin.dzzwsyb.ngsy.web.properties.SourceURL;
 import com.gdin.dzzwsyb.ngsy.web.security.RoleSign;
+import com.gdin.dzzwsyb.ngsy.web.service.DutiesPersonService;
 import com.gdin.dzzwsyb.ngsy.web.service.EducationService;
 import com.gdin.dzzwsyb.ngsy.web.service.FamilyService;
+import com.gdin.dzzwsyb.ngsy.web.service.JobPersonService;
 import com.gdin.dzzwsyb.ngsy.web.service.LogService;
 import com.gdin.dzzwsyb.ngsy.web.service.PersonService;
 import com.gdin.dzzwsyb.ngsy.web.service.RankService;
@@ -53,6 +55,10 @@ public class PersonController {
 	private ResumeService resumeService;
 	@Resource
 	private FamilyService familyService;
+	@Resource
+	private JobPersonService jobPersonService;
+	@Resource
+	private DutiesPersonService dutiesPersonService;
 	@Resource
 	private LogService logService;
 
@@ -166,6 +172,8 @@ public class PersonController {
 			person.setRanks(rankService.getSingleMessage(person.getId()));
 			person.setFamilies(familyService.selectByPersonId(person.getId()));
 			person.setResumes(resumeService.selectByPersonId(person.getId()));
+			person.setJobs(jobPersonService.selectJobsByPersonId(person.getId(), true));
+			person.setDuties(dutiesPersonService.selectDutiesByPersonId(person.getId(), true));
 			model.addAttribute("person", person);
 			model.addAttribute("message", message);
 			return "person";

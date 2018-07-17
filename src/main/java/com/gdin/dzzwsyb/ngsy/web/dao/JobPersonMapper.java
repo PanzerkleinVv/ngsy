@@ -3,6 +3,8 @@ package com.gdin.dzzwsyb.ngsy.web.dao;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
 import com.gdin.dzzwsyb.ngsy.web.model.JobPerson;
 import com.gdin.dzzwsyb.ngsy.web.model.JobPersonExample;
+import com.gdin.dzzwsyb.ngsy.web.model.JobPersonExtend;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -28,4 +30,7 @@ public interface JobPersonMapper extends GenericDao<JobPerson, String> {
 	int updateByPrimaryKeySelective(JobPerson record);
 
 	int updateByPrimaryKey(JobPerson record);
+	
+	List<JobPersonExtend> selectJobsByPersonId(@Param("personId") String personId,
+			@Param("isXianren") Boolean isXianren);
 }
