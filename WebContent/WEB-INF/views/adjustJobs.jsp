@@ -221,9 +221,9 @@
 				}
 				else{
 					html += '<span class="radio_box" style="margin-right:30px" style="display:none">'
-						+ '<input type="radio" id="'+result[i].id+'"  name="radio" checked  value="' +result[i].id+'"style="cursor:pointer;">'
-						+ '<label for="'+result[i].id+'">'
-						+ result[i].name+'   身份证'+result[i].idCard
+						+ '<input type="radio" id="'+result[0].id+'"  name="radio" checked  value="' +result[0].id+'"style="cursor:pointer;">'
+						+ '<label for="'+result[0].id+'">'
+						+ result[0].name+'   身份证'+result[0].idCard
 						+ '</label>'
 						+ '</span><br>'
 				}

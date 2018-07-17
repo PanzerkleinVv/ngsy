@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-07-12 19:51:21
+Date: 2018-07-17 12:20:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21389,6 +21389,7 @@ CREATE TABLE `job_person` (
   `is_probation` varchar(2) DEFAULT NULL COMMENT '是否试用',
   `probation_date` datetime DEFAULT NULL COMMENT '试用期至',
   `lost_date` datetime DEFAULT NULL COMMENT '离职时间',
+  `sort` int(2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
