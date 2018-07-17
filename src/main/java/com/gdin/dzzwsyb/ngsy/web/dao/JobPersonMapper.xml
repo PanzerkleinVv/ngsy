@@ -22,6 +22,15 @@
 			property="lostDate" />
 		<result column="sort" jdbcType="INTEGER" property="sort" />
 	</resultMap>
+	<resultMap id="ExtendResultMap"
+		type="com.gdin.dzzwsyb.ngsy.web.model.JobPersonExtend" extends="BaseResultMap">
+		<result column="job_name" jdbcType="VARCHAR"
+			property="jobName" />
+		<result column="unit_name" jdbcType="VARCHAR"
+			property="unitName" />
+			<result column="u_id" jdbcType="VARCHAR"
+			property="unitId" />
+	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
 			<foreach collection="oredCriteria" item="criteria"
@@ -332,4 +341,23 @@
 		sort = #{sort,jdbcType=INTEGER}
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
+	
+	<select id="selectJobsByPersonId"
+		resultMap="ExtendResultMap">
+		select
+			jp.*, ju.`name` job_name, u.`name` unit_name, u.id u_id
+		from
+			job_person jp
+		LEFT OUTER JOIN job_unit ju ON jp.job_id = ju.id
+		LEFT OUTER JOIN unit u ON ju.unit_id = u.id
+		LEFT OUTER JOIN v_global_unit_sort s ON u.id = s.id
+		where 
+			jp.person_id = #{personId}
+		<if test="isXianren">
+			and jp.lost_date is null
+		</if>
+		ORDER BY
+			s.sort ASC,
+			ju.sort ASC;
+	</select>
 </mapper>

@@ -796,8 +796,22 @@ label.error {
 	font-size: 18px;
 	line-height: 22px;
 	font-family: "宋体";
+	margin-top: 10px;
 }
 
 .personInfo2 {
+	margin-top: 10px;
+}
+
+.personTitle {
+	font-size: 18px;
+	font-family: "微软雅黑";
+	color: #FFFFFF !important;
+/* 	background-image: linear-gradient(to right, RGB(21,112,166) 0, RGB(21,112,166) 150px, RGB(255,255,255) 250px);
+ */	background-color: RGB(21,112,166);
+	padding-left: 20px;
+	border-radius: 5px 5px 5px 5px !important;
+}
+.personTitle.nofirst {
 	margin-top: 10px;
 }

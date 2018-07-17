@@ -3,6 +3,8 @@ package com.gdin.dzzwsyb.ngsy.web.dao;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesPerson;
 import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExample;
+import com.gdin.dzzwsyb.ngsy.web.model.DutiesPersonExtend;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -28,7 +30,8 @@ public interface DutiesPersonMapper extends GenericDao<DutiesPerson, String> {
 	int updateByPrimaryKeySelective(DutiesPerson record);
 
 	int updateByPrimaryKey(DutiesPerson record);
-	
-	
-	
+
+	List<DutiesPersonExtend> selectDutiesByPersonId(@Param("personId") String personId,
+			@Param("isXianren") Boolean isXianren);
+
 }

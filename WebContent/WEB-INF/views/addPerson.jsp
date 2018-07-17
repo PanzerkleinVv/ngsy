@@ -252,7 +252,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-16-16 tableRow">
+		<%-- <div class="col-md-16-16 tableRow">
 			<div class="form-group">
 				<label class="col-md-1-16 control-label" for="xianRenZhiWu">现任职务</label>
 				<div class="col-md-15-16">
@@ -278,7 +278,7 @@
 					<p class="help-block"></p>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 		<div class="col-md-16-16 tableRow">
 			<div class="form-group">
 				<label class="col-md-1-16 control-label" for="rank">简历</label>
