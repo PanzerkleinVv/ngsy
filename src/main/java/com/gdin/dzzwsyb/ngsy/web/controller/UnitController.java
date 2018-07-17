@@ -233,4 +233,10 @@ public class UnitController {
 		return "redirect:/rest/adjust/adjustjobs";
 	}
 
+	//机构成员
+	@RequestMapping("/people")
+	@RequiresRoles(value = RoleSign.ADMIN)
+	public String people() {			
+		return "people";
+	}
 }

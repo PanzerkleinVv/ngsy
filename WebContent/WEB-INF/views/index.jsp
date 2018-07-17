@@ -38,6 +38,7 @@
 <link href="assets/css/pages/tasks.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color" />
 <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/people.css" rel="stylesheet" type="text/css" />
 <!-- END THEME STYLES -->
 
 <link rel="shortcut icon" href="app/img/favicon.ico" />
