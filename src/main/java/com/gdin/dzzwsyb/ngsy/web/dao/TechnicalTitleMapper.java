@@ -1,6 +1,9 @@
 package com.gdin.dzzwsyb.ngsy.web.dao;
 
+import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
+import com.gdin.dzzwsyb.ngsy.web.model.Person;
+import com.gdin.dzzwsyb.ngsy.web.model.PersonExample;
 import com.gdin.dzzwsyb.ngsy.web.model.TechnicalTitle;
 import com.gdin.dzzwsyb.ngsy.web.model.TechnicalTitleExample;
 import java.util.List;
@@ -29,4 +32,6 @@ public interface TechnicalTitleMapper extends GenericDao<TechnicalTitle, String>
 	int updateByPrimaryKeySelective(TechnicalTitle record);
 
 	int updateByPrimaryKey(TechnicalTitle record);
+	
+	List<TechnicalTitle> selectPage(TechnicalTitleExample example, Page<TechnicalTitle> page);
 }

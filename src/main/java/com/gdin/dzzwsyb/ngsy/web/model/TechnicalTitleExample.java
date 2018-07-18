@@ -6,11 +6,11 @@ import java.util.List;
 
 public class TechnicalTitleExample {
 	protected String orderByClause;
-
+	
 	protected boolean distinct;
 
 	protected List<Criteria> oredCriteria;
-
+	
 	public TechnicalTitleExample() {
 		oredCriteria = new ArrayList<Criteria>();
 	}

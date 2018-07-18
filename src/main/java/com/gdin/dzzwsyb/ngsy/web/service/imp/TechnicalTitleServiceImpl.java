@@ -1,15 +1,20 @@
 package com.gdin.dzzwsyb.ngsy.web.service.imp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericServiceImpl;
 import com.gdin.dzzwsyb.ngsy.core.util.ApplicationUtils;
 import com.gdin.dzzwsyb.ngsy.web.dao.TechnicalTitleMapper;
+import com.gdin.dzzwsyb.ngsy.web.model.Person;
+import com.gdin.dzzwsyb.ngsy.web.model.PersonExample;
 import com.gdin.dzzwsyb.ngsy.web.model.TechnicalTitle;
 import com.gdin.dzzwsyb.ngsy.web.model.TechnicalTitleExample;
+import com.gdin.dzzwsyb.ngsy.web.model.PersonExample.Criteria;
 import com.gdin.dzzwsyb.ngsy.web.service.TechnicalTitleService;
 
 import org.springframework.stereotype.Service;
@@ -85,6 +90,41 @@ public class TechnicalTitleServiceImpl extends GenericServiceImpl<TechnicalTitle
 			return technicalTitleMapper.selectByExample(example);
 		}
 		return null;
+	}
+
+	@Override
+	public List<Person> check(List<Person> persons, String technicalTitle) {
+		// TODO Auto-generated method stub
+		List<Person> personList = new ArrayList<Person>();
+		for(Person person : persons) {
+			TechnicalTitleExample example = new TechnicalTitleExample();
+			example.createCriteria().andPersonIdEqualTo(person.getId()).andTechnicalTitleEqualTo(technicalTitle);
+			List<TechnicalTitle> technicalTitles = technicalTitleMapper.selectByExample(example);
+			if(technicalTitles.size()>0) {
+				personList.add(person);
+			}
+		}
+		return personList;
+	}
+
+	@Override
+	public Page<TechnicalTitle> selectPage(List<Person> personsList, Integer pageNo,String technicalTitle) {
+		// TODO Auto-generated method stub
+		List<String> personId = new ArrayList<String>();
+		Page<TechnicalTitle> page = null;
+		TechnicalTitleExample example = new TechnicalTitleExample();
+		if(personsList != null || personsList.size()>0) {
+			for(Person person : personsList) {
+				personId.add(person.getId());
+			}
+		}
+		if(personId != null || personId.size()>0) {
+			page = new Page<TechnicalTitle>(pageNo);
+			example.createCriteria().andPersonIdIn(personId).andTechnicalTitleEqualTo(technicalTitle);
+			example.setOrderByClause("id asc");
+		}
+		technicalTitleMapper.selectPage(example, page);
+		return page;
 	}
 
 }

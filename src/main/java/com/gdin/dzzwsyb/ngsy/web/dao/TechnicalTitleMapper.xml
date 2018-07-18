@@ -81,6 +81,24 @@
 	<sql id="Base_Column_List">
 		id, person_id, technical_title, own_date, job_date
 	</sql>
+	
+	<select id="selectPage"
+		parameterType="com.gdin.dzzwsyb.ngsy.web.model.TechnicalTitleExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from technical_title
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	
 	<select id="selectByExample"
 		parameterType="com.gdin.dzzwsyb.ngsy.web.model.TechnicalTitleExample"
 		resultMap="BaseResultMap">

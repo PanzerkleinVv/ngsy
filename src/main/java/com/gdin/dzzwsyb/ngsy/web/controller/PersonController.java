@@ -3,6 +3,8 @@ package com.gdin.dzzwsyb.ngsy.web.controller;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -25,8 +27,10 @@ import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
 import com.gdin.dzzwsyb.ngsy.core.util.ApplicationUtils;
 import com.gdin.dzzwsyb.ngsy.core.util.HandleFile;
 import com.gdin.dzzwsyb.ngsy.web.model.Log;
+import com.gdin.dzzwsyb.ngsy.web.model.PeopleExtends;
 import com.gdin.dzzwsyb.ngsy.web.model.Person;
 import com.gdin.dzzwsyb.ngsy.web.model.ResultMessage;
+import com.gdin.dzzwsyb.ngsy.web.model.TechnicalTitle;
 import com.gdin.dzzwsyb.ngsy.web.properties.SourceURL;
 import com.gdin.dzzwsyb.ngsy.web.security.RoleSign;
 import com.gdin.dzzwsyb.ngsy.web.service.EducationService;
@@ -215,11 +219,24 @@ public class PersonController {
 
 	@RequestMapping(value = "/find")
 	@RequiresRoles(value = RoleSign.ADMIN)
-	public String find(Person person, Integer pageNo, Model model) {
-		Page<Person> page = personService.selectPage(person, pageNo);
-		model.addAttribute("people", page.getResult());
-		model.addAttribute("page", page);
-		model.addAttribute("query", person);
+	public String find(PeopleExtends peopleExtends, Integer pageNo, Model model) {
+		Page<Person> page = personService.selectPage(peopleExtends, pageNo);
+		List<Person> persons = page.getResult();
+		if(peopleExtends.getTechnical_title() != null && !("").equals(peopleExtends.getTechnical_title())) {
+			List<Person> personsList = technicalTitleService.check(persons, peopleExtends.getTechnical_title());		
+			if(personsList != null || personsList.size()>0) {
+				Page<TechnicalTitle> page2 = technicalTitleService.selectPage(personsList, pageNo, peopleExtends.getTechnical_title());		
+				model.addAttribute("people", personsList);
+				model.addAttribute("page", page2);
+				model.addAttribute("query", peopleExtends);
+			}
+		}
+		else {
+			model.addAttribute("people",persons);
+			model.addAttribute("page", page);
+			model.addAttribute("query", peopleExtends);
+		}
+		
 		return "findPerson";
 	}
 
