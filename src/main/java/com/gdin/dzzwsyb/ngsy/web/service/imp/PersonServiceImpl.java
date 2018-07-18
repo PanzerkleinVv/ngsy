@@ -5,16 +5,22 @@ import javax.annotation.Resource;
 
 import com.gdin.dzzwsyb.ngsy.core.feature.orm.mybatis.Page;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Case;
 import org.springframework.stereotype.Service;
 
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericDao;
 import com.gdin.dzzwsyb.ngsy.core.generic.GenericServiceImpl;
 import com.gdin.dzzwsyb.ngsy.web.dao.PersonMapper;
+import com.gdin.dzzwsyb.ngsy.web.model.PeopleExtends;
 import com.gdin.dzzwsyb.ngsy.web.model.Person;
 import com.gdin.dzzwsyb.ngsy.web.model.PersonExample;
+import com.gdin.dzzwsyb.ngsy.web.model.PersonExample.Criteria;
 import com.gdin.dzzwsyb.ngsy.web.service.PersonService;
+import com.mysql.fabric.xmlrpc.base.Data;
 
 /**
  * 用户Service实现类
@@ -67,16 +73,51 @@ public class PersonServiceImpl extends GenericServiceImpl<Person, String> implem
 	}
 
 	@Override
-	public Page<Person> selectPage(Person person, Integer pageNo) {
+	public Page<Person> selectPage(PeopleExtends peopleExtends, Integer pageNo) {
 		Page<Person> page = null;
 		PersonExample example = new PersonExample();
-		if (person == null || person.getName() == null) {
+		Criteria criteria = example.createCriteria();
+		if(peopleExtends != null) {
 			page = new Page<Person>(pageNo);
-			example.createCriteria().andIdIsNotNull();
-		} else {
-			page = new Page<Person>(pageNo);
-			example.createCriteria().andNameLike("%" + person.getName() + "%");
+			if(!("").equals(peopleExtends.getName()) )
+				criteria.andNameLike("%" + peopleExtends.getName() + "%");
+			if(!peopleExtends.getEnterDateSelect().equals("") && !("").equals(peopleExtends.getEnterDateInt())) {
+				Calendar curr = Calendar.getInstance();
+				curr.set(Calendar.YEAR,curr.get(Calendar.YEAR)-Integer.parseInt(peopleExtends.getEnterDateInt()));
+				Date date=curr.getTime();
+				switch(peopleExtends.getEnterDateSelect()){
+				 	case "等于":
+				 		criteria.andEnterDateEqualTo(date);
+				 		break;
+				 	case "大于":
+				 		criteria.andEnterDateGreaterThan(date);
+				 		break;
+				 	case "小于":
+				 		criteria.andEnterDateLessThan(date);
+				 		break;
+				 } 
+			}
+			if(!peopleExtends.getAgeSelect().equals("") && !("").equals(peopleExtends.getAgeInt())) {
+				Calendar curr = Calendar.getInstance();
+				curr.set(Calendar.YEAR,curr.get(Calendar.YEAR)-Integer.parseInt(peopleExtends.getAgeInt()));
+				Date date=curr.getTime();
+				switch(peopleExtends.getAgeSelect()){
+			 	case "等于":
+			 		criteria.andBirthdayEqualTo(date);
+			 		break;
+			 	case "大于":
+			 		criteria.andBirthdayLessThan(date);
+			 		break;
+			 	case "小于":
+			 		criteria.andBirthdayGreaterThan(date);
+			 		break;
+			 } 
+			}
 		}
+		else {
+			page = new Page<Person>(pageNo);
+			criteria.andIdIsNotNull();
+		} 
 		example.setOrderByClause("id asc");
 		personMapper.selectPage(example, page);
 		return page;
