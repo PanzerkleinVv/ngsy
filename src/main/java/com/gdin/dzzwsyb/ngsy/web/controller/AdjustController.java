@@ -58,8 +58,8 @@ public class AdjustController {
 	@Resource
 	private PersonService personService;
 
-	final static private String JOBMODULE = "job_adjust";
-	final static private String DUTIESMODULE = "duties_adjust";
+	final static private String JOBMODULE = "job_person";
+	final static private String DUTIESMODULE = "duties_person";
 
 	@RequestMapping("/adjustduties")
 	@RequiresRoles(value = RoleSign.ADMIN)
@@ -236,7 +236,7 @@ public class AdjustController {
 		if (flag < 1) {
 			throw new Exception("退休更新出错");
 		} else {
-			final Log log = new Log(userId, DUTIESMODULE, jobPerson.getPersonId(), METHOD);
+			final Log log = new Log(userId, JOBMODULE, jobPerson.getPersonId(), METHOD);
 			logService.log(log);
 		}
 		final Unit unit = new Unit();
@@ -258,7 +258,7 @@ public class AdjustController {
 		if (flag < 1) {
 			throw new Exception("转正更新出错");
 		} else {
-			final Log log = new Log(userId, DUTIESMODULE, jobPerson.getPersonId(), METHOD);
+			final Log log = new Log(userId, JOBMODULE, jobPerson.getPersonId(), METHOD);
 			logService.log(log);
 		}
 		final Unit unit = new Unit();
@@ -281,7 +281,7 @@ public class AdjustController {
 		if (flag < 1) {
 			throw new Exception("退休更新出错");
 		} else {
-			final Log log = new Log(userId, DUTIESMODULE, jobPerson.getPersonId(), METHOD);
+			final Log log = new Log(userId, JOBMODULE, jobPerson.getPersonId(), METHOD);
 			logService.log(log);
 		}
 		final Unit unit = new Unit();
@@ -362,7 +362,7 @@ public class AdjustController {
 		}
 		int flag = jobPersonService.insert(jobPerson);
 		if (flag == 1) {
-			final Log log = new Log(userId, DUTIESMODULE, jobPerson.getPersonId(), METHOD);
+			final Log log = new Log(userId, JOBMODULE, jobPerson.getPersonId(), METHOD);
 			logService.log(log);
 		}
 		final Unit unit = new Unit();
